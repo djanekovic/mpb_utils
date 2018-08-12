@@ -15,6 +15,8 @@
 #	*border -> forsiraj border na 0
 #	*dim -> za sad je default 2
 
+# TODO: make program parse only one file with ms.run_te() and ms.run_tm()
+
 option_list <- list(
 					make_option(c("-v", "--verbose"),
 								action = "store_true",
@@ -33,8 +35,10 @@ option_list <- list(
 								# print that something is wrong
 								help = "Specify number of bands on the plot.
 								In case number is bigger than number
-								of bands in .out file, error will be generated
-								and script will exit (?)"),
+								of bands in .out file maximum will be plotted.
+								In that case, user will see warning written
+								out on stderr."),
+					# TODO: split maybe?
 					make_option(c("-s", "--size"),
 								type="double",
 								default=0.7,
@@ -64,4 +68,6 @@ option_list <- list(
 								help="Problem dimensionality.
 								Program now supports just 2D problems."))
 
-parser <- OptionParser(usage="%prog [options] tm.out te.out full.out
+parser <- OptionParser(usage="%prog [options] tm.out te.out,
+					   option_list=option_list, )
+
