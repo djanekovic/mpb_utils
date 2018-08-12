@@ -1,0 +1,54 @@
+\documentclass[utf8, seminar]{fer}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{siunitx}
+
+\begin{document}
+
+\title{Analiza periodičkih struktura}
+\author{Darko Janeković}
+\voditelj{dr.sc. Dario Bojanjac}
+
+\maketitle
+
+\tableofcontents
+
+\chapter{Uvod}
+U ovom seminaru bit će riječi o analizi periodičkih struktura gdje će naglasak
+biti na fotoničkim kristalima i primjeni numeričkih metoda na modeliranje
+disperzijskog dijagrama. Programska biblioteka koja se koristi za numeričko
+modeliranje je \href{https://github.com/stevengj/mpb}{MPB}. Prije svega, bit će
+iznesena matematička podloga potrebna za efikasno modeliranje širenja vala u
+periodičkoj strukturi. U poglavljima nakon uvoda bit će iznesena primjena
+fotoničkih kristala, te će biti pobrojane numeričke metode korištene u svrhu
+modeliranja problema koji opisuju periodičke strukture.
+
+\chapter{Matematičko modeliranje širenja vala u periodičkoj strukturi}
+
+Periodička struktura je pravilna struktura u kojoj se elementi na neki način
+periodički ponavljaju. U nastavku će biti razmatrani fotonički kristali koji se
+mogu razmati kao kristalne rešetke. Fotonički kristali su periodični na način
+da zadovavaju diskretnu translacijsku simetriju. Diskretna translacijska
+simetrija definirana je kao ${f(\mathbf{r}) = f(\mathbf{r} \pm \mathbf{a})}$
+odnosno ${f(\mathbf{r}) = f(\mathbf{r} + \mathbf{R})}$ gdje je ${\mathbf{R} =
+n\mathbf{a}}$, a $n \in \mathbb{Z}$.
+
+Vektor $\mathbf{a}$ je primitivni vektor rešetke dok se njegova duljina naziva
+konstanta rešetke. Ćelija za koju tvrdimo da se iznova ponavlja i tvori
+kristalnu rešetku naziva se jedinična ćelija.
+%todo: nastavi možda detaljnije o rešetci i nešto o simetriji općenito.
+%Nastavak blockov teorem i onda spoji sve s valnom i izvodom valne za
+%nehomogeni dielektrik
+
+
+
+\chapter{Zaključak}
+Zaključak.
+
+\bibliography{literatura}
+\bibliographystyle{fer}
+
+\chapter{Sažetak}
+Sažetak.
+
+\end{document}
