@@ -221,8 +221,82 @@ problema.
 		\left( \frac{\omega}{c} \right)^2 \mathbf{H}(\mathbf{r})
 \end{equation}
 
-Budući da je operator $\hat{\mathbf{\Theta}}$ hermitski\footnote{napiši dokaz u
-kratkim crtama}
+Budući da je operator $\hat{\mathbf{\Theta}}$ hermitski
+\footnote{
+	Potrebno je dokazati da je ${(\mathbf{F}, \hat{\mathbf{\Theta}}\mathbf{G})
+	=(\hat{\mathbf{\Theta}} \mathbf{F}, \mathbf{G})}$.
+
+	$$(\mathbf{F}, \hat{\mathbf{\Theta}}\mathbf{G}) =
+	\iiint \mathbf{F}^* (\mathbf{r}) \cdot \nabla \times \left(
+		\frac{1}{\varepsilon (\mathbf{r})} \nabla \times \mathbf{G}(\mathbf{r})
+	\right) \, \mathrm{d}^3 \mathbf{r}$$
+
+	% dario citat
+	Koristeći formulu za parcijalnu integraciju operacije rotora i Gaussov
+	teorem izraz se svodi na
+
+	%todo: ako će ti se dati ubaci oiint umjesto oint
+
+	$$(\mathbf{F}, \hat{\mathbf{\Theta}}\mathbf{G}) =
+	\iiint \frac{1}{\varepsilon (\mathbf{r})} \nabla \times \mathbf{G}(\mathbf{r})
+	\cdot \left(
+		\nabla \times \mathbf{F}(\mathbf{r})
+	\right)^* \, \mathrm{d}^3 \mathbf{r}
+	- \oint \left(
+		\mathbf{F}^*(\mathbf{r}) \times \frac{1}{\varepsilon(\mathbf{r})}
+		\nabla \times \mathbf{G}(\mathbf{r})
+	\right) \hat{n} \, \mathrm{d}S$$
+
+	Drugi član izraza zanemaruje se ili zbog periodičnosti na području integracije
+	% todo: napiši ovo bolje: field decay to zero at large distances
+	ili zato što polja trnu u 0. Parcijalna integracija provodi se još jednom uz
+	zanemarivanje istog člana.
+
+	$$(\mathbf{F}, \hat{\mathbf{\Theta}}\mathbf{G}) =
+	\iiint \mathbf{G}(\mathbf{r})
+	\cdot \left[
+		\nabla \times \left(
+			\frac{1}{\varepsilon (\mathbf{r})} \nabla \times
+			\mathbf{F}(\mathbf{r})
+		\right)
+	\right]^* \, \mathrm{d}^3 \mathbf{r}
+	- \oint \left[
+		\left(
+			\frac{1}{\varepsilon(\mathbf{r})} \times \mathbf{F}(\mathbf{r})
+		\right)^*
+		\times \mathbf{G}(\mathbf{r})
+	\right] \hat{n} \, \mathrm{d}S$$
+
+	$$(\mathbf{F}, \hat{\mathbf{\Theta}}\mathbf{G}) =
+	\iiint \mathbf{G}(\mathbf{r})
+	\cdot \left[
+		\nabla \times \left(
+			\frac{1}{\varepsilon (\mathbf{r})} \nabla \times
+			\mathbf{F}(\mathbf{r})
+		\right)
+	\right]^* \, \mathrm{d}^3 \mathbf{r}
+	= (\hat{\mathbf{\Theta}} \mathbf{F}, \mathbf{G})$$
+}.
+moguće je analizirati njegov Rayleghov kvocijent
+$R \left(\hat{\mathbf{\Theta}}, \mathbf{H}(\mathbf{r}) \right)$.
+
+\begin{align}
+	R \left( \hat{\mathbf{\Theta}}, \mathbf{H}(\mathbf{r}) \right) &=
+	\frac{ \left(
+		\mathbf{H}(\mathbf{r}), \hat{\mathbf{\Theta}}\mathbf{H}(\mathbf{r})
+		\right)}
+	{(\mathbf{H}(\mathbf{r}), \mathbf{H}(\mathbf{r}))} 					\nonumber \\
+	&= \frac{ 1/\varepsilon(\mathbf{r})
+		\iiint |\nabla \times \mathbf{H}(\mathbf{r})|^2 \, \mathrm{d}^3\mathbf{r}}
+	{\iiint | \mathbf{H}( \mathbf{r} ) |^2 \, \mathrm{d}^3\mathbf{r}} 	\nonumber \\
+	&= \frac{
+		\iiint |\nabla \times \mathbf{H}(\mathbf{r})|^2 \, \mathrm{d}^3\mathbf{r}}
+	{\iiint \varepsilon(\mathbf{r}) | \mathbf{H}( \mathbf{r} ) |^2 \, \mathrm{d}^3\mathbf{r}}
+																		\nonumber \\
+	&= \frac{
+		\iiint |\nabla \times \mathbf{E}(\mathbf{r})|^2 \, \mathrm{d}^3\mathbf{r}}
+	{\iiint \varepsilon(\mathbf{r}) | \mathbf{E}( \mathbf{r} ) |^2 \, \mathrm{d}^3\mathbf{r}}
+\end{align}
 
 
 % napiši o svojstvima koja se daju izvaditi iz ovog, energije i slično i onda sve
