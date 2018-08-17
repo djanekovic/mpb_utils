@@ -1,5 +1,5 @@
 kompajliranje seminara
 =======================
 
-$ pdflatex seminar.tex
+$ pdflatex seminar.tex && pdflatex seminar.tex
 
