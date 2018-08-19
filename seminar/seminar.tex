@@ -44,14 +44,14 @@ periodičkoj strukturi poprimiti isti period i simetriju kao i period te struktu
 Kao polazišna točka bit će izvedena valna jednadžba za propagaciju vala unutar
 nehomogenog dielektrika. Svojstveni problem i njegova interpretacija bit će
 razmatrani baš u okvirima te jednadžbe. Konačno će jednadžba pomoću Blochovog
-teorema biti specijalizirana za slučaj periodičke strukture.
+teorema biti specijalizirana za slučaj fotoničkog kristala.
 
 
 \section{Periodičke strukture i kristalna rešetka}
 
 Periodička struktura je pravilna struktura u kojoj se elementi na neki način
 periodički ponavljaju. U nastavku će biti razmatrani fotonički kristali koji se
-mogu razmatrati kao kristalne rešetke. Fotonički kristali su periodični na način
+mogu razmatrati kao kristalne rešetke. Fotonički kristali periodični su na način
 da zadovavaju diskretnu translacijsku simetriju.
 Diskretna translacijska simetrija definirana je kao
 ${f(\mathbf{r}) = f(\mathbf{r} \pm \mathbf{a})}$, odnosno
@@ -95,12 +95,12 @@ Za vektore recipročne rešetke vrijedi:
 
 
 Weigner-Seintzova ćelija recipročne rešetke zove se Brillouinova zona. Analiza
-disperzijskog dijagrama obavlja se u \textit{k prostoru} ili u prostoru
-recipročne rešetke, odnosno u prvoj Brillouinovoj zoni. Prva Brillouinova zona je
-najmanji prostor unutar Brillouinove zone koji u potpunosti karakterizira polje
-unutar periodičke strukture. Svaku točku unutar Brillouinove zone moguće je
-preslikati u prvu Brillouinovu zonu. Drugim riječima, analiza širenja vala unutar
-Brillouinove zone, bit će ekvivalenta analizi unutar prve Brillouinove zone uz
+disperzijskog dijagrama obavlja se u \textit{k prostoru}, prostoru recipročne
+rešetke, odnosno u prvoj Brillouinovoj zoni. Prva Brillouinova zona je najmanji
+prostor unutar Brillouinove zone koji u potpunosti karakterizira polje unutar
+periodičke strukture. Svaku točku unutar Brillouinove zone moguće je preslikati
+u prvu Brillouinovu zonu. Drugim riječima, analiza širenja vala unutar
+Brillouinove zone, bit će ekvivalentna analizi unutar prve Brillouinove zone uz
 određenu redundantnost u računu. Što je rešetka više simetrična, to će biti
 isplativije analizu obavljati unutar prve Brillouinove zone.
 
@@ -116,7 +116,8 @@ Blochov teorem, i matematički formaliziran glasi ovako:
 
 \begin{equation} \label{eq:bloch}
 	\mathbf{E}(\mathbf{r}) =
-	\mathbf{A}(\mathbf{r}) \cdot e^{j \mathbf{\beta} \cdot \mathbf{r}}
+	\mathbf{A}_\mathbf{\beta}(\mathbf{r}) \cdot
+		e^{j \mathbf{\beta} \cdot \mathbf{r}}
 \end{equation}
 
 U jednadžbi \ref{eq:bloch}, vektorsko polje $\mathbf{E}$ označava ukupno polje
@@ -126,9 +127,9 @@ Ono diktira amplitudu ukupnog polja $\mathbf{E}$.
 Komponenta ${e^{j \mathbf{\beta} \cdot \mathbf{r}}}$ označava ravni val i diktira
 smjer širenja vala.
 
-% ubaci meep sliku kako to izgleda i napiši par riječi o tome
+% todo: ubaci meep sliku kako to izgleda i napiši par riječi o tome
 
-% matematički potkrijepi gore napisano + pročitaj više o ovome
+% todo: matematički potkrijepi gore napisano + pročitaj više o ovome
 
 
 \section{Izvod valne jednadžbe za širenje u sredstvu s nehomogenim dielektrikom}
@@ -181,7 +182,7 @@ pretpostavki jednadžbe \ref{eq:maxwell1} poprimaju sljedeći oblik:
 \end{align}
 
 Budući da su Maxwellove jednadžbe linearne, moguće je pretpostaviti da će pobuda
-titrati istom frekvencijom kao i pobuda. To svojstvo omogućava rastav polja
+titrati istom frekvencijom kao i odziv. To svojstvo omogućava rastav polja
 na prostornu i vremensku komponentu. Rastav se obavlja preko sljedećeg zapisa:
 % TODO: citat dario knjiga
 % napiši i pročitaj više o ovome
@@ -201,17 +202,17 @@ oblik:
 		- i \omega \varepsilon_0 \varepsilon(\mathbf{r})\mathbf{E}(\mathbf{r})
 \end{align}
 
-Djelujući rotorom na jednadžbu koja opisuje Faradayev zakon dobiva se valna
-jednadžba u sljedećem obliku:
+Djelujući operatorom rotora na jednadžbu koja opisuje Faradayev zakon dobiva
+se valna jednadžba u sljedećem obliku:
 
 \begin{equation} \label{eq:master}
 	\nabla \times \left(\frac{1}{\varepsilon(\mathbf{r})}\nabla
 			\times \mathbf{H}(\mathbf{r}) \right)
-			= \left( \frac{\omega}{c} \right)^2 \mathbf{H}(\mathbf{r})
+	= \left( \frac{\omega}{c} \right)^2 \mathbf{H}(\mathbf{r})
 \end{equation}
 
 Jednadžba \ref{eq:master} predstavljat će jednadžbu koja će biti korištena za
-računanje disperzijskog dijagrama za propagaciju vala u nehomogenom dielektriku.
+računanje disperzijskog dijagrama u nehomogenom dielektriku.
 Ako se ${\nabla \times \frac{1}{\varepsilon(\mathbf{r})} \nabla \times}$
 zamijeni s $\hat{\mathbf{\Theta}}$ dobiva se uobičajena forma svojstvenog
 problema.
@@ -249,8 +250,8 @@ Budući da je operator $\hat{\mathbf{\Theta}}$ hermitski
 
 	Drugi član izraza zanemaruje se ili zbog periodičnosti na području integracije
 	% todo: napiši ovo bolje: field decay to zero at large distances
-	ili zato što polja trnu u 0. Parcijalna integracija provodi se još jednom uz
-	zanemarivanje istog člana.
+	ili zato što polja trnu u 0 pri velikim udaljenostima. Parcijalna integracija
+	provodi se još jednom uz zanemarivanje istog člana kao i ranije.
 
 	$$(\mathbf{F}, \hat{\mathbf{\Theta}}\mathbf{G}) =
 	\iiint \mathbf{G}(\mathbf{r})
@@ -276,31 +277,78 @@ Budući da je operator $\hat{\mathbf{\Theta}}$ hermitski
 		\right)
 	\right]^* \, \mathrm{d}^3 \mathbf{r}
 	= (\hat{\mathbf{\Theta}} \mathbf{F}, \mathbf{G})$$
-}.
-moguće je analizirati njegov Rayleghov kvocijent
+},
+moguće je analizirati njegov Rayleighov kvocijent
 $R \left(\hat{\mathbf{\Theta}}, \mathbf{H}(\mathbf{r}) \right)$.
 
-\begin{align}
-	R \left( \hat{\mathbf{\Theta}}, \mathbf{H}(\mathbf{r}) \right) &=
-	\frac{ \left(
+Može se pokazati da će najmanja svojstvena vrijednost $\omega_0^2/c^2$, a
+shodno tome i najniži harmonik biti povezani s konfiguracijom polja koja
+minimizira Rayleighov koeficijent.
+
+%TODO: ovo je čudan rezultat i treba ga provjeriti
+\begin{align} \label{eq:rayleighM}
+	R \left( \hat{\mathbf{\Theta}}, \mathbf{H}(\mathbf{r}) \right)
+	&= \frac{ \left(
 		\mathbf{H}(\mathbf{r}), \hat{\mathbf{\Theta}}\mathbf{H}(\mathbf{r})
 		\right)}
-	{(\mathbf{H}(\mathbf{r}), \mathbf{H}(\mathbf{r}))} 					\nonumber \\
-	&= \frac{ 1/\varepsilon(\mathbf{r})
-		\iiint |\nabla \times \mathbf{H}(\mathbf{r})|^2 \, \mathrm{d}^3\mathbf{r}}
-	{\iiint | \mathbf{H}( \mathbf{r} ) |^2 \, \mathrm{d}^3\mathbf{r}} 	\nonumber \\
+	{
+		(\mathbf{H}(\mathbf{r}), \mathbf{H}(\mathbf{r}))
+	}
+	= \frac{ 1/\varepsilon(\mathbf{r})
+		\iiint |\nabla \times \mathbf{H}(\mathbf{r})|^2
+		\, \mathrm{d}^3\mathbf{r}}
+	{\iiint | \mathbf{H}( \mathbf{r} ) |^2
+		\, \mathrm{d}^3\mathbf{r}} 								\nonumber \\
 	&= \frac{
-		\iiint |\nabla \times \mathbf{H}(\mathbf{r})|^2 \, \mathrm{d}^3\mathbf{r}}
-	{\iiint \varepsilon(\mathbf{r}) | \mathbf{H}( \mathbf{r} ) |^2 \, \mathrm{d}^3\mathbf{r}}
-																		\nonumber \\
+		\iiint |\nabla \times \mathbf{H}(\mathbf{r})|^2
+		\, \mathrm{d}^3\mathbf{r}}
+	{\iiint \varepsilon(\mathbf{r}) | \mathbf{H}( \mathbf{r} ) |^2
+		\, \mathrm{d}^3\mathbf{r}}										  \\
+	R \left( \hat{\mathbf{\Theta}}, \mathbf{H}(\mathbf{r}) \right)
 	&= \frac{
-		\iiint |\nabla \times \mathbf{E}(\mathbf{r})|^2 \, \mathrm{d}^3\mathbf{r}}
-	{\iiint \varepsilon(\mathbf{r}) | \mathbf{E}( \mathbf{r} ) |^2 \, \mathrm{d}^3\mathbf{r}}
+		\omega^2/c^2
+		\left(
+			\mathbf{H}(\mathbf{r}), \mathbf{H}(\mathbf{r})
+		\right)
+	}
+	{
+		\omega^2/c^2
+		\left(
+			\mathbf{H}(\mathbf{r}), \hat{\mathbf{\Theta}}\mathbf{H}(\mathbf{r})
+		\right)
+	}
+	= \frac{
+		\iiint |\nabla \times \mathbf{E}(\mathbf{r})|^2
+		\, \mathrm{d}^3\mathbf{r}}
+	{\iiint \varepsilon(\mathbf{r}) | \mathbf{E}( \mathbf{r} ) |^2
+	\, \mathrm{d}^3\mathbf{r}} \label{eq:rayleighE}
 \end{align}
 
+Iz izraza \ref{eq:rayleighM} i \ref{eq:rayleighE}, jasno je da se
+${R \left( \hat{\mathbf{\Theta}}, \mathbf{H}(\mathbf{r}) \right)}$ može
+minimizirati tako da se maksimizira nazivnik, odnosno
+${\varepsilon (\mathbf{r})}$. Rezultat se interpretira kao svojevrsna heuristika
+gdje u fotoničkom kristalu očekivati da će biti koncentrirana energija.
 
-% napiši o svojstvima koja se daju izvaditi iz ovog, energije i slično i onda sve
-% spoji s blochovim teoremom tako da je i periočka rešetka pokrivena
+\section{Propagacija vala unutar periodičke strukture}
+
+Koristeći rezultat \ref{eq:master} i uvrštavajući \ref{eq:bloch} umjesto
+$\mathbf{H}(\mathbf{r})$ dobiva se diferencijalna jednadžba koja predstavlja
+svojstveni problem propagacije vala unutar fotoničkog kristala odnosno
+periodičke strukture.
+
+\begin{equation} \label{eq:master_bloch}
+	\nabla \times
+	\frac{1}{\varepsilon(\mathbf{r})} \nabla \times
+	\mathbf{H}_\mathbf{\beta}(\mathbf{r}) \cdot
+	e^{j \mathbf{\beta} \cdot \mathbf{r}}
+	= \left(
+		\frac{\omega}{c}
+	\right)^2
+	\mathbf{H}_\mathbf{\beta}(\mathbf{r}) \cdot
+		e^{j \mathbf{\beta} \cdot \mathbf{r}}
+\end{equation}
+
 
 
 \chapter{Zaključak}
