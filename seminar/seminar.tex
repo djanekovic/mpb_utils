@@ -337,7 +337,7 @@ $\mathbf{H}(\mathbf{r})$ dobiva se diferencijalna jednadžba koja predstavlja
 svojstveni problem propagacije vala unutar fotoničkog kristala odnosno
 periodičke strukture.
 
-\begin{equation} \label{eq:master_bloch}
+\begin{align} \label{eq:master_bloch}
 	\nabla \times
 	\frac{1}{\varepsilon(\mathbf{r})} \nabla \times
 	\mathbf{H}_\mathbf{\beta}(\mathbf{r}) \cdot
@@ -346,11 +346,69 @@ periodičke strukture.
 		\frac{\omega}{c}
 	\right)^2
 	\mathbf{H}_\mathbf{\beta}(\mathbf{r}) \cdot
-		e^{j \mathbf{\beta} \cdot \mathbf{r}}
-\end{equation}
+		e^{j \mathbf{\beta} \cdot \mathbf{r}}	\nonumber \\
+	(\nabla + j\mathbf{\beta}) \times
+	\frac{1}{\varepsilon(\mathbf{r})}
+	(\nabla + j\mathbf{\beta}) \times
+	\mathbf{H}_\mathbf{\beta}(\mathbf{r})
+	= \left(
+		\frac{\omega}{c}
+	\right)^2
+	\mathbf{H}_\mathbf{\beta}(\mathbf{r})
+\end{align}
 
+Jednadžba \ref{eq:master_bloch} predstavlja završnu jednadžbu koja služi za
+proračun disperzijskog dijagrama u fotoničkom kristalu. Ovaj oblik
+svojstvenog problema rješava programska biblioteka MPB spomenuta ranije. Sva
+svojstva izvedena ranije, vrijedit će i za gore izvedenu jednadžbu.
 
+\chapter{Proračun disperzijskog dijagrama fotoničkih kristala}
 
+U poglavljima koja slijede bit će proračunat i prikazan disperzijski dijagram
+osnovnih kristalnih rešetki.
+
+\section{Kvadratna rešetka dielektričnih stupića}
+
+U ovom primjeru, fotonički kristal građen je od dielektričnih stupića
+postavljenih tako da gledano iz smjera z osi odnosno ``odozgo'' izgledaju kao
+slika \dots
+
+%todo: label i caption
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{./images/square_lattice.pdf}
+\end{figure}
+
+Bazni vektori rešetke su vektori ${\mathbf{a}_1 = a \hat{\mathbf{y}}}$ i
+${\mathbf{a}_2= a \hat{\mathbf{x}}}$, a Weigner-Seintzova ćelija označena je
+desno žutom bojom.
+%todo: izračunaj vektore recipročne rešetke
+Bazni vektori recipročne rečetke su \dots, a prva Brillouinova zona prikazana
+je na disperzijskom dijagramu.
+
+%ubaci sliku disperzijskog dijagrama
+
+\section{Trokutasta rešetka dielektričnih stupića}
+
+U ovom primjeru, fotonički kristal građen je od dielektričnih stupića
+postavljenih tako da gledano iz smjera z osi, odnosno ``odozgo'' izgledaju kao
+slika \dots
+
+%todo: label i caption
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{./images/triangular_lattice.pdf}
+\end{figure}
+
+Bazni vektori rešetke su vektori
+${\mathbf{a}_1 = \frac{a}{2} \hat{\mathbf{x}} + \frac{a \sqrt{3}}{2} \hat{\mathbf{y}}}$ i
+${\mathbf{a}_2 = \frac{a}{2} \hat{\mathbf{x}} - \frac{a \sqrt{3}}{2} \hat{\mathbf{y}}}$.
+a Weigner-Seintzova ćelija označena je desno žutom bojom.
+%todo: izračunaj vektore recipročne rešetke
+Bazni vektori recipročne rečetke su \dots, a prva Brillouinova zona prikazana
+je na disperzijskom dijagramu.
+
+%ubaci sliku disperzijskog dijagrama
 \chapter{Zaključak}
 Zaključak.
 
