@@ -136,12 +136,15 @@ smjer širenja vala.
 
 U ovom potpoglavlju bit će izvedena valna jednadžba koja opisuje propagaciju
 vala u nehomogenom dielektriku. Sredstvo u kojem val propagira nalikuje sredstvu
-na slici.
+na slici \ref{fig:structure}.
 
 % TODO: label i uredi sliku
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.5]{./images/structure-model.pdf}
+	\includegraphics[width = 1.0\linewidth]{./images/structure-model.pdf}
+	\caption{Model strukture u kojoj propagira val. Sredstvo je sastavljeno od
+	neperiodičnih, homogenih ``zakrpa'' različitih dielektričnih materijala.}
+	\label{fig:structure}
 \end{figure}
 
 Izvod valne jednadžbe, kao i za slučaj propagacije u homogenom sredstvu počinje
@@ -213,7 +216,7 @@ se valna jednadžba u sljedećem obliku:
 
 Jednadžba \ref{eq:master} predstavljat će jednadžbu koja će biti korištena za
 računanje disperzijskog dijagrama u nehomogenom dielektriku.
-Ako se ${\nabla \times \frac{1}{\varepsilon(\mathbf{r})} \nabla \times}$
+Ako se operator ${\nabla \times \frac{1}{\varepsilon(\mathbf{r})} \nabla \times}$
 zamijeni s $\hat{\mathbf{\Theta}}$ dobiva se uobičajena forma svojstvenog
 problema.
 
@@ -266,17 +269,17 @@ Budući da je operator $\hat{\mathbf{\Theta}}$ hermitski
 			\frac{1}{\varepsilon(\mathbf{r})} \times \mathbf{F}(\mathbf{r})
 		\right)^*
 		\times \mathbf{G}(\mathbf{r})
-	\right] \hat{n} \, \mathrm{d}S$$
-
-	$$(\mathbf{F}, \hat{\mathbf{\Theta}}\mathbf{G}) =
-	\iiint \mathbf{G}(\mathbf{r})
-	\cdot \left[
-		\nabla \times \left(
-			\frac{1}{\varepsilon (\mathbf{r})} \nabla \times
-			\mathbf{F}(\mathbf{r})
-		\right)
-	\right]^* \, \mathrm{d}^3 \mathbf{r}
+	\right] \hat{n} \, \mathrm{d}S
 	= (\hat{\mathbf{\Theta}} \mathbf{F}, \mathbf{G})$$
+%	$$(\mathbf{F}, \hat{\mathbf{\Theta}}\mathbf{G}) =
+%	\iiint \mathbf{G}(\mathbf{r})
+%	\cdot \left[
+%		\nabla \times \left(
+%			\frac{1}{\varepsilon (\mathbf{r})} \nabla \times
+%			\mathbf{F}(\mathbf{r})
+%		\right)
+%	\right]^* \, \mathrm{d}^3 \mathbf{r}
+%	= (\hat{\mathbf{\Theta}} \mathbf{F}, \mathbf{G})$$
 },
 moguće je analizirati njegov Rayleighov kvocijent
 $R \left(\hat{\mathbf{\Theta}}, \mathbf{H}(\mathbf{r}) \right)$.
@@ -360,23 +363,28 @@ periodičke strukture.
 Jednadžba \ref{eq:master_bloch} predstavlja završnu jednadžbu koja služi za
 proračun disperzijskog dijagrama u fotoničkom kristalu. Ovaj oblik
 svojstvenog problema rješava programska biblioteka MPB spomenuta ranije. Sva
-svojstva izvedena ranije, vrijedit će i za gore izvedenu jednadžbu.
+svojstva izvedena ranije, vrijede i za gore izvedenu jednadžbu.
 
 \chapter{Proračun disperzijskog dijagrama fotoničkih kristala}
 
 U poglavljima koja slijede bit će proračunat i prikazan disperzijski dijagram
-osnovnih kristalnih rešetki.
+osnovnih kristalnih rešetki. Prvo će biti prikazane konfiguracije koje
+osiguravaju \textit{band gap} za TE, potom za TM, a onda i za oboje odnosno
+potpuni band gap.
 
 \section{Kvadratna rešetka dielektričnih stupića}
 
 U ovom primjeru, fotonički kristal građen je od dielektričnih stupića
 postavljenih tako da gledano iz smjera z osi odnosno ``odozgo'' izgledaju kao
-slika \dots
+slika \ref{fig:square_lattice}
 
 %todo: label i caption
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.5]{./images/square_lattice.pdf}
+	\includegraphics[width = 1.0\linewidth]{./images/square_lattice.pdf}
+	\caption{Kvadratna rešetka s ucrtanim baznim vektorima i Weigner-Seintzovom
+	ćelijom}
+	\label{fig:square_lattice}
 \end{figure}
 
 Bazni vektori rešetke su vektori ${\mathbf{a}_1 = a \hat{\mathbf{y}}}$ i
@@ -392,17 +400,22 @@ je na disperzijskom dijagramu.
 
 U ovom primjeru, fotonički kristal građen je od dielektričnih stupića
 postavljenih tako da gledano iz smjera z osi, odnosno ``odozgo'' izgledaju kao
-slika \dots
+slika \ref{fig:triangular_lattice}
 
 %todo: label i caption
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.5]{./images/triangular_lattice.pdf}
+	\includegraphics[width = 1.0\linewidth]{./images/triangular_lattice.pdf}
+	\caption{Trokutasta rešetka s ucrtanim baznim vektorima i Weigner-Seintzovom
+	ćelijom}
+	\label{fig:triangular_lattice}
 \end{figure}
 
 Bazni vektori rešetke su vektori
-${\mathbf{a}_1 = \frac{a}{2} \hat{\mathbf{x}} + \frac{a \sqrt{3}}{2} \hat{\mathbf{y}}}$ i
-${\mathbf{a}_2 = \frac{a}{2} \hat{\mathbf{x}} - \frac{a \sqrt{3}}{2} \hat{\mathbf{y}}}$.
+${\mathbf{a}_1 = \frac{a}{2} \hat{\mathbf{x}} +
+\frac{a \sqrt{3}}{2} \hat{\mathbf{y}}}$ i
+${\mathbf{a}_2 = \frac{a}{2} \hat{\mathbf{x}} -
+\frac{a \sqrt{3}}{2} \hat{\mathbf{y}}}$.
 a Weigner-Seintzova ćelija označena je desno žutom bojom.
 %todo: izračunaj vektore recipročne rešetke
 Bazni vektori recipročne rečetke su \dots, a prva Brillouinova zona prikazana
