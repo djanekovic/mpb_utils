@@ -1,4 +1,4 @@
-\docu
+\documentclass[utf8, seminar]{fer}
 \usepackage{booktabs}
 \usepackage{hyperref}
 \usepackage{siunitx}
@@ -75,10 +75,10 @@ kojeg zatvaraju primitivni vektori rešetke.
 	\caption{Kvadratna kristalna rešetka s ucrtanim baznim vektorima
 	$\mathbf{a}_1$ i $\mathbf{a}_2$. Linearna kombinacija baznih vektora
 	tvori sve ostale vektore odnosno sva ostala čvorišta kristala. Konkretno
-	${\mathbf{c}_1 = 2 \mathbf{a}_1 + \mathbf{a}_2}$,
+	${\mathbf{c}_1 = \mathbf{a}_1 + 2 \mathbf{a}_2}$,
 	${\mathbf{c}_2 = \mathbf{a}_1 + \mathbf{a}_2}$,
-	${\mathbf{c}_3 = \mathbf{a}_1 + 2 \mathbf{a}_2}$,
-	${\mathbf{c}_4 = 2 \mathbf{a}_2}$}
+	${\mathbf{c}_3 = 2 \mathbf{a}_1 + \mathbf{a}_2}$,
+	${\mathbf{c}_4 = 2 \mathbf{a}_1}$}
 	\label{fig:crystal_lattice}
 \end{figure}
 
@@ -397,11 +397,11 @@ slika \ref{fig:square_lattice}
 	\label{fig:square_lattice}
 \end{figure}
 
-Bazni vektori rešetke su vektori ${\mathbf{a}_1 = a \hat{\mathbf{y}}}$ i
-${\mathbf{a}_2= a \hat{\mathbf{x}}}$, a Weigner-Seintzova ćelija označena je
-desno žutom bojom.
-%todo: izračunaj vektore recipročne rešetke
-Bazni vektori recipročne rečetke su \dots, a prva Brillouinova zona prikazana
+Bazni vektori rešetke su vektori ${\mathbf{a}_1 = a \mathbf{i}}$ i
+${\mathbf{a}_2= a \mathbf{j}}$, a Weigner-Seintzova ćelija označena je
+desno žutom bojom. Bazni vektori recipročne rešetke su
+${\mathbf{b}_1 = 2 \pi/a \mathbf{i}}$ i
+${\mathbf{b}_2 = 2 \pi/a \mathbf{j}}$, a prva Brillouinova zona prikazana
 je na disperzijskom dijagramu.
 
 %ubaci sliku disperzijskog dijagrama
@@ -421,10 +421,8 @@ slika \ref{fig:triangular_lattice}
 \end{figure}
 
 Bazni vektori rešetke su vektori
-${\mathbf{a}_1 = \frac{a}{2} \hat{\mathbf{x}} +
-\frac{a \sqrt{3}}{2} \hat{\mathbf{y}}}$ i
-${\mathbf{a}_2 = \frac{a}{2} \hat{\mathbf{x}} -
-\frac{a \sqrt{3}}{2} \hat{\mathbf{y}}}$.
+${\mathbf{a}_1 = a/2 \mathbf{i} + a \sqrt{3}/2 \mathbf{j}}$ i
+${\mathbf{a}_2 = a/2 \mathbf{i} - a \sqrt{3}/2 \mathbf{j}}$.
 a Weigner-Seintzova ćelija označena je desno žutom bojom.
 %todo: izračunaj vektore recipročne rešetke
 Bazni vektori recipročne rečetke su \dots, a prva Brillouinova zona prikazana
