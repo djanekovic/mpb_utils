@@ -5,7 +5,6 @@ This is helper script for printing mpb band gap data and plotting pretty
 photonic band pictures. Under the hood, script is just a wrapper for ggplot2."
 
 
-# --> REMOVE LATER
 # program dobiva dvije .out datoteke, --tm= *_tm.out i --te=*_te.out (?)
 # Nisam siguran zato sto mi mozda treba i samo ms.run() za total band gap
 # Opcije koje je moguce specificirati:
@@ -20,12 +19,10 @@ photonic band pictures. Under the hood, script is just a wrapper for ggplot2."
 #	*border -> forsiraj border na 0
 #	*dim -> za sad je default 2
 
-# TODO: make program parse two files but figure out how to pipe and grep
-# during python is running. Script has to load some sort of csv.
-# Parsing 2 files is just too painful
-
 suppressPackageStartupMessages(library("optparse"))
 suppressPackageStartupMessages(library("ggplot2"))
+suppressPackageStartupMessages(library("magrittr"))
+suppressPackageStartupMessages(library("stringr"))
 
 option_list <- list(
 make_option(c("-o", "--output"),
@@ -85,130 +82,71 @@ EXAMPLES
 ---------"
 
 
-parser <- OptionParser(usage = "%prog -o outputfile [options] tm.csv te.csv",
+parser <- OptionParser(usage = "%prog -o outputfile [options] tm.out te.out",
 					   option_list = option_list,
 					   description = description,
 					   epilogue = epilogue)
 arguments <- parse_args(parser, positional_arguments=2)
 
 print (arguments)
-if (length(arguments$output) == 0) {
-	print ("This is obligatory argument, without it script wont work!")
+
+# TODO: test if output file is here
+if (arguments$options$output == "") {
+	print ("You need to pass output argument")
 	# TODO: end in a R way
 	return (1)
 }
 
-# NOTE: this is just a test, I need to figure out how to read or parse .out and create .csv
-tmfreq <- read.csv("~/photonic_crystals/models/output/square_tm.csv")
-tefreq <- read.csv("~/photonic_crystals/models/output/square_te.csv")
+tm <- readLines(arguments$args[1])
+print (tm)
+print ("procitao tm")
+grep (pattern = "tmfreq", x = tm, value = TRUE) %>% read.table(text = ., sep = ',') -> tmfreq_data
+print ("Uspio izvaditi csv")
+grep (pattern = "Gap from", tm, value = TRUE) %>% str_match(pattern = "\\((.*?)\\).*\\((.*?)\\)") %>% '['(, 2:3) -> tm_gap_data
 
-g <- ggplot(data=tmfreq, aes(x=k.index))
+te <- readLines(arguments$args[2])
+print (te)
+print ("procitao te")
+grep (pattern = "tefreq", x = te, value = TRUE) %>% read.table(text = ., sep = ',') -> tefreq_data
+print ("Uspio izvaditi csv")
+te_gap_data <- grep (pattern = "Gap from", te, value = TRUE) %>% str_match(pattern = "\\((.*?)\\).*\\((.*?)\\)") %>% '['(, 2:3)
 
-# TODO: this should work
-#for (i in seq(8)) {
-#  paste("tm.band.", i, sep = '') %>% g + geom_line(aes(y=.) -> g
-#}
+g <- ggplot(data = tmfreq_data, aes(x = k.index))
 
-g <- g + geom_line(data=tmfreq,
-                   aes(y=tm.band.1),
-                   color="red",
-                   size=0.7)
-g <- g + geom_line(data=tmfreq,
-                   aes(y=tm.band.2),
-                   color="red",
-                   size=0.7)
-g <- g + geom_line(data=tmfreq,
-                   aes(y=tm.band.3),
-                   color="red",
-                   size=0.7)
-g <- g + geom_line(data=tmfreq,
-                   aes(y=tm.band.4),
-                   color="red",
-                   size=0.7)
-g <- g + geom_line(data=tmfreq,
-                   aes(y=tm.band.5),
-                   color="red",
-                   size=0.7)
-g <- g + geom_line(data=tmfreq,
-                   aes(y=tm.band.6),
-                   color="red",
-                   size=0.7)
-g <- g + geom_line(data=tmfreq,
-                   aes(y=tm.band.7),
-                   color="red",
-                   size=0.7)
-g <- g + geom_line(data=tmfreq,
-                   aes(y=tm.band.8),
-                   color="red",
-                   size=0.7)
-g <- g + geom_line(data=tefreq,
-                   aes(y=te.band.1),
-                   color="blue",
-                   size=0.7)
-g <- g + geom_line(data=tefreq,
-                   aes(y=te.band.2),
-                   color="blue",
-                   size=0.7)
-g <- g + geom_line(data=tefreq,
-                   aes(y=te.band.3),
-                   color="blue",
-                   size=0.7)
-g <- g + geom_line(data=tefreq,
-                   aes(y=te.band.4),
-                   color="blue",
-                   size=0.7)
-g <- g + geom_line(data=tefreq,
-                   aes(y=te.band.5),
-                   color="blue",
-                   size=0.7)
-g <- g + geom_line(data=tefreq,
-                   aes(y=te.band.6),
-                   color="blue",
-                   size=0.7)
-g <- g + geom_line(data=tefreq,
-                   aes(y=te.band.7),
-                   color="blue",
-                   size=0.7)
-g <- g + geom_line(data=tefreq,
-                   aes(y=te.band.8),
-                   color="blue",
-                   size=0.7)
+print ("uspjeli smo inicijalizirati ggplot")
 
-# TODO: because of this I should read .out file (not so bad but i need to figure out how to parse .out and create .csv in R
-# or user should have an option to enter bandgaps to print (pretty bad and should be plan B)
-g <- g + geom_rect(aes(ymin=0.5931405182468739,
-                       ymax=0.5931535893552192,
-                       xmax=max(tmfreq$k.index),
-                       xmin=min(tmfreq$k.index)),
-                   alpha=0.005,
-                   fill="blue")
+for (i in seq(8)) {
+	g <- g + geom_line(data = tmfreq_data,
+                   	   aes_sting(y = paste("tm.band.", i, sep = '')),
+                   	   color = "red",
+                   	   size = args$size)
+}
 
-g <- g + geom_rect(aes(ymin=0.8096891662050553,
-                       ymax=0.824181449220372,
-                       xmax=max(tmfreq$k.index),
-                       xmin=min(tmfreq$k.index)),
-                   alpha=0.005,
-                   fill="blue")
+for (i in seq(8)) {
+	g <- g + geom_line(data = tefreq_data,
+                   	   aes_sting(y = paste("te.band.", i, sep = '')),
+                   	   color = "blue",
+                   	   size = 0.7)
+}
 
-g <- g + geom_rect(aes(ymin=1.0860733987620035,
-                       ymax=1.087869087137856,
-                       xmax=max(tmfreq$k.index),
-                       xmin=min(tmfreq$k.index)),
-                   alpha=0.005,
-                   fill="blue")
+for (i in seq(dim(te_gap_data)[1])) {
+	g <- g + geom_rect(aes(ymin=te_gap_data[i, 1],
+                       	   ymax=te_gap_data[i, 2],
+                       	   xmax=max(tmfreq$k.index),
+                       	   xmin=min(tmfreq$k.index)),
+                   	   alpha=0.005,
+                   	   fill=args$size)
+}
 
-g <- g + geom_rect(aes(ymin=0.28094795584045934,
-                       ymax=0.4171142494115699,
-                       xmax=max(tmfreq$k.index),
-                       xmin=min(tmfreq$k.index)),
-                   alpha=0.005,
-                   fill="red")
+for (i in seq(dim(tm_gap_data)[1])) {
+	g <- g + geom_rect(aes(ymin=tm_gap_data[i, 1],
+                       	   ymax=tm_gap_data[i, 2],
+                       	   xmax=max(tmfreq$k.index),
+                       	   xmin=min(tmfreq$k.index)),
+                   	   alpha=0.005,
+                   	   fill="blue")
+}
 
-g <- g + geom_rect(aes(ymin=0.7133951517520881,
-                       ymax=0.7413109658608329,
-                       xmax=max(tmfreq$k.index),
-                       xmin=min(tmfreq$k.index)),
-                   alpha=0.005,
-                   fill="red")
-# TODO: theme, labels, ticks -> need to google those things
 g <- g + theme_classic()
+
+ggsave(args$output)
