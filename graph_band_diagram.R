@@ -88,8 +88,6 @@ parser <- OptionParser(usage = "%prog -o outputfile [options] tm.out te.out",
 					   epilogue = epilogue)
 arguments <- parse_args(parser, positional_arguments=2)
 
-print (arguments)
-
 # TODO: test if output file is here
 if (arguments$options$output == "") {
 	print ("You need to pass output argument")
@@ -98,55 +96,45 @@ if (arguments$options$output == "") {
 }
 
 tm <- readLines(arguments$args[1])
-print (tm)
-print ("procitao tm")
-grep (pattern = "tmfreq", x = tm, value = TRUE) %>% read.table(text = ., sep = ',') -> tmfreq_data
-print ("Uspio izvaditi csv")
+grep (pattern = "tmfreq", x = tm, value = TRUE) %>% read.csv(text = ., sep = ',') -> tmfreq_data
 grep (pattern = "Gap from", tm, value = TRUE) %>% str_match(pattern = "\\((.*?)\\).*\\((.*?)\\)") %>% '['(, 2:3) -> tm_gap_data
 
 te <- readLines(arguments$args[2])
-print (te)
-print ("procitao te")
-grep (pattern = "tefreq", x = te, value = TRUE) %>% read.table(text = ., sep = ',') -> tefreq_data
-print ("Uspio izvaditi csv")
+grep (pattern = "tefreq", x = te, value = TRUE) %>% read.csv(text = ., sep = ',') -> tefreq_data
 te_gap_data <- grep (pattern = "Gap from", te, value = TRUE) %>% str_match(pattern = "\\((.*?)\\).*\\((.*?)\\)") %>% '['(, 2:3)
 
 g <- ggplot(data = tmfreq_data, aes(x = k.index))
 
-print ("uspjeli smo inicijalizirati ggplot")
-
 for (i in seq(8)) {
 	g <- g + geom_line(data = tmfreq_data,
-                   	   aes_sting(y = paste("tm.band.", i, sep = '')),
+                   	   aes_string(y = paste("tm.band.", i, sep = '')),
                    	   color = "red",
-                   	   size = args$size)
+                   	   size = arguments$options$size)
 }
 
 for (i in seq(8)) {
 	g <- g + geom_line(data = tefreq_data,
-                   	   aes_sting(y = paste("te.band.", i, sep = '')),
+                   	   aes_string(y = paste("te.band.", i, sep = '')),
                    	   color = "blue",
-                   	   size = 0.7)
+                   	   size = arguments$options$size)
 }
 
 for (i in seq(dim(te_gap_data)[1])) {
-	g <- g + geom_rect(aes(ymin=te_gap_data[i, 1],
-                       	   ymax=te_gap_data[i, 2],
-                       	   xmax=max(tmfreq$k.index),
-                       	   xmin=min(tmfreq$k.index)),
-                   	   alpha=0.005,
-                   	   fill=args$size)
-}
-
-for (i in seq(dim(tm_gap_data)[1])) {
-	g <- g + geom_rect(aes(ymin=tm_gap_data[i, 1],
-                       	   ymax=tm_gap_data[i, 2],
-                       	   xmax=max(tmfreq$k.index),
-                       	   xmin=min(tmfreq$k.index)),
+	g <- g + geom_rect(aes_string(ymin=te_gap_data[i, 1],
+                       	   	   	  ymax=te_gap_data[i, 2],
+                       	   	   	  xmax=max(tmfreq_data$k.index),
+                       	   	   	  xmin=min(tmfreq_data$k.index)),
                    	   alpha=0.005,
                    	   fill="blue")
 }
 
-g <- g + theme_classic()
+for (i in seq(dim(tm_gap_data)[1])) {
+	g <- g + geom_rect(aes_string(ymin=tm_gap_data[i, 1],
+                       	   		  ymax=tm_gap_data[i, 2],
+                       	   		  xmax=max(tmfreq_data$k.index),
+                       	   		  xmin=min(tmfreq_data$k.index)),
+                   	   alpha=0.005,
+                   	   fill="red")
+}
 
-ggsave(args$output)
+ggsave(arguments$options$output)
