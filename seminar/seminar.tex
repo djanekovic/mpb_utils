@@ -1,4 +1,4 @@
-\documentclass[utf8, seminar]{fer}
+\docu
 \usepackage{booktabs}
 \usepackage{hyperref}
 \usepackage{siunitx}
@@ -69,7 +69,18 @@ potpunu rešetku. Pored toga, ne postoji ćelija manjeg volumena od
 ${|\mathbf{a}_1 \cdot \mathbf{a}_2 \times \mathbf{a}_3|}$, odnosno volumena
 kojeg zatvaraju primitivni vektori rešetke.
 
-%NOTE: bilo bi zgodno da ovdje ubacim sliku kristalne rešetke sa svim ucrtanim vektorima
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 1.0\linewidth]{./images/crystal_lattice.pdf}
+	\caption{Kvadratna kristalna rešetka s ucrtanim baznim vektorima
+	$\mathbf{a}_1$ i $\mathbf{a}_2$. Linearna kombinacija baznih vektora
+	tvori sve ostale vektore odnosno sva ostala čvorišta kristala. Konkretno
+	${\mathbf{c}_1 = 2 \mathbf{a}_1 + \mathbf{a}_2}$,
+	${\mathbf{c}_2 = \mathbf{a}_1 + \mathbf{a}_2}$,
+	${\mathbf{c}_3 = \mathbf{a}_1 + 2 \mathbf{a}_2}$,
+	${\mathbf{c}_4 = 2 \mathbf{a}_2}$}
+	\label{fig:crystal_lattice}
+\end{figure}
 
 Ovisno o dimenzionalnosti problema moguće je odabrati različite primitivne
 vektore rešetke i sve ostale translacije prikazati kao linearnu kombinaciju
@@ -138,12 +149,12 @@ U ovom potpoglavlju bit će izvedena valna jednadžba koja opisuje propagaciju
 vala u nehomogenom dielektriku. Sredstvo u kojem val propagira nalikuje sredstvu
 na slici \ref{fig:structure}.
 
-% TODO: label i uredi sliku
 \begin{figure}
 	\centering
 	\includegraphics[width = 1.0\linewidth]{./images/structure-model.pdf}
 	\caption{Model strukture u kojoj propagira val. Sredstvo je sastavljeno od
-	neperiodičnih, homogenih ``zakrpa'' različitih dielektričnih materijala.}
+	neperiodičnih, homogenih ``zakrpa'' različitih dielektričnih materijala.
+	``Zakrpe'' se nalaze u materijalu permeabilnosti $\varepsilon_1$.}
 	\label{fig:structure}
 \end{figure}
 
@@ -164,7 +175,7 @@ $\varepsilon(\mathbf{r})$. Pored toga, pretpostavlja se da struktura ne mijenja
 konfiguraciju u vremenu, te da u njoj nema izvora svjetlosti. Između ostalog
 pretpostavlja se da su snage dovoljno male kako bi sustav imalo smisla promatrati
 u linearnom režimu.
-% NOTE: napiši što se koristi u protivnom, Bloembergen suma (2)
+% TODO: napiši što se koristi u protivnom, Bloembergen suma (2)
 Materijal u kojem se vrši propagacija promatra se kao izotropan na makroskopskoj
 razini. U slučaju anizotropnog medija $\mathbf{D}$ i $\mathbf{E}$ nisu vezani
 s $\varepsilon_0 \varepsilon$, već s
@@ -288,7 +299,7 @@ Može se pokazati da će najmanja svojstvena vrijednost $\omega_0^2/c^2$, a
 shodno tome i najniži harmonik biti povezani s konfiguracijom polja koja
 minimizira Rayleighov koeficijent.
 
-%TODO: ovo je čudan rezultat i treba ga provjeriti
+%TODO: Mislim da je ovo čudan rezultat i treba ga provjeriti ...
 \begin{align} \label{eq:rayleighM}
 	R \left( \hat{\mathbf{\Theta}}, \mathbf{H}(\mathbf{r}) \right)
 	&= \frac{ \left(
@@ -378,7 +389,6 @@ U ovom primjeru, fotonički kristal građen je od dielektričnih stupića
 postavljenih tako da gledano iz smjera z osi odnosno ``odozgo'' izgledaju kao
 slika \ref{fig:square_lattice}
 
-%todo: label i caption
 \begin{figure}[h]
 	\centering
 	\includegraphics[width = 1.0\linewidth]{./images/square_lattice.pdf}
@@ -402,7 +412,6 @@ U ovom primjeru, fotonički kristal građen je od dielektričnih stupića
 postavljenih tako da gledano iz smjera z osi, odnosno ``odozgo'' izgledaju kao
 slika \ref{fig:triangular_lattice}
 
-%todo: label i caption
 \begin{figure}[h]
 	\centering
 	\includegraphics[width = 1.0\linewidth]{./images/triangular_lattice.pdf}
