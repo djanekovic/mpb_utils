@@ -6,7 +6,6 @@ photonic band pictures. Under the hood, script is just a wrapper for ggplot2."
 
 
 # program dobiva dvije .out datoteke, --tm= *_tm.out i --te=*_te.out (?)
-# Nisam siguran zato sto mi mozda treba i samo ms.run() za total band gap
 # Opcije koje je moguce specificirati:
 #	*broj bandova -> neka for petlja za dodavanje u ggplot
 #	*size linije -> default 0.7
@@ -64,23 +63,35 @@ make_option(c("--shape_te_point"),
 		-1 passed no geom_point shape. Default is 1."),
 make_option(c("-g", "--band_gap"),
 		action="store_true",
-		default = TRUE,
-		help="Plot geom_rect where band_gap is."),
+		default = FALSE,
+		help="Plot band gaps."),
 make_option(c("-d", "--dimension"),
 		type="integer",
 		default=2,
 		help="Problem dimensionality. Program now supports just 2D problems.")
 )
 
-# TODO: finish epilogue
 epilogue <- "
 This script has quite a few arguments. Fear not! Usage is actually pretty simple.
 I hope it is... I made this tool to be simple and easy. Arguments are here to
 make graphs more flexible without going into R code and chaning it yourself.
 
 EXAMPLES
----------"
+---------
 
+To begin with, you need to have tm.out and te.out files. This script lives
+under the assumption that you want to plot both TE and TM.
+
+* to generate plot.png plot of both TE and TM modes:
+$ Rscript graph_band_diagram.R square_tm.out square_te.out -o plot.png
+ -- plot.png has only one band and no bands are plotted.
+
+* to generate plot.pdf of both TE, TM and band gaps:
+$ Rscript graph_band_diagram.R square_tm.out square_te.out -g -o plot.pdf
+
+* to generate plot.pdf of both 8 TE, TM bands and band gaps:
+$ Rscript graph_band_diagram.R square_tm.out square_te.out -g -n 8 -o plot.pdf
+"
 
 parser <- OptionParser(usage = "%prog -o outputfile [options] tm.out te.out",
 					   option_list = option_list,
@@ -88,53 +99,88 @@ parser <- OptionParser(usage = "%prog -o outputfile [options] tm.out te.out",
 					   epilogue = epilogue)
 arguments <- parse_args(parser, positional_arguments=2)
 
-# TODO: test if output file is here
-if (arguments$options$output == "") {
-	print ("You need to pass output argument")
-	# TODO: end in a R way
-	return (1)
+args <- arguments$options
+files <- arguments$args
+
+no_output_name_msg <- "You should really set output argument... I am setting
+output name to plot.png"
+
+if (args$output == "") {
+	if (args$verbose) print (no_output_name_msg)
+	args$output = "plot.png"
 }
 
-tm <- readLines(arguments$args[1])
+read_tm_msg = paste("You passed tm.out as ", files[1], sep='')
+if (args$verbose) print (read_tm_msg)
+if (args$verbose) print ("Reading...")
+tm <- readLines(files[1])
 grep (pattern = "tmfreq", x = tm, value = TRUE) %>% read.csv(text = ., sep = ',') -> tmfreq_data
 grep (pattern = "Gap from", tm, value = TRUE) %>% str_match(pattern = "\\((.*?)\\).*\\((.*?)\\)") %>% '['(, 2:3) -> tm_gap_data
 
-te <- readLines(arguments$args[2])
+if (args$verbose) print ("Done reading")
+
+read_te_msg = paste("You passed tm.out as ", files[2], sep='')
+if (args$verbose) print (read_te_msg)
+if (args$verbose) print ("Reading...")
+
+te <- readLines(files[2])
 grep (pattern = "tefreq", x = te, value = TRUE) %>% read.csv(text = ., sep = ',') -> tefreq_data
-te_gap_data <- grep (pattern = "Gap from", te, value = TRUE) %>% str_match(pattern = "\\((.*?)\\).*\\((.*?)\\)") %>% '['(, 2:3)
+grep (pattern = "Gap from", te, value = TRUE) %>% str_match(pattern = "\\((.*?)\\).*\\((.*?)\\)") %>% '['(, 2:3) -> te_gap_data
+
+if (args$verbose) print ("Done reading")
 
 g <- ggplot(data = tmfreq_data, aes(x = k.index))
 
-for (i in seq(8)) {
+band_num_msg <- paste("Plotting", args$band_num, "bands")
+if (args$band_num) print (band_num_msg)
+
+# TODO: check somehow if there are enought bands and default to max
+for (i in seq(args$band_num)) {
 	g <- g + geom_line(data = tmfreq_data,
                    	   aes_string(y = paste("tm.band.", i, sep = '')),
                    	   color = "red",
-                   	   size = arguments$options$size)
+                   	   size = args$size)
 }
 
-for (i in seq(8)) {
+for (i in seq(args$band_num)) {
 	g <- g + geom_line(data = tefreq_data,
                    	   aes_string(y = paste("te.band.", i, sep = '')),
                    	   color = "blue",
-                   	   size = arguments$options$size)
+                   	   size = args$size)
 }
 
-for (i in seq(dim(te_gap_data)[1])) {
-	g <- g + geom_rect(aes_string(ymin=te_gap_data[i, 1],
-                       	   	   	  ymax=te_gap_data[i, 2],
-                       	   	   	  xmax=max(tmfreq_data$k.index),
-                       	   	   	  xmin=min(tmfreq_data$k.index)),
-                   	   alpha=0.005,
-                   	   fill="blue")
+if (args$band_gap) {
+	band_gap_msg <- "Plotting available band gaps"
+} else {
+	band_gap_msg <- "Not plotting band gaps"
 }
 
-for (i in seq(dim(tm_gap_data)[1])) {
-	g <- g + geom_rect(aes_string(ymin=tm_gap_data[i, 1],
-                       	   		  ymax=tm_gap_data[i, 2],
-                       	   		  xmax=max(tmfreq_data$k.index),
-                       	   		  xmin=min(tmfreq_data$k.index)),
-                   	   alpha=0.005,
-                   	   fill="red")
+if (args$verbose) print (band_gap_msg)
+
+if (args$band_gap) {
+	for (i in seq(dim(te_gap_data)[1])) {
+		g <- g + geom_rect(aes_string(ymin=te_gap_data[i, 1],
+                       	   	   	  	  ymax=te_gap_data[i, 2],
+                       	   	   	  	  xmax=max(tmfreq_data$k.index),
+                       	   	   	  	  xmin=min(tmfreq_data$k.index)),
+                   	   	   alpha=0.005,
+                   	   	   fill="blue")
+	}
+
+	for (i in seq(dim(tm_gap_data)[1])) {
+		g <- g + geom_rect(aes_string(ymin=tm_gap_data[i, 1],
+                       	   		  	  ymax=tm_gap_data[i, 2],
+                       	   		  	  xmax=max(tmfreq_data$k.index),
+                       	   		  	  xmin=min(tmfreq_data$k.index)),
+                   	   	   alpha=0.005,
+                   	   	   fill="red")
+	}
 }
 
-ggsave(arguments$options$output)
+if (args$verbose) {
+	print (paste("Outputing plot named as", args$output))
+}
+
+ggsave(args$output)
+
+if (args$verbose) print ("Plot saved, goodbye world!")
