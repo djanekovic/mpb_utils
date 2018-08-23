@@ -22,13 +22,13 @@ U ovom seminaru bit će riječi o analizi periodičkih struktura gdje će naglas
 biti na fotoničkim kristalima i primjeni numeričkih metoda na izračun
 disperzijskog dijagrama. Programska biblioteka koja se koristi za numeričko
 modeliranje je \href{https://github.com/stevengj/mpb}{MPB}. Prije svega, bit će
-iznesena matematička podloga potrebna za efikasno modeliranje širenja vala u
+iznesena matematička podloga potrebna za efikasno modeliranje propagacije vala u
 periodičkoj strukturi. U poglavljima nakon uvoda bit će iznesena primjena
 fotoničkih kristala, kao i numeričke metode korištene u svrhu modeliranja
 problema koji opisuju periodičke strukture.
 
 
-\chapter{Matematičko modeliranje širenja vala u periodičkoj strukturi}
+\chapter{Matematičko modeliranje propagacije vala u periodičkoj strukturi}
 
 U ovom poglavlju nešto će detaljnije biti iznesena teorija periodičkih struktura
 kao i matematički formalizam koji ih opisuje. Analiza propagacije vala unutar
@@ -82,7 +82,7 @@ primitivnih vektora.
 Weigner-Seintzova ćelija primjer je primitivne ćelije koja sadrži samo jedno
 čvorište i predstavlja skup točaka u prostoru koji je bliži jednom čvorištu
 od bilo kojeg drugog čvorišta. Čvorišta kristalne rešetke nalaze se u središtu
-Weigner-Seintzova ćelije. Iako kristal ima beskonačno puno jediničnih ćelija,
+Weigner-Seintzove ćelije. Iako kristal ima beskonačno puno jediničnih ćelija,
 on ima samo jednu Weigner-Seintzovu ćeliju.
 
 Recipročna rešetka uvodi se za prikaz valnih vektora u Fourierovom razvoju
@@ -100,10 +100,10 @@ Za vektore recipročne rešetke vrijedi:
 
 Weigner-Seintzova ćelija recipročne rešetke zove se Brillouinova zona. Analiza
 disperzijskog dijagrama obavlja se u \textit{k prostoru}, prostoru recipročne
-rešetke, odnosno u prvoj Brillouinovoj zoni. Prva Brillouinova zona je najmanji
+rešetke, odnosno u prvoj Brillouinovoj zoni. Ona označava najmanji
 prostor unutar Brillouinove zone koji u potpunosti karakterizira polje unutar
-periodičke strukture. Svaku točku unutar Brillouinove zone moguće je preslikati
-u prvu Brillouinovu zonu. Drugim riječima, analiza širenja vala unutar
+periodičke struktur e. Svaku točku unutar Brillouinove zone moguće je preslikati
+u prvu Brillouinovu zonu. Drugim riječima, analiza propagacije vala unutar
 Brillouinove zone, bit će ekvivalentna analizi unutar prve Brillouinove zone uz
 određenu redundantnost u računu. Što je rešetka više simetrična, to će biti
 isplativije analizu obavljati unutar prve Brillouinove zone.
@@ -129,14 +129,14 @@ u periodičkoj strukturi i ono se sastoji od dvije komponente. Vektorsko polje
 $\mathbf{A}$ označava envelopu s istim periodom i simetrijom kao i rešetka.
 Ono diktira amplitudu ukupnog polja $\mathbf{E}$.
 Komponenta ${e^{j \mathbf{\beta} \cdot \mathbf{r}}}$ označava ravni val i diktira
-smjer širenja vala.
+smjer propagacije vala.
 
 % todo: ubaci meep sliku kako to izgleda i napiši par riječi o tome
 
 % todo: matematički potkrijepi gore napisano + pročitaj više o ovome
 
 
-\section{Izvod valne jednadžbe za širenje u sredstvu s nehomogenim dielektrikom}
+\section{Izvod valne jednadžbe za propagaciju u sredstvu s nehomogenim dielektrikom}
 
 U ovom potpoglavlju bit će izvedena valna jednadžba koja opisuje propagaciju
 vala u nehomogenom dielektriku. Sredstvo u kojem val propagira nalikuje sredstvu
@@ -151,8 +151,8 @@ na slici \ref{fig:structure}.
 	\label{fig:structure}
 \end{figure}
 
-Izvod valne jednadžbe, kao i za slučaj propagacije u homogenom sredstvu počinje
-s Maxwellovim jednadžbama:
+Izvod valne jednadžbe, kao i za slučaj propagacije u homogenom sredstvu započinje
+Maxwellovim jednadžbama:
 
 \begin{align} \label{eq:maxwell1}
 	\nabla \cdot \mathbf{D} = \rho &&
