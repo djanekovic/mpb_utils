@@ -375,19 +375,24 @@ svojstva izvedena ranije, vrijede i za gore izvedenu jednadžbu.
 Imenovanje komponenata polja u kristalu bit će u skladu s imenovanjem u
 literaturi. Kratica \textbf{TE},
 \textit{transverse-electric} označavat će električnu komponentu unutar xy ravnine.
-Slično, kratica \textbf{TM}, \textit{transverse-electric} označavat će magnetsku
+Slično, kratica \textbf{TM}, \textit{transverse-magnetic} označavat će magnetsku
 komponentu u xy ravnini.
 
 U poglavljima koja slijede bit će proračunat i prikazan disperzijski dijagram
 osnovnih kristalnih rešetki. Prvo će biti prikazane konfiguracije koje
-% TODO: prijevod za band gap, frekvencijski raspor?
-osiguravaju \textit{band gap} za TE, potom za TM, a onda i za oboje odnosno
-potpuni band gap.
+osiguravaju frekvencijski raspor (engl. \textit{band-gap}) za TE, potom za TM, a
+onda i za oboje, odnosno potpuni frekvencijski raspor.
+
+Što se tiče disperzijskih dijagrama u nastavku, vrijedit će određeni skup pravila
+koji će biti primjenjiv za sve dijagrame. TE komponenta uvijek će biti prikazana
+plavom bojom, a TM crvenom. Frekvencijski raspori će uvijek biti prikazivani kao
+plavi odnosno crveni pravokutnici. Os x označavat će iznos valnog vektora
+$\mathbf{\beta}$, a y, frekvenciju izraženu kao ${\omega a/ 2 \pi c}$.
 
 \section{Kvadratna rešetka dielektričnih stupića}
 
 U ovom primjeru, fotonički kristal građen je od dielektričnih stupića
-postavljenih tako da gledano iz smjera z osi odnosno ``odozgo'' izgledaju kao
+postavljenih tako da gledano iz smjera z osi, odnosno ``odozgo'' izgledaju kao
 slika \ref{fig:square_lattice}
 
 \begin{figure}[h]
@@ -403,9 +408,14 @@ ${\mathbf{a}_2= a \mathbf{j}}$, a Weigner-Seintzova ćelija označena je
 desno žutom bojom. Bazni vektori recipročne rešetke su
 ${\mathbf{b}_1 = 2 \pi/a \mathbf{i}}$ i
 ${\mathbf{b}_2 = 2 \pi/a \mathbf{j}}$, a prva Brillouinova zona prikazana
-je na disperzijskom dijagramu.
+je na disperzijskom dijagramu \ref{fig:square_band_diagram}.
 
-%ubaci sliku disperzijskog dijagrama
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 1.0\linewidth]{./images/square.pdf}
+	\caption{Disperzijski dijagram za kvadratnu rešetku.}
+	\label{fig:square_band_diagram}
+\end{figure}
 
 \section{Trokutasta rešetka dielektričnih stupića}
 
@@ -428,9 +438,16 @@ a Weigner-Seintzova ćelija označena je desno žutom bojom.
 Bazni vektori recipročne rešetke su
 ${\mathbf{b}_1 = 2 \pi/a( \mathbf{i} + 1/\sqrt{3} \mathbf{j})}$ i
 ${\mathbf{b}_2 = 2 \pi/a( \mathbf{i} - 1/\sqrt{3} \mathbf{j})}$,
-a prva Brillouinova zona prikazana je na disperzijskom dijagramu.
+a prva Brillouinova zona prikazana je na disperzijskom dijagramu
+\ref{fig:triangular_band_diagram}.
 
-%ubaci sliku disperzijskog dijagrama
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 1.0\linewidth]{./images/triangular.pdf}
+	\caption{Disperzijski dijagram za trokutastu rešetku.}
+	\label{fig:triangular_band_diagram}
+\end{figure}
+
 \chapter{Zaključak}
 Zaključak.
 
