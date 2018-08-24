@@ -4,7 +4,6 @@ description="
 This is helper script for printing mpb band gap data and plotting pretty
 photonic band pictures. Under the hood, script is just a wrapper for ggplot2."
 
-
 # program dobiva dvije .out datoteke, --tm= *_tm.out i --te=*_te.out (?)
 # Opcije koje je moguce specificirati:
 #	*broj bandova -> neka for petlja za dodavanje u ggplot
@@ -41,16 +40,12 @@ make_option(c("-b", "--border"),
 make_option(c("-n", "--band_num"),
 		type = "integer",
 		default=1,
-		# maybe print just what you have and on stderr
-		# print that something is wrong
-		help = "Specify number of bands on the plot. In case number is bigger
- 	   	than number of bands in .out file maximum will be plotted. In that
- 	   	case, user will see warning written out on stderr."),
-# TODO: split maybe?
+		help = "Specify number of bands on the plot."),
 make_option(c("-s", "--size"),
 		type="double",
 		default=0.7,
 		help="Specify line thickness on the graph. One option for TM and TE."),
+# NOTE: I don't really like points but I could make a flag for it
 make_option(c("--shape_tm_point"),
 		type="integer",
 		default=0,
@@ -83,7 +78,7 @@ To begin with, you need to have tm.out and te.out files. This script lives
 under the assumption that you want to plot both TE and TM.
 
 * to generate plot.png plot of both TE and TM modes:
-$ Rscript graph_band_diagram.R square_tm.out square_te.out -o plot.png
+$ Rscript graph_band_diagram.R square_tm.out square_te.out
  -- plot.png has only one band and no bands are plotted.
 
 * to generate plot.pdf of both TE, TM and band gaps:
@@ -93,7 +88,7 @@ $ Rscript graph_band_diagram.R square_tm.out square_te.out -g -o plot.pdf
 $ Rscript graph_band_diagram.R square_tm.out square_te.out -g -n 8 -o plot.pdf
 "
 
-parser <- OptionParser(usage = "%prog -o outputfile [options] tm.out te.out",
+parser <- OptionParser(usage = "%prog [options] tm.out te.out",
 					   option_list = option_list,
 					   description = description,
 					   epilogue = epilogue)
@@ -117,7 +112,7 @@ tm <- readLines(files[1])
 grep (pattern = "tmfreq", x = tm, value = TRUE) %>% read.csv(text = ., sep = ',') -> tmfreq_data
 grep (pattern = "Gap from", tm, value = TRUE) %>% str_match(pattern = "\\((.*?)\\).*\\((.*?)\\)") %>% '['(, 2:3) -> tm_gap_data
 
-if (args$verbose) print ("Done reading")
+if (args$verbose) print ("Done reading TM file")
 
 read_te_msg = paste("You passed tm.out as ", files[2], sep='')
 if (args$verbose) print (read_te_msg)
@@ -127,7 +122,7 @@ te <- readLines(files[2])
 grep (pattern = "tefreq", x = te, value = TRUE) %>% read.csv(text = ., sep = ',') -> tefreq_data
 grep (pattern = "Gap from", te, value = TRUE) %>% str_match(pattern = "\\((.*?)\\).*\\((.*?)\\)") %>% '['(, 2:3) -> te_gap_data
 
-if (args$verbose) print ("Done reading")
+if (args$verbose) print ("Done reading TE file")
 
 g <- ggplot(data = tmfreq_data, aes(x = k.index))
 
