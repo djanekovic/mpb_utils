@@ -22,11 +22,18 @@ suppressPackageStartupMessages(library("ggplot2"))
 suppressPackageStartupMessages(library("magrittr"))
 suppressPackageStartupMessages(library("stringr"))
 
+alpha <- 0.005
+
 option_list <- list(
-make_option(c("-o", "--output"),
+make_option(c("-t", "--title"),
 		action = "store",
 		type = "character",
 		default = "",
+		help = "Plot title"),
+make_option(c("-o", "--output"),
+		action = "store",
+		type = "character",
+		default = "plot.png",
 		help = "Filename to save graph."),
 make_option(c("-v", "--verbose"),
 		action = "store_true",
@@ -97,14 +104,6 @@ arguments <- parse_args(parser, positional_arguments=2)
 args <- arguments$options
 files <- arguments$args
 
-no_output_name_msg <- "You should really set output argument... I am setting
-output name to plot.png"
-
-if (args$output == "") {
-	if (args$verbose) print (no_output_name_msg)
-	args$output = "plot.png"
-}
-
 read_tm_msg = paste("You passed tm.out as ", files[1], sep='')
 if (args$verbose) print (read_tm_msg)
 if (args$verbose) print ("Reading...")
@@ -158,7 +157,7 @@ if (args$band_gap) {
                        	   	   	  	  ymax=te_gap_data[i, 2],
                        	   	   	  	  xmax=max(tmfreq_data$k.index),
                        	   	   	  	  xmin=min(tmfreq_data$k.index)),
-                   	   	   alpha=0.005,
+                   	   	   alpha = alpha,
                    	   	   fill="blue")
 	}
 
@@ -167,9 +166,37 @@ if (args$band_gap) {
                        	   		  	  ymax=tm_gap_data[i, 2],
                        	   		  	  xmax=max(tmfreq_data$k.index),
                        	   		  	  xmin=min(tmfreq_data$k.index)),
-                   	   	   alpha=0.005,
+                   	   	   alpha = alpha,
                    	   	   fill="red")
 	}
+}
+
+g <- g + theme_classic() + labs(title = args$title)
+
+breaks_x <- seq(1, max(tmfreq_data$k.index), (max(tmfreq_data$k.index) - 1)/3)
+gamma <- expression(Gamma)
+breaks_y <- seq(from = 0,
+				to = max(max(tmfreq_data$tm.band.8), max(tefreq_data$te.band.8)),
+				by = 0.1)
+
+if (args$border) {
+	g <- g + scale_x_continuous(name = "Valni vektor beta",
+                            	breaks = breaks_x,
+                            	labels = c(gamma, "M", "X", gamma),
+                            	expand = expand_scale())
+
+	g <- g + scale_y_continuous(breaks = breaks_y,
+                     			name = "Frekvencija",
+                            	limits = c(0, 1),
+								expand = expand_scale())
+} else {
+	g <- g + scale_x_continuous(name = "Valni vektor beta",
+                            	breaks = breaks_x,
+                            	labels = c(gamma, "M", "X", gamma))
+
+	g <- g + scale_y_continuous(breaks = breaks_y,
+                     			name = "Frekvencija",
+                            	limits = c(0, 1))
 }
 
 if (args$verbose) {
