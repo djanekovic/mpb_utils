@@ -1,4 +1,4 @@
-latex_source_code.pdf: seminar.tex literatura.bib
+pdf: seminar.tex literatura.bib
 	pdflatex seminar.tex
 	bibtex seminar.aux
 	pdflatex seminar.tex
