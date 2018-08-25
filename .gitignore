@@ -4,4 +4,8 @@
 *.pdf
 *.toc
 *.svg
+*.bbl
+*.bcf
+*.blg
+*.run.xml
 !seminar/images/*.pdf
