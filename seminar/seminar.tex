@@ -172,10 +172,10 @@ u linearnom režimu.
 Materijal u kojem se vrši propagacija promatra se kao izotropan na makroskopskoj
 razini. U slučaju anizotropnog medija $\mathbf{D}$ i $\mathbf{E}$ nisu vezani
 s $\varepsilon_0 \varepsilon$, već s
-%TODO: potkrijepi citatom iz dario knjige + pročitaj više
-dielektričnim tenzorom $\varepsilon_0 \varepsilon_{ij}$. Frekvencijska
-ovisnost dielektrične permeabilnosti bit će zanemarena. Konačno, nakon svih
-pretpostavki jednadžbe \ref{eq:maxwell1} poprimaju sljedeći oblik:
+dielektričnim tenzorom $\varepsilon_0 \varepsilon_{ij}$
+\cite{time-harmonic_maxwell}. Frekvencijska ovisnost dielektrične permeabilnosti
+bit će zanemarena. Konačno, nakon svih pretpostavki jednadžbe \ref{eq:maxwell1}
+poprimaju sljedeći oblik:
 
 \begin{align} \label{eq:maxwell2}
 	\nabla \cdot (\varepsilon(\mathbf{r}) \mathbf{E}(\mathbf{r}, t)) = 0 &&
@@ -190,9 +190,9 @@ pretpostavki jednadžbe \ref{eq:maxwell1} poprimaju sljedeći oblik:
 
 Budući da su Maxwellove jednadžbe linearne, moguće je pretpostaviti da će pobuda
 titrati istom frekvencijom kao i odziv. To svojstvo omogućava rastav polja
-na prostornu i vremensku komponentu. Rastav se obavlja preko sljedećeg zapisa:
-% TODO: citat dario knjiga
-% napiši i pročitaj više o ovome
+na prostornu i vremensku komponentu. Rastav se obavlja preko sljedećeg zapisa
+\cite{time-harmonic_maxwell}:
+% TODO: napiši i pročitaj više o ovome
 \begin{equation} \label{eq:harmonic}
 	\mathbf{H}(\mathbf{r}, t) = \mathbf{H}(\mathbf{r}) e^{-i \omega t}
 \end{equation}
@@ -371,9 +371,8 @@ svojstva izvedena ranije, vrijede i za gore izvedenu jednadžbu.
 
 \chapter{Proračun disperzijskog dijagrama fotoničkih kristala}
 
-% navedi molding of light
 Imenovanje komponenata polja u kristalu bit će u skladu s imenovanjem u
-literaturi. Kratica \textbf{TE},
+literaturi \cite{joannopoulos2011photonic}. Kratica \textbf{TE},
 \textit{transverse-electric} označavat će električnu komponentu unutar xy ravnine.
 Slično, kratica \textbf{TM}, \textit{transverse-magnetic} označavat će magnetsku
 komponentu u xy ravnini.
@@ -454,8 +453,9 @@ a prva Brillouinova zona prikazana je na disperzijskom dijagramu
 \chapter{Zaključak}
 Zaključak.
 
-\bibliography{literatura}
 \bibliographystyle{fer}
+\bibliography{literatura}
+\nocite{*}
 
 \chapter{Sažetak}
 Sažetak.
