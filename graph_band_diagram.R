@@ -33,7 +33,7 @@ make_option(c("-t", "--title"),
 make_option(c("-o", "--output"),
 		action = "store",
 		type = "character",
-		default = "plot.png",
+		default = "plot.pdf",
 		help = "Filename to save graph."),
 make_option(c("-v", "--verbose"),
 		action = "store_true",
@@ -46,7 +46,7 @@ make_option(c("-b", "--border"),
 		offset."),
 make_option(c("-n", "--band_num"),
 		type = "integer",
-		default=1,
+		default=8,
 		help = "Specify number of bands on the plot."),
 make_option(c("-s", "--size"),
 		type="double",
@@ -63,10 +63,10 @@ make_option(c("--shape_te_point"),
 		default=1,
 		help="Specify point shape. Look geom_point shapes for details. In case
 		-1 passed no geom_point shape. Default is 1."),
-make_option(c("-g", "--band_gap"),
+make_option(c("-g", "--no_band_gap"),
 		action="store_true",
 		default = FALSE,
-		help="Plot band gaps."),
+		help="Don't plot band gaps."),
 make_option(c("-d", "--dimension"),
 		type="integer",
 		default=2,
@@ -143,35 +143,51 @@ for (i in seq(args$band_num)) {
                    	   size = args$size)
 }
 
-if (args$band_gap) {
-	band_gap_msg <- "Plotting available band gaps"
-} else {
+if (args$no_band_gap) {
 	band_gap_msg <- "Not plotting band gaps"
+} else {
+	band_gap_msg <- "Plotting available band gaps"
 }
 
 if (args$verbose) print (band_gap_msg)
 
-if (args$band_gap) {
-	for (i in seq(dim(te_gap_data)[1])) {
-		g <- g + geom_rect(aes_string(ymin=te_gap_data[i, 1],
-                       	   	   	  	  ymax=te_gap_data[i, 2],
-                       	   	   	  	  xmax=max(tmfreq_data$k.index),
-                       	   	   	  	  xmin=min(tmfreq_data$k.index)),
-                   	   	   alpha = alpha,
-                   	   	   fill="blue")
+if (!args$no_band_gap) {
+	if (length(te_gap_data) == 2) {
+  	  g <- g + geom_rect(aes_string(ymin=te_gap_data[1],
+                       	   	   	  	  	  ymax=te_gap_data[2],
+                       	   	   	  	  	  xmax=max(tmfreq_data$k.index),
+                       	   	   	  	  	  xmin=min(tmfreq_data$k.index)),
+                   	   	   	   alpha = alpha,
+                   	   	   	   fill="blue")
+	} else {
+    	for (i in seq(length(te_gap_data)/2)) {
+		    	g <- g + geom_rect(aes_string(ymin=te_gap_data[i, 1],
+                           	   	   	  	  	  ymax=te_gap_data[i, 2],
+                           	   	   	  	  	  xmax=max(tmfreq_data$k.index),
+                           	   	   	  	  	  xmin=min(tmfreq_data$k.index)),
+                   	       	   	   alpha = alpha,
+                   	   	       	   fill="blue")
+		}
 	}
 
-	for (i in seq(dim(tm_gap_data)[1])) {
-		g <- g + geom_rect(aes_string(ymin=tm_gap_data[i, 1],
-                       	   		  	  ymax=tm_gap_data[i, 2],
-                       	   		  	  xmax=max(tmfreq_data$k.index),
-                       	   		  	  xmin=min(tmfreq_data$k.index)),
-                   	   	   alpha = alpha,
-                   	   	   fill="red")
+	if (length(tm_gap_data) == 2) {
+  	  g <- g + geom_rect(aes_string(ymin=tm_gap_data[1],
+                       	   	   	  	  	  ymax=tm_gap_data[2],
+                       	   	   	  	  	  xmax=max(tmfreq_data$k.index),
+                       	   	   	  	  	  xmin=min(tmfreq_data$k.index)),
+                   	   	   	   alpha = alpha,
+                   	   	   	   fill="red")
+	} else {
+    	for (i in seq(length(tm_gap_data)/2)) {
+		    	g <- g + geom_rect(aes_string(ymin=tm_gap_data[i, 1],
+                           	   	   	  	  	  ymax=tm_gap_data[i, 2],
+                           	   	   	  	  	  xmax=max(tmfreq_data$k.index),
+                           	   	   	  	  	  xmin=min(tmfreq_data$k.index)),
+                   	       	   	   alpha = alpha,
+                   	   	       	   fill="red")
+		}
 	}
 }
-
-g <- g + theme_classic() + labs(title = args$title)
 
 breaks_x <- seq(1, max(tmfreq_data$k.index), (max(tmfreq_data$k.index) - 1)/3)
 gamma <- expression(Gamma)
@@ -180,24 +196,38 @@ breaks_y <- seq(from = 0,
 				by = 0.1)
 
 if (args$border) {
-	g <- g + scale_x_continuous(name = "Valni vektor beta",
+	g <- g + scale_x_continuous(name = expression(paste("Blochov valni vektor ",
+ 													   	beta)),
                             	breaks = breaks_x,
                             	labels = c(gamma, "M", "X", gamma),
                             	expand = expand_scale())
 
 	g <- g + scale_y_continuous(breaks = breaks_y,
-                     			name = "Frekvencija",
+                     			name = expression(paste("Frekvencija ",
+														 frac(paste(omega, a),
+															  paste(2, pi, c)))),
                             	limits = c(0, 1),
 								expand = expand_scale())
 } else {
-	g <- g + scale_x_continuous(name = "Valni vektor beta",
+	g <- g + scale_x_continuous(name = expression(paste("Blochov valni vektor ",
+ 													   	beta)),
                             	breaks = breaks_x,
                             	labels = c(gamma, "M", "X", gamma))
 
 	g <- g + scale_y_continuous(breaks = breaks_y,
-                     			name = "Frekvencija",
-                            	limits = c(0, 1))
+                     			name = expression(paste("Frekvencija ",
+														 frac(paste(omega, a),
+															  paste(2, pi, c)))),
+								limits = c(0, 1))
 }
+
+g <- g + theme_classic()
+
+g <- g + labs(title = args$title)
+
+# in case I want to remove scale names
+g <- g + theme(axis.title.x = element_blank(),
+			   axis.title.y = element_blank())
 
 if (args$verbose) {
 	print (paste("Outputing plot named as", args$output))
