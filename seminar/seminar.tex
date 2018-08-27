@@ -351,7 +351,7 @@ periodičke strukture.
 
 Jednadžba \ref{eq:master_bloch} predstavlja završnu jednadžbu koja služi za
 proračun disperzijskog dijagrama u fotoničkom kristalu. Svojstvena vrijednost
-${\omega (\mathbf{\beta})}$ je kontinuirana funkcija 
+${\omega (\mathbf{\beta})}$ je kontinuirana funkcija
 Ovaj oblik
 svojstvenog problema rješava programska biblioteka MPB spomenuta ranije. Sva
 svojstva izvedena ranije, vrijede i za gore izvedenu jednadžbu.
@@ -367,7 +367,9 @@ Slično, kratica \textbf{TM}, \textit{transverse-magnetic} označavat će magnet
 komponentu u xy ravnini.
 
 U poglavljima koja slijede bit će proračunati i prikazani disperzijski dijagrami
-osnovnih dvodimenzionalnih fotoničkih kristala. Prvo će biti prikazane
+osnovnih dvodimenzionalnih fotoničkih kristala.
+% Prvo će na jednodimenzionalnom kristalu biti objašnjeno podrijetlo band-gapa.
+Prvo će biti prikazane
 konfiguracije koje osiguravaju frekvencijski raspor (engl. \textit{band-gap}) za
 TM, potom za TE, a onda i za oboje, odnosno potpuni frekvencijski raspor.
 
@@ -380,6 +382,19 @@ ${\omega a/ 2 \pi c}$. Što se tiče prikaza modela fotoničkih kristala,
 dielektrično sredstvo uvijek će biti obojano, dok će zrak biti označen bijelom
 bojom. U opisu grafa bit će naznačeno s kojim je polumjerom modeliran stupić.
 Dielektrični kontrast će uvijek iznositi 12.
+
+% TODO: section 1d gap i tamo objasni kako nastaje band gap -> video predavanje
+\section{Jednodimenzionalni fotonički kristal}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width = 1.0\linewidth]{./images/1d_crystal_gap.pdf}
+	\caption{TE band gap u 1 d strukturi}
+	\label{fig:square_band_diagram}
+\end{figure}
+
+\FloatBarrier
+
 
 \section{Kvadratna rešetka dielektričnih stupića}
 
@@ -468,9 +483,8 @@ Gledano iz smjera z osi, kristal izgleda kao na slici
 	\label{fig:triangular_lattice_holes}
 \end{figure}
 
-Disperzijski dijagram \ref{fig:triangular_full_band} u ovom slučaju poprima
-potpuni frekvencijski raspor. Val čija je frekvencija unutar frekvencijskog
-raspora postati će evanascentan. Njegova amplituda trnut će eksponencijalno.
+Na disperzijskom dijagramu \ref{fig:triangular_full_band} u ovom slučaju postoji
+potpuni frekvencijski raspor.
 
 \begin{figure}[ht]
 	\centering
@@ -483,6 +497,9 @@ raspora postati će evanascentan. Njegova amplituda trnut će eksponencijalno.
 	Na dijagramu je označena i prva Brillouinova zona s pripadnim oznakama.}
 	\label{fig:triangular_full_band}
 \end{figure}
+
+Val čija je frekvencija unutar frekvencijskog
+raspora postati će evanascentan. Njegova amplituda trnut će eksponencijalno.
 
 
 \chapter{Zaključak}
