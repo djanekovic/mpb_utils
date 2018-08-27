@@ -3,7 +3,7 @@
 \usepackage{hyperref}
 \usepackage{siunitx}
 \usepackage{amsmath}
-
+\usepackage{placeins}
 
 \begin{document}
 
@@ -20,7 +20,7 @@
 \chapter{Uvod}
 U ovom seminaru bit će riječi o analizi periodičkih struktura gdje će naglasak
 biti na fotoničkim kristalima i primjeni numeričkih metoda na izračun
-disperzijskog dijagrama. Programska biblioteka koja se koristi za numeričko
+disperzijskog dijagrama. Programska biblioteka koja će se koristiti za numeričko
 modeliranje je \href{https://github.com/stevengj/mpb}{MPB}. Prije svega, bit će
 iznesena matematička podloga potrebna za efikasno modeliranje propagacije vala u
 periodičkoj strukturi. U poglavljima nakon uvoda bit će iznesena primjena
@@ -34,7 +34,7 @@ U ovom poglavlju nešto će detaljnije biti iznesena teorija periodičkih strukt
 kao i matematički formalizam koji ih opisuje. Analiza propagacije vala unutar
 periodičke rešetke prirodno navodi na Blochov teorem. On tvrdi da će polje u
 periodičkoj strukturi poprimiti isti period i simetriju kao i period te strukture.
-Kao polazišna točka bit će izvedena valna jednadžba za propagaciju vala unutar
+Kao polazišna točka, bit će izvedena valna jednadžba za propagaciju vala unutar
 nehomogenog dielektrika. Svojstveni problem i njegova interpretacija bit će
 razmatrani baš u okvirima te jednadžbe. Konačno će jednadžba pomoću Blochovog
 teorema biti specijalizirana za slučaj fotoničkog kristala.
@@ -43,10 +43,12 @@ teorema biti specijalizirana za slučaj fotoničkog kristala.
 \section{Periodičke strukture i kristalna rešetka}
 
 Periodička struktura je pravilna struktura u kojoj se elementi na neki način
-periodički ponavljaju. U nastavku će biti razmatrani fotonički kristali koji se
-mogu razmatrati kao kristalne rešetke. Fotonički kristali periodični su na način
-da zadovavaju diskretnu translacijsku simetriju.
-Diskretna translacijska simetrija definirana je kao
+periodički ponavljaju. U nastavku će biti razmatrani fotonički kristali. To su
+periodički strukturirani elektromagnetski mediji koji generalno posjeduju
+svojstvo da svjetlost na određenim frekvencijama ne propagira kroz strukturu.
+To svojstvo nazivat će se fotonički frekvencijski raspor (engl. \textit{photonic band-gap}) u nastavku samo frekvencijski raspor.
+Fotonički kristali periodični su na način da zadovoljavaju diskretnu
+translacijsku simetriju. Diskretnta translacijska simetrija definirana je kao
 ${f(\mathbf{r}) = f(\mathbf{r} \pm \mathbf{a})}$, odnosno
 
 \begin{equation}
@@ -62,12 +64,13 @@ potpunu rešetku. Pored toga, ne postoji ćelija manjeg volumena od
 ${|\mathbf{a}_1 \cdot \mathbf{a}_2 \times \mathbf{a}_3|}$, odnosno volumena
 kojeg zatvaraju primitivni vektori rešetke.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 	\centering
 	\includegraphics[width = 1.0\linewidth]{./images/crystal_lattice.pdf}
-	\caption{Kvadratna kristalna rešetka s ucrtanim baznim vektorima
-	$\mathbf{a}_1$ i $\mathbf{a}_2$. Linearna kombinacija baznih vektora
-	tvori sve ostale vektore odnosno sva ostala čvorišta kristala. Konkretno
+	\caption{Kvadratna kristalna rešetka s ucrtane 3 opcije za odabir baznih
+	vektora $\mathbf{a}_1$ i $\mathbf{a}_2$. Linearna kombinacija vektora
+	$\mathbf{a}_1 = a \mathbf{i}$ i $\mathbf{a}_2 = a \mathbf{j}$ (opcija pod a)
+	tvori sve ostale vektore odnosno sva ostala čvorišta kristala. Konkretno,
 	${\mathbf{c}_1 = \mathbf{a}_1 + 2 \mathbf{a}_2}$,
 	${\mathbf{c}_2 = \mathbf{a}_1 + \mathbf{a}_2}$,
 	${\mathbf{c}_3 = 2 \mathbf{a}_1 + \mathbf{a}_2}$,
@@ -86,7 +89,7 @@ Weigner-Seintzove ćelije. Iako kristal ima beskonačno puno jediničnih ćelija
 on ima samo jednu Weigner-Seintzovu ćeliju.
 
 Recipročna rešetka uvodi se za prikaz valnih vektora u Fourierovom razvoju
-periodičkih funkcija. Vektori recipročne rešetke bit će označavani s $\mathbf{b}$.
+periodičnih funkcija. Vektori recipročne rešetke bit će označavani s $\mathbf{b}$.
 Za vektore recipročne rešetke vrijedi:
 
 \begin{equation}
@@ -94,7 +97,7 @@ Za vektore recipročne rešetke vrijedi:
 	(n_1\mathbf{a}_1 + n_2\mathbf{a}_2 + n_3\mathbf{a}_3)
 	\cdot
 	(m_1\mathbf{b}_1 + m_2\mathbf{b}_2 + m_3\mathbf{b}_3) = 2 \pi \mathbb{N},
-		\text{ gdje je }n_i, m_i \in \mathbb{Z}
+		\text{ gdje je }n_i, m_i \in \mathbb{N}
 \end{equation}
 
 
@@ -102,7 +105,7 @@ Weigner-Seintzova ćelija recipročne rešetke zove se Brillouinova zona. Analiz
 disperzijskog dijagrama obavlja se u \textit{k prostoru}, prostoru recipročne
 rešetke, odnosno u prvoj Brillouinovoj zoni. Ona označava najmanji
 prostor unutar Brillouinove zone koji u potpunosti karakterizira polje unutar
-periodičke struktur e. Svaku točku unutar Brillouinove zone moguće je preslikati
+periodičke strukture. Svaku točku unutar Brillouinove zone moguće je preslikati
 u prvu Brillouinovu zonu. Drugim riječima, analiza propagacije vala unutar
 Brillouinove zone, bit će ekvivalentna analizi unutar prve Brillouinove zone uz
 određenu redundantnost u računu. Što je rešetka više simetrična, to će biti
@@ -142,7 +145,7 @@ U ovom potpoglavlju bit će izvedena valna jednadžba koja opisuje propagaciju
 vala u nehomogenom dielektriku. Sredstvo u kojem val propagira nalikuje sredstvu
 na slici \ref{fig:structure}.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 	\centering
 	\includegraphics[width = 1.0\linewidth]{./images/structure-model.pdf}
 	\caption{Model strukture u kojoj propagira val. Sredstvo je sastavljeno od
@@ -150,6 +153,8 @@ na slici \ref{fig:structure}.
 	``Zakrpe'' se nalaze u materijalu permeabilnosti $\varepsilon_1$.}
 	\label{fig:structure}
 \end{figure}
+
+\FloatBarrier
 
 Izvod valne jednadžbe, kao i za slučaj propagacije u homogenom sredstvu započinje
 Maxwellovim jednadžbama:
@@ -172,10 +177,9 @@ u linearnom režimu.
 Materijal u kojem se vrši propagacija promatra se kao izotropan na makroskopskoj
 razini. U slučaju anizotropnog medija $\mathbf{D}$ i $\mathbf{E}$ nisu vezani
 s $\varepsilon_0 \varepsilon$, već s
-dielektričnim tenzorom $\varepsilon_0 \varepsilon_{ij}$
-\cite{time-harmonic_maxwell}. Frekvencijska ovisnost dielektrične permeabilnosti
-bit će zanemarena. Konačno, nakon svih pretpostavki jednadžbe \ref{eq:maxwell1}
-poprimaju sljedeći oblik:
+dielektričnim tenzorom $\varepsilon_0 \varepsilon_{ij}$. Frekvencijska ovisnost
+dielektrične permeabilnosti bit će zanemarena. Konačno, nakon svih pretpostavki
+jednadžbe \ref{eq:maxwell1} poprimaju sljedeći oblik:
 
 \begin{align} \label{eq:maxwell2}
 	\nabla \cdot (\varepsilon(\mathbf{r}) \mathbf{E}(\mathbf{r}, t)) = 0 &&
@@ -190,8 +194,7 @@ poprimaju sljedeći oblik:
 
 Budući da su Maxwellove jednadžbe linearne, moguće je pretpostaviti da će pobuda
 titrati istom frekvencijom kao i odziv. To svojstvo omogućava rastav polja
-na prostornu i vremensku komponentu. Rastav se obavlja preko sljedećeg zapisa
-\cite{time-harmonic_maxwell}:
+na prostornu i vremensku komponentu. Rastav se obavlja preko sljedećeg zapisa:
 % TODO: napiši i pročitaj više o ovome
 \begin{equation} \label{eq:harmonic}
 	\mathbf{H}(\mathbf{r}, t) = \mathbf{H}(\mathbf{r}) e^{-i \omega t}
@@ -288,29 +291,12 @@ Budući da je operator $\hat{\mathbf{\Theta}}$ hermitski
 moguće je analizirati njegov Rayleighov kvocijent
 $R \left(\hat{\mathbf{\Theta}}, \mathbf{H}(\mathbf{r}) \right)$.
 
-Može se pokazati da će najmanja svojstvena vrijednost $\omega_0^2/c^2$, a
-shodno tome i najniži harmonik biti povezani s konfiguracijom polja koja
-minimizira Rayleighov koeficijent.
+Nadalje, može se pokazati da će najmanja svojstvena vrijednost $\omega_0^2/c^2$,
+odnosno prvo nađeno rješenje svojstvenog problema minimizirati Rayleighov
+kvocijent.
 
 %TODO: Mislim da je ovo čudan rezultat i treba ga provjeriti ...
-\begin{align} \label{eq:rayleighM}
-	R \left( \hat{\mathbf{\Theta}}, \mathbf{H}(\mathbf{r}) \right)
-	&= \frac{ \left(
-		\mathbf{H}(\mathbf{r}), \hat{\mathbf{\Theta}}\mathbf{H}(\mathbf{r})
-		\right)}
-	{
-		(\mathbf{H}(\mathbf{r}), \mathbf{H}(\mathbf{r}))
-	}
-	= \frac{ 1/\varepsilon(\mathbf{r})
-		\iiint |\nabla \times \mathbf{H}(\mathbf{r})|^2
-		\, \mathrm{d}^3\mathbf{r}}
-	{\iiint | \mathbf{H}( \mathbf{r} ) |^2
-		\, \mathrm{d}^3\mathbf{r}} 								\nonumber \\
-	&= \frac{
-		\iiint |\nabla \times \mathbf{H}(\mathbf{r})|^2
-		\, \mathrm{d}^3\mathbf{r}}
-	{\iiint \varepsilon(\mathbf{r}) | \mathbf{H}( \mathbf{r} ) |^2
-		\, \mathrm{d}^3\mathbf{r}}										  \\
+\begin{align}
 	R \left( \hat{\mathbf{\Theta}}, \mathbf{H}(\mathbf{r}) \right)
 	&= \frac{
 		\omega^2/c^2
@@ -331,11 +317,10 @@ minimizira Rayleighov koeficijent.
 	\, \mathrm{d}^3\mathbf{r}} \label{eq:rayleighE}
 \end{align}
 
-Iz izraza \ref{eq:rayleighM} i \ref{eq:rayleighE}, jasno je da se
-${R \left( \hat{\mathbf{\Theta}}, \mathbf{H}(\mathbf{r}) \right)}$ može
-minimizirati tako da se maksimizira nazivnik, odnosno
-${\varepsilon (\mathbf{r})}$. Rezultat se interpretira kao svojevrsna heuristika
-gdje u fotoničkom kristalu očekivati da će biti koncentrirana energija.
+Budući da se kvocijent može minimizirati tako da se maksimizira nazivnik, iz
+izraza \ref{eq:rayleighE} može se zaključiti da će električno polje
+``preferirati'' područja veće permeabilnosti. Drugim riječima,
+najsnažnija električna polja mogu se očekivati u području veće permeabilnosti.
 
 \section{Propagacija vala unutar periodičke strukture}
 
@@ -359,15 +344,19 @@ periodičke strukture.
 	(\nabla + j\mathbf{\beta}) \times
 	\mathbf{H}_\mathbf{\beta}(\mathbf{r})
 	= \left(
-		\frac{\omega}{c}
+	\frac{\omega (\mathbf{\beta})}{c}
 	\right)^2
 	\mathbf{H}_\mathbf{\beta}(\mathbf{r})
 \end{align}
 
 Jednadžba \ref{eq:master_bloch} predstavlja završnu jednadžbu koja služi za
-proračun disperzijskog dijagrama u fotoničkom kristalu. Ovaj oblik
+proračun disperzijskog dijagrama u fotoničkom kristalu. Svojstvena vrijednost
+${\omega (\mathbf{\beta})}$ je kontinuirana funkcija 
+Ovaj oblik
 svojstvenog problema rješava programska biblioteka MPB spomenuta ranije. Sva
 svojstva izvedena ranije, vrijede i za gore izvedenu jednadžbu.
+
+
 
 \chapter{Proračun disperzijskog dijagrama fotoničkih kristala}
 
@@ -377,29 +366,33 @@ literaturi \cite{joannopoulos2011photonic}. Kratica \textbf{TE},
 Slično, kratica \textbf{TM}, \textit{transverse-magnetic} označavat će magnetsku
 komponentu u xy ravnini.
 
-U poglavljima koja slijede bit će proračunat i prikazan disperzijski dijagram
-osnovnih kristalnih rešetki. Prvo će biti prikazane konfiguracije koje
-osiguravaju frekvencijski raspor (engl. \textit{band-gap}) za TE, potom za TM, a
-onda i za oboje, odnosno potpuni frekvencijski raspor.
+U poglavljima koja slijede bit će proračunati i prikazani disperzijski dijagrami
+osnovnih dvodimenzionalnih fotoničkih kristala. Prvo će biti prikazane
+konfiguracije koje osiguravaju frekvencijski raspor (engl. \textit{band-gap}) za
+TM, potom za TE, a onda i za oboje, odnosno potpuni frekvencijski raspor.
 
 Što se tiče disperzijskih dijagrama u nastavku, vrijedit će određeni skup pravila
 koji će biti primjenjiv na sve dijagrame. TE komponenta uvijek će biti prikazana
 plavom bojom, a TM crvenom. Frekvencijski raspori uvijek će biti prikazivani kao
 plavi, odnosno crveni pravokutnici. Os x označavat će iznos valnog vektora
 $\mathbf{\beta}$, a y, normaliziranu frekvenciju izraženu kao
-${\omega a/ 2 \pi c}$.
+${\omega a/ 2 \pi c}$. Što se tiče prikaza modela fotoničkih kristala,
+dielektrično sredstvo uvijek će biti obojano, dok će zrak biti označen bijelom
+bojom. U opisu grafa bit će naznačeno s kojim je polumjerom modeliran stupić.
+Dielektrični kontrast će uvijek iznositi 12.
 
 \section{Kvadratna rešetka dielektričnih stupića}
 
 U ovom primjeru, fotonički kristal građen je od dielektričnih stupića
-postavljenih tako da gledano iz smjera z osi, odnosno ``odozgo'' izgledaju kao
-slika \ref{fig:square_lattice}
+postavljenih tako da gledano iz smjera z osi izgledaju kao slika
+\ref{fig:square_lattice}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 	\centering
 	\includegraphics[width = 1.0\linewidth]{./images/square_lattice.pdf}
 	\caption{Kvadratna rešetka s ucrtanim baznim vektorima i Weigner-Seintzovom
-	ćelijom}
+	ćelijom. Polumjer stupića u ovom modelu kristala iznosi ${0.2 a}$, odnosno
+	promjer stupića zauzima 40\% duljine jedinične čelije.}
 	\label{fig:square_lattice}
 \end{figure}
 
@@ -410,25 +403,29 @@ ${\mathbf{b}_1 = 2 \pi/a \mathbf{i}}$ i
 ${\mathbf{b}_2 = 2 \pi/a \mathbf{j}}$, a prva Brillouinova zona prikazana
 je na disperzijskom dijagramu \ref{fig:square_band_diagram}.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 	\centering
 	\includegraphics[width = 1.0\linewidth]{./images/square.pdf}
-	\caption{Disperzijski dijagram za kvadratnu rešetku. Prisutan frekvencijski
-	raspor samo za TM.}
+	\caption{Disperzijski dijagram za kvadratnu rešetku koju sačinjavaju
+	dielektrični stupići. Frekvencijski raspor prisutan je samo za TM. Na
+	dijagramu je označena i prva Brillouinova zona s pripadnim oznakama na x osi.}
 	\label{fig:square_band_diagram}
 \end{figure}
 
-\section{Trokutasta rešetka dielektričnih stupića}
+\FloatBarrier
+
+\section{Trokutasta rešetka dielektričnih stupića} \label{sec:triangle}
 
 U ovom primjeru, fotonički kristal građen je od dielektričnih stupića
-postavljenih tako da gledano iz smjera z osi, odnosno ``odozgo'' izgledaju kao
+postavljenih tako da gledano iz smjera z osi izgledaju kao
 slika \ref{fig:triangular_lattice}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 	\centering
 	\includegraphics[width = 1.0\linewidth]{./images/triangular_lattice.pdf}
 	\caption{Trokutasta rešetka s ucrtanim baznim vektorima i Weigner-Seintzovom
-	ćelijom}
+	ćelijom. Polumjer stupića u ovom modela kristala iznosi ${0.2 a}$, odnosno
+	promjer stupića zauzima 40\% duljine jedinične ćelije.}
 	\label{fig:triangular_lattice}
 \end{figure}
 
@@ -442,13 +439,51 @@ ${\mathbf{b}_2 = 2 \pi/a( \mathbf{i} - 1/\sqrt{3} \mathbf{j})}$,
 a prva Brillouinova zona prikazana je na disperzijskom dijagramu
 \ref{fig:triangular_band_diagram}.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 	\centering
 	\includegraphics[width = 1.0\linewidth]{./images/triangular.pdf}
-	\caption{Disperzijski dijagram za trokutastu rešetku. Frekvencijski raspor
-	prisutan i za TE i za TM.}
+	\caption{Disperzijski dijagram za trokutastu rešetku koju sačinjavaju
+	dielektrični stupići. Frekvencijski raspor prisutan je i za TE i za TM. Na
+	dijagramu je označena i prva Brillouinova zona s pripadnim oznakama.}
 	\label{fig:triangular_band_diagram}
 \end{figure}
+
+\FloatBarrier
+
+\section {Trokutasta rešetka za potpuni frekvencijski raspor}
+
+U ovom primjeru fotonički kristal građen je od rupa u dielektričnom materijalu.
+Gledano iz smjera z osi, kristal izgleda kao na slici
+\ref{fig:triangular_lattice_holes}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width = 1.0\linewidth]{./images/triangular_lattice_holes.pdf}
+	\caption{Na slici nisu ucrtane Brillouinova zona i primitivni vektori rešetke
+	jer su u odnosu na sliku \ref{fig:triangular_lattice} samo drugačijeg iznosa.
+	Kao i u slikama do sada, u boji je dielektrični materijal čiji $\varepsilon$
+	iznosi 13 dok je bijelo zrak s permeabilnošću 1. Polumjer stupića u ovoj
+	rešetki iznosi ${0.45 a}$, odnosno promjer stupića iznosit će 90 \% duljine
+	jedinične ćelije.}
+	\label{fig:triangular_lattice_holes}
+\end{figure}
+
+Disperzijski dijagram \ref{fig:triangular_full_band} u ovom slučaju poprima
+potpuni frekvencijski raspor. Val čija je frekvencija unutar frekvencijskog
+raspora postati će evanascentan. Njegova amplituda trnut će eksponencijalno.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width = 1.0\linewidth]{./images/triangular_holes.pdf}
+	\caption{Disperzijski dijagram za fotonički kristal kojeg sačinjavaju rupe
+	u dielektričnom materijalu. Kao i do sada, plavim pravokutnikom je označen
+	frekvencijski raspor za TE, a crvenim za TM. Na ovoj slici se unutar plavog
+	raspora nalazi crveni, odnosno unutar raspora za TE, nalazi se TM raspor. Ta
+	pojava naziva se potpuni frekvencijski raspor (engl. \textit{full band-gap}).
+	Na dijagramu je označena i prva Brillouinova zona s pripadnim oznakama.}
+	\label{fig:triangular_full_band}
+\end{figure}
+
 
 \chapter{Zaključak}
 Zaključak.
