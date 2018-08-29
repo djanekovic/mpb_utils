@@ -173,7 +173,6 @@ $\varepsilon(\mathbf{r})$. Pored toga, pretpostavlja se da struktura ne mijenja
 konfiguraciju u vremenu, te da u njoj nema izvora svjetlosti. Između ostalog
 pretpostavlja se da su snage dovoljno male kako bi sustav imalo smisla promatrati
 u linearnom režimu.
-% TODO: napiši što se koristi u protivnom, Bloembergen suma (2)
 Materijal u kojem se vrši propagacija promatra se kao izotropan na makroskopskoj
 razini. U slučaju anizotropnog medija $\mathbf{D}$ i $\mathbf{E}$ nisu vezani
 s $\varepsilon_0 \varepsilon$, već s
@@ -367,11 +366,11 @@ Slično, kratica \textbf{TM}, \textit{transverse-magnetic} označavat će magnet
 komponentu u xy ravnini.
 
 U poglavljima koja slijede bit će proračunati i prikazani disperzijski dijagrami
-osnovnih dvodimenzionalnih fotoničkih kristala.
-% Prvo će na jednodimenzionalnom kristalu biti objašnjeno podrijetlo band-gapa.
-Prvo će biti prikazane
-konfiguracije koje osiguravaju frekvencijski raspor (engl. \textit{band-gap}) za
-TM, potom za TE, a onda i za oboje, odnosno potpuni frekvencijski raspor.
+osnovnih dvodimenzionalnih fotoničkih kristala. Za početak će na primjeru
+jednodimenzionalnog kristala biti objašnjeno nastajanje frekvencijskog raspora, a
+zatim će biti opisane konfiguracije koje osiguravaju frekvencijski raspor (engl.
+\textit{band-gap}) za TM, potom za TE, a onda i za oboje, odnosno potpuni
+frekvencijski raspor.
 
 Što se tiče disperzijskih dijagrama u nastavku, vrijedit će određeni skup pravila
 koji će biti primjenjiv na sve dijagrame. TE komponenta uvijek će biti prikazana
@@ -383,15 +382,55 @@ dielektrično sredstvo uvijek će biti obojano, dok će zrak biti označen bijel
 bojom. U opisu grafa bit će naznačeno s kojim je polumjerom modeliran stupić.
 Dielektrični kontrast će uvijek iznositi 12.
 
-% TODO: section 1d gap i tamo objasni kako nastaje band gap -> video predavanje
+\newpage
+
 \section{Jednodimenzionalni fotonički kristal}
 
+Diskusija o Rayleighovom kvocijentu i rezultat \ref{eq:rayleighE} u praksi se
+najbolje može pokazati na primjeru jednodimenzionalnog fotoničkog kristala.
+U okvirima ovog primjera najlakše je shvatiti nastajanje frekvencijskih raspora.
+
+Struktura koja se promatra može se zamisliti kao peridički nanizani listovi 2
+različita materijala različitih permeabilnosti. Budući da struktura posjeduje
+diskretnu translacijsku simetriju samo u smjeru jedne osi
+\footnote{
+	Ona posjeduje kontinuiranu translacijsku simetriju u preostale dvije osi.
+	Kontinuirana translacijska simetrija u ovom slučaju zapisuje se kao:
+	$$f(\mathbf{r}) = f(\mathbf{r} + \mathbf{d})
+	\text{, gdje je }{\mathbf{d} \in \mathbb{R}^2}$$
+}
+na x osi grafa će valni vektor $\mathbf{\beta}$ varirati samo između
+$-0.5\mathbf{i}$ i $+0.5\mathbf{i}$. Disperzijski dijagram za strukturu opisanu
+ranije prikazan je na slici \ref{fig:1d_band_diagram}.
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width = 1.0\linewidth]{./images/1d_crystal_gap.pdf}
 	\caption{TE band gap u 1 d strukturi}
-	\label{fig:square_band_diagram}
+	\label{fig:1d_band_diagram}
 \end{figure}
+
+Rezultat \ref{eq:rayleighE} kaže da će prvi pojas većinu svoje energije
+pohraniti unutar sredstva veće permeabilnosti. U slučaju modela koji se
+promatra, to je sredstvo čija je relativna permeabilnost 12. Taj pojas
+u nastavku će se nazivati \emph{dielektrični pojas}. Pojas iznad raspora mora
+osigurati jednaku simetriju kao i struktura, ali pored toga, mora osigurati i
+ortogonalnost u odnosu na dielektrični pojas. Drugim riječima, pojas iznad
+raspora mora imati jednak period jer njega diktira struktura, ali ne smije svoju
+energiju pohraniti unutar istog sredstva. Rješenje koje se nameće je da pojas
+iznad raspora energiju pohrani u sredstvu manje permeabilnosti i k tome zadrži
+isti period. Pojas iznad dielektričnog, u nastavku će se nazivati \emph{zračni
+pojas} jer će njegova energija biti pohranjena u sredstvu manje permeabilnost,
+a ono je najčešće zrak.
+
+U kristalu su u ovom trenutku 2 vala s istim periodom, energija jednog je
+većinom pohranjena u dielektriku, a energija drugog je većinom pohranjena
+u zraku. Ovi valovi moraju ``vidjeti'' različite prosječne indekse loma.
+Dielektrični pojas propagira s većim indeksom loma budući da većinu svoje energije
+pohranjuje upravo u sredstvu veće permeabilnost. S druge strane, zračni pojas
+propagira s manjim prosječnim indeksom loma budući da svoju energiju
+većinom pohranjuje u sredstvu manje permeabilnosti. Sve to, navodi na zaključak
+da pojasevi moraju imati različite frekvencije. Frekvencijski raspor u ovom slučaju
+je upravo ta razlika frekvencija koja nastaje zbog različitog prosječnog indeksa loma.
 
 \FloatBarrier
 
