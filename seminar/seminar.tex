@@ -4,6 +4,7 @@
 \usepackage{siunitx}
 \usepackage{amsmath}
 \usepackage{placeins}
+\usepackage{bm}
 
 \begin{document}
 
@@ -123,15 +124,15 @@ Blochov teorem, i matematički formaliziran glasi ovako:
 
 \begin{equation} \label{eq:bloch}
 	\mathbf{E}(\mathbf{r}) =
-	\mathbf{A}_\mathbf{\beta}(\mathbf{r}) \cdot
-		e^{j \mathbf{\beta} \cdot \mathbf{r}}
+	\mathbf{A}_{\bm{\beta}}(\mathbf{r}) \cdot
+		e^{j {\bm{\beta}} \cdot \mathbf{r}}
 \end{equation}
 
 U jednadžbi \ref{eq:bloch}, vektorsko polje $\mathbf{E}$ označava ukupno polje
 u periodičkoj strukturi i ono se sastoji od dvije komponente. Vektorsko polje
 $\mathbf{A}$ označava envelopu s istim periodom i simetrijom kao i rešetka.
 Ono diktira amplitudu ukupnog polja $\mathbf{E}$.
-Komponenta ${e^{j \mathbf{\beta} \cdot \mathbf{r}}}$ označava ravni val i diktira
+Komponenta ${e^{j {\bm{\beta}} \cdot \mathbf{r}}}$ označava ravni val i diktira
 smjer propagacije vala.
 
 % todo: ubaci meep sliku kako to izgleda i napiši par riječi o tome
@@ -331,26 +332,26 @@ periodičke strukture.
 \begin{align} \label{eq:master_bloch}
 	\nabla \times
 	\frac{1}{\varepsilon(\mathbf{r})} \nabla \times
-	\mathbf{H}_\mathbf{\beta}(\mathbf{r}) \cdot
-	e^{j \mathbf{\beta} \cdot \mathbf{r}}
+	\mathbf{H}_{\bm{\beta}}(\mathbf{r}) \cdot
+	e^{j {\bm{\beta}} \cdot \mathbf{r}}
 	= \left(
 		\frac{\omega}{c}
 	\right)^2
-	\mathbf{H}_\mathbf{\beta}(\mathbf{r}) \cdot
-		e^{j \mathbf{\beta} \cdot \mathbf{r}}	\nonumber \\
-	(\nabla + j\mathbf{\beta}) \times
+	\mathbf{H}_{\bm{\beta}}(\mathbf{r}) \cdot
+		e^{j {\bm{\beta}} \cdot \mathbf{r}}	\nonumber \\
+	(\nabla + j{\bm{\beta}}) \times
 	\frac{1}{\varepsilon(\mathbf{r})}
-	(\nabla + j\mathbf{\beta}) \times
-	\mathbf{H}_\mathbf{\beta}(\mathbf{r})
+	(\nabla + j{\bm{\beta}}) \times
+	\mathbf{H}_{\bm{\beta}}(\mathbf{r})
 	= \left(
-	\frac{\omega (\mathbf{\beta})}{c}
+	\frac{\omega ({\bm{\beta}})}{c}
 	\right)^2
-	\mathbf{H}_\mathbf{\beta}(\mathbf{r})
+	\mathbf{H}_{\bm{\beta}}(\mathbf{r})
 \end{align}
 
 Jednadžba \ref{eq:master_bloch} predstavlja završnu jednadžbu koja služi za
 proračun disperzijskog dijagrama u fotoničkom kristalu. Svojstvena vrijednost
-${\omega (\mathbf{\beta})}$ je kontinuirana funkcija
+${\omega ({\bm{\beta}})}$ je kontinuirana funkcija
 Ovaj oblik
 svojstvenog problema rješava programska biblioteka MPB spomenuta ranije. Sva
 svojstva izvedena ranije, vrijede i za gore izvedenu jednadžbu.
@@ -376,7 +377,7 @@ frekvencijski raspor.
 koji će biti primjenjiv na sve dijagrame. TE komponenta uvijek će biti prikazana
 plavom bojom, a TM crvenom. Frekvencijski raspori uvijek će biti prikazivani kao
 plavi, odnosno crveni pravokutnici. Os x označavat će iznos valnog vektora
-$\mathbf{\beta}$, a y, normaliziranu frekvenciju izraženu kao
+${\bm{\beta}}$, a y, normaliziranu frekvenciju izraženu kao
 ${\omega a/ 2 \pi c}$. Što se tiče prikaza modela fotoničkih kristala,
 dielektrično sredstvo uvijek će biti obojano, dok će zrak biti označen bijelom
 bojom. U opisu grafa bit će naznačeno s kojim je polumjerom modeliran stupić.
@@ -399,7 +400,7 @@ diskretnu translacijsku simetriju samo u smjeru jedne osi
 	$$f(\mathbf{r}) = f(\mathbf{r} + \mathbf{d})
 	\text{, gdje je }{\mathbf{d} \in \mathbb{R}^2}$$
 }
-na x osi grafa će valni vektor $\mathbf{\beta}$ varirati samo između
+na x osi grafa će valni vektor ${\bm{\beta}}$ varirati samo između
 $-0.5\mathbf{i}$ i $+0.5\mathbf{i}$. Disperzijski dijagram za strukturu opisanu
 ranije prikazan je na slici \ref{fig:1d_band_diagram}.
 \begin{figure}[ht]
@@ -426,11 +427,12 @@ U kristalu su u ovom trenutku 2 vala s istim periodom, energija jednog je
 većinom pohranjena u dielektriku, a energija drugog je većinom pohranjena
 u zraku. Ovi valovi moraju ``vidjeti'' različite prosječne indekse loma.
 Dielektrični pojas propagira s većim indeksom loma budući da većinu svoje energije
-pohranjuje upravo u sredstvu veće permeabilnost. S druge strane, zračni pojas
+pohranjuje upravo u sredstvu veće permeabilnost, a s druge strane, zračni pojas
 propagira s manjim prosječnim indeksom loma budući da svoju energiju
 većinom pohranjuje u sredstvu manje permeabilnosti. Sve to, navodi na zaključak
-da pojasevi moraju imati različite frekvencije. Frekvencijski raspor u ovom slučaju
-je upravo ta razlika frekvencija koja nastaje zbog različitog prosječnog indeksa loma.
+da pojasevi moraju imati različite frekvencije. Frekvencijski raspor u ovom
+slučaju je upravo ta razlika frekvencija koja nastaje zbog različitog prosječnog
+indeksa loma.
 
 \FloatBarrier
 
@@ -538,7 +540,10 @@ potpuni frekvencijski raspor.
 \end{figure}
 
 Val čija je frekvencija unutar frekvencijskog
-raspora postati će evanascentan. Njegova amplituda trnut će eksponencijalno.
+raspora postati će evanescentan. Njegova amplituda trnut će eksponencijalno. U
+ovu strukturu je uz unošenje defekata moguće lokalizirati harmonik. Defekt je
+strogo gledano nepravilnost koja će na ovaj ili onaj način narušiti simetriju
+kristala.
 
 
 \chapter{Zaključak}
