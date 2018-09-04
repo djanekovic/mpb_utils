@@ -1,4 +1,4 @@
-\documentclass[utf8, seminar]{fer}
+\documentclass[utf8, seminar, numeric]{fer}
 \usepackage{booktabs}
 \usepackage{hyperref}
 \usepackage{siunitx}
@@ -19,11 +19,11 @@
 
 
 \chapter{Uvod}
-U ovom seminaru bit će riječi o analizi periodičkih struktura gdje će naglasak
-biti na fotoničkim kristalima i primjeni numeričkih metoda na izračun
-disperzijskog dijagrama. Programska biblioteka koja će se koristiti za numeričko
-modeliranje je \href{https://github.com/stevengj/mpb}{MPB}. Prije svega, bit će
-iznesena matematička podloga potrebna za efikasno modeliranje propagacije vala u
+U ovom seminaru bit će analizirane periodičke strukture s naglaskom na fotoničke
+kristale primjenom numeričkih metoda za izračun disperzijskog dijagrama.
+Programska biblioteka koja će se koristiti za numeričko modeliranje je
+MPB(MIT Photonic Bands)\cite{Johnson2001:mpb}. Prije svega, bit će iznesena
+matematička podloga potrebna za efikasno modeliranje propagacije vala u
 periodičkoj strukturi. U poglavljima nakon uvoda bit će iznesena primjena
 fotoničkih kristala, kao i numeričke metode korištene u svrhu modeliranja
 problema koji opisuju periodičke strukture.
@@ -33,7 +33,7 @@ problema koji opisuju periodičke strukture.
 
 U ovom poglavlju nešto će detaljnije biti iznesena teorija periodičkih struktura
 kao i matematički formalizam koji ih opisuje. Analiza propagacije vala unutar
-periodičke rešetke prirodno navodi na Blochov teorem. On tvrdi da će polje u
+periodičke rešetke prirodno navodi na Blochov teorem koji kaže da će polje u
 periodičkoj strukturi poprimiti isti period i simetriju kao i period te strukture.
 Kao polazišna točka, bit će izvedena valna jednadžba za propagaciju vala unutar
 nehomogenog dielektrika. Svojstveni problem i njegova interpretacija bit će
@@ -43,45 +43,47 @@ teorema biti specijalizirana za slučaj fotoničkog kristala.
 
 \section{Periodičke strukture i kristalna rešetka}
 
-Periodička struktura je pravilna struktura u kojoj se elementi na neki način
-periodički ponavljaju. U nastavku će biti razmatrani fotonički kristali. To su
-periodički strukturirani elektromagnetski mediji koji generalno posjeduju
-svojstvo da svjetlost na određenim frekvencijama ne propagira kroz strukturu.
-To svojstvo nazivat će se fotonički frekvencijski raspor (engl. \textit{photonic band-gap}) u nastavku samo frekvencijski raspor.
-Fotonički kristali periodični su na način da zadovoljavaju diskretnu
-translacijsku simetriju. Diskretnta translacijska simetrija definirana je kao
+Periodička struktura je pravilna rešetkasta struktura u kojoj se elementi
+periodički ponavljaju. Fotonički kristali su periodički strukturirani
+elektromagnetski mediji koji generalno posjeduju svojstvo da svjetlost na
+određenim frekvencijama ne propagira kroz strukturu. To svojstvo nazivat će se
+fotonički frekvencijski raspor (engl. \textit{photonic band-gap}), a u nastavku
+samo frekvencijski raspor. Fotonički kristali periodički su na način da
+zadovoljavaju diskretnu translacijsku simetriju. Diskretnta translacijska
+simetrija definirana je kao
 ${f(\mathbf{r}) = f(\mathbf{r} \pm \mathbf{a})}$, odnosno
 
 \begin{equation}
 	f(\mathbf{r}) = f(\mathbf{r} + \mathbf{R}) \text{, gdje je }{\mathbf{R} =
-	n\mathbf{a}} \text{, a } n \in \mathbb{Z}
+	n\mathbf{a}}, n \in \mathbb{Z}
 \end{equation}
 
-Vektor $\mathbf{a}$ naziva se primitivni vektor rešetke, a njegova duljina
-naziva se konstanta rešetke. Ćelija za koju se tvrdi da svojim ponavljanjem
-tvori kristalnu rešetku naziva se jedinična ćelija. Jedinična ćelija je
-najmanja jedinica kristalne rešetke koja svojim ponavljanjem može tvoriti
-potpunu rešetku. Pored toga, ne postoji ćelija manjeg volumena od
-${|\mathbf{a}_1 \cdot \mathbf{a}_2 \times \mathbf{a}_3|}$, odnosno volumena
-kojeg zatvaraju primitivni vektori rešetke.
+Vektor $\mathbf{a}$ naziva se osnovni vektor rešetke, a njegova duljina
+naziva se konstanta rešetke, u nastavku samo $a$. Ćelija za koju se tvrdi
+da svojim ponavljanjem tvori kristalnu rešetku naziva se jedinična ćelija.
+Jedinična ćelija je najmanja jedinica kristalne rešetke koja svojim
+ponavljanjem može tvoriti potpunu rešetku. Pored toga, ne postoji ćelija manjeg
+volumena od ${|\mathbf{a}_1 \cdot \mathbf{a}_2 \times \mathbf{a}_3|}$, odnosno
+volumena kojeg zatvaraju osnovni vektori rešetke.
 
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width = 1.0\linewidth]{./images/crystal_lattice.pdf}
 	\caption{Kvadratna kristalna rešetka s ucrtane 3 opcije za odabir baznih
 	vektora $\mathbf{a}_1$ i $\mathbf{a}_2$. Linearna kombinacija vektora
-	$\mathbf{a}_1 = a \mathbf{i}$ i $\mathbf{a}_2 = a \mathbf{j}$ (opcija pod a)
-	tvori sve ostale vektore odnosno sva ostala čvorišta kristala. Konkretno,
-	${\mathbf{c}_1 = \mathbf{a}_1 + 2 \mathbf{a}_2}$,
+	$\mathbf{a}_1 = a \, \mathbf{i}$ i $\mathbf{a}_2 = a \, \mathbf{j}$ (opcija
+	pod a) tvori sve ostale vektore odnosno sva ostala čvorišta kristala.
+	Konkretno,
+	${\mathbf{c}_1 = \mathbf{a}_1 + 2 \, \mathbf{a}_2}$,
 	${\mathbf{c}_2 = \mathbf{a}_1 + \mathbf{a}_2}$,
-	${\mathbf{c}_3 = 2 \mathbf{a}_1 + \mathbf{a}_2}$,
-	${\mathbf{c}_4 = 2 \mathbf{a}_1}$}
+	${\mathbf{c}_3 = 2 \, \mathbf{a}_1 + \mathbf{a}_2}$,
+	${\mathbf{c}_4 = 2 \, \mathbf{a}_1}$}
 	\label{fig:crystal_lattice}
 \end{figure}
 
-Ovisno o dimenzionalnosti problema moguće je odabrati različite primitivne
+Ovisno o dimenzionalnosti problema moguće je odabrati različite osnovne
 vektore rešetke i sve ostale translacije prikazati kao linearnu kombinaciju
-primitivnih vektora.
+osnovnih vektora.
 
 Weigner-Seintzova ćelija primjer je primitivne ćelije koja sadrži samo jedno
 čvorište i predstavlja skup točaka u prostoru koji je bliži jednom čvorištu
@@ -89,9 +91,9 @@ od bilo kojeg drugog čvorišta. Čvorišta kristalne rešetke nalaze se u sredi
 Weigner-Seintzove ćelije. Iako kristal ima beskonačno puno jediničnih ćelija,
 on ima samo jednu Weigner-Seintzovu ćeliju.
 
-Recipročna rešetka uvodi se za prikaz valnih vektora u Fourierovom razvoju
-periodičnih funkcija. Vektori recipročne rešetke bit će označavani s $\mathbf{b}$.
-Za vektore recipročne rešetke vrijedi:
+Inverzna rešetka uvodi se za prikaz valnih vektora u Fourierovom razvoju
+periodičnih funkcija. Vektori inverzne rešetke bit će označavani s $\mathbf{b}$.
+Za vektore inverzne rešetke vrijedi:
 
 \begin{equation}
 	\mathbf{R} \cdot \mathbf{G} =
@@ -107,6 +109,7 @@ disperzijskog dijagrama obavlja se u \textit{k prostoru}, prostoru recipročne
 rešetke, odnosno u prvoj Brillouinovoj zoni. Ona označava najmanji
 prostor unutar Brillouinove zone koji u potpunosti karakterizira polje unutar
 periodičke strukture. Svaku točku unutar Brillouinove zone moguće je preslikati
+% todo: istakni?
 u prvu Brillouinovu zonu. Drugim riječima, analiza propagacije vala unutar
 Brillouinove zone, bit će ekvivalentna analizi unutar prve Brillouinove zone uz
 određenu redundantnost u računu. Što je rešetka više simetrična, to će biti
@@ -116,11 +119,11 @@ isplativije analizu obavljati unutar prve Brillouinove zone.
 \section{Blochov teorem}
 
 Intuitivnim razmišljanjem jasno je da će val koji je u jednom trenutku prolazio
-kroz dielektrični objekt kasniti u odnosu na val koji nije. Lako je onda
-generalizirati ideju na periodičku strukturu i iz tog razmišljanja izvući
-zaključak da će polje unutar periodičke strukture poprimiti isti period i
-simetriju kao i ta struktura. Teorem koji je upravo intuitivno izveden naziva se
-Blochov teorem, i matematički formaliziran glasi ovako:
+kroz dielektrični objekt kasniti. Lako je onda generalizirati ideju na periodičku
+strukturu i iz tog razmišljanja izvući zaključak da će polje unutar periodičke
+strukture poprimiti isti period i simetriju kao i ta struktura. Teorem koji je
+upravo intuitivno izveden naziva se Blochov teorem, i matematički formaliziran
+glasi ovako:
 
 \begin{equation} \label{eq:bloch}
 	\mathbf{E}(\mathbf{r}) =
@@ -130,7 +133,7 @@ Blochov teorem, i matematički formaliziran glasi ovako:
 
 U jednadžbi \ref{eq:bloch}, vektorsko polje $\mathbf{E}$ označava ukupno polje
 u periodičkoj strukturi i ono se sastoji od dvije komponente. Vektorsko polje
-$\mathbf{A}$ označava envelopu s istim periodom i simetrijom kao i rešetka.
+$\mathbf{A}$ označava amplitudu s istim periodom i simetrijom kao i rešetka.
 Ono diktira amplitudu ukupnog polja $\mathbf{E}$.
 Komponenta ${e^{j {\bm{\beta}} \cdot \mathbf{r}}}$ označava ravni val i diktira
 smjer propagacije vala.
@@ -150,8 +153,8 @@ na slici \ref{fig:structure}.
 	\centering
 	\includegraphics[width = 1.0\linewidth]{./images/structure-model.pdf}
 	\caption{Model strukture u kojoj propagira val. Sredstvo je sastavljeno od
-	neperiodičnih, homogenih ``zakrpa'' različitih dielektričnih materijala.
-	``Zakrpe'' se nalaze u materijalu permeabilnosti $\varepsilon_1$.}
+	neperiodičnih, homogenih poddomena različitih dielektričnih materijala.
+	Poddomene se nalaze u materijalu permitivnosti $\varepsilon_1$.}
 	\label{fig:structure}
 \end{figure}
 
@@ -169,32 +172,32 @@ Maxwellovim jednadžbama:
 		\mathbf{J} + \frac{\partial \mathbf{D}}{\partial t}
 \end{align}
 
-$\varepsilon$ u sredstvu postaje funkcija koja ovisi o položaju, odnosno
-$\varepsilon(\mathbf{r})$. Pored toga, pretpostavlja se da struktura ne mijenja
-konfiguraciju u vremenu, te da u njoj nema izvora svjetlosti. Između ostalog
-pretpostavlja se da su snage dovoljno male kako bi sustav imalo smisla promatrati
-u linearnom režimu.
-Materijal u kojem se vrši propagacija promatra se kao izotropan na makroskopskoj
-razini. U slučaju anizotropnog medija $\mathbf{D}$ i $\mathbf{E}$ nisu vezani
-s $\varepsilon_0 \varepsilon$, već s
-dielektričnim tenzorom $\varepsilon_0 \varepsilon_{ij}$. Frekvencijska ovisnost
-dielektrične permeabilnosti bit će zanemarena. Konačno, nakon svih pretpostavki
-jednadžbe \ref{eq:maxwell1} poprimaju sljedeći oblik:
+Permitivnost $\varepsilon$ u sredstvu postaje funkcija koja ovisi o položaju,
+odnosno $\varepsilon(\mathbf{r})$. Pored toga, pretpostavlja se da struktura ne
+mijenja konfiguraciju u vremenu te da u njoj nema izvora svjetlosti. Između
+ostalog, pretpostavlja se da su snage dovoljno male kako bi sustav imalo smisla
+promatrati u linearnom režimu. Materijali koji će se analizirati bit će
+izotropni, odnosno $\varepsilon_r$ će biti skalarna funkcija. Kod
+anizotropnih materijala $\mathbf{D}$ i $\mathbf{E}$ nisu vezani s
+$\varepsilon_0 \varepsilon_r$, već s dielektričnim tenzorom
+$\varepsilon_0 \varepsilon_{ij}$. S obzirom na frekvencije na kojima će se
+obavljati analiza, ima smisla pretpostaviti $\mu_r = 1$. Konačno, nakon svih
+pretpostavki jednadžbe \ref{eq:maxwell1} poprimaju sljedeći oblik:
 
 \begin{align} \label{eq:maxwell2}
-	\nabla \cdot (\varepsilon(\mathbf{r}) \mathbf{E}(\mathbf{r}, t)) = 0 &&
+	\nabla \cdot (\varepsilon_r(\mathbf{r}) \mathbf{E}(\mathbf{r}, t)) = 0 &&
 	\nabla \times \mathbf{E}(\mathbf{r}, t) &=
-		- \mu_0 \mu(\mathbf{r})
+		- \mu_0
 		\frac{\partial \mathbf{H}(\mathbf{r}, t)}{\partial t}  \nonumber \\
 	\nabla \cdot \mathbf{H}(\mathbf{r}, t) = 0 &&
 	\nabla \times \mathbf{H}(\mathbf{r}, t) &=
-		\varepsilon_0 \varepsilon(\mathbf{r}, t)
+		\varepsilon_0 \varepsilon_r(\mathbf{r}, t)
 		\frac{\partial \mathbf{E}(\mathbf{r}, t)}{\partial t}
 \end{align}
 
-Budući da su Maxwellove jednadžbe linearne, moguće je pretpostaviti da će pobuda
-titrati istom frekvencijom kao i odziv. To svojstvo omogućava rastav polja
-na prostornu i vremensku komponentu. Rastav se obavlja preko sljedećeg zapisa:
+Budući da su Maxwellove jednadžbe linearne, moguće je pretpostaviti da će odziv
+titrati istom frekvencijom kao i pobuda. To svojstvo omogućava rastav polja
+na prostornu i vremensku komponentu:
 % TODO: napiši i pročitaj više o ovome
 \begin{equation} \label{eq:harmonic}
 	\mathbf{H}(\mathbf{r}, t) = \mathbf{H}(\mathbf{r}) e^{-i \omega t}
@@ -204,26 +207,26 @@ Nakon uvrštavanja \ref{eq:harmonic} Maxwellove jednadžbe poprimaju sljedeći
 oblik:
 
 \begin{align} \label{eq:maxwell3}
-	\nabla \cdot (\varepsilon(\mathbf{r}) \mathbf{E}(\mathbf{r})) = 0 &&
+	\nabla \cdot (\varepsilon_r(\mathbf{r}) \mathbf{E}(\mathbf{r})) = 0 &&
 	\nabla \times \mathbf{E}(\mathbf{r}) &=
 		i \omega \mu_0 \mu(\mathbf{r})\mathbf{H}(\mathbf{r})  \nonumber \\
 	\nabla \cdot \mathbf{H}(\mathbf{r}) = 0 &&
 	\nabla \times \mathbf{H}(\mathbf{r}) &=
-		- i \omega \varepsilon_0 \varepsilon(\mathbf{r})\mathbf{E}(\mathbf{r})
+		- i \omega \varepsilon_0 \varepsilon_r(\mathbf{r})\mathbf{E}(\mathbf{r})
 \end{align}
 
-Djelujući operatorom rotora na jednadžbu koja opisuje Faradayev zakon dobiva
-se valna jednadžba u sljedećem obliku:
+Djelujući operatorom rotora na Faradayev zakon dobije se valna jednadžba u
+sljedećem obliku:
 
 \begin{equation} \label{eq:master}
-	\nabla \times \left(\frac{1}{\varepsilon(\mathbf{r})}\nabla
+	\nabla \times \left(\frac{1}{\varepsilon_r(\mathbf{r})}\nabla
 			\times \mathbf{H}(\mathbf{r}) \right)
 	= \left( \frac{\omega}{c} \right)^2 \mathbf{H}(\mathbf{r})
 \end{equation}
 
 Jednadžba \ref{eq:master} predstavljat će jednadžbu koja će biti korištena za
 računanje disperzijskog dijagrama u nehomogenom dielektriku.
-Ako se operator ${\nabla \times \frac{1}{\varepsilon(\mathbf{r})} \nabla \times}$
+Ako se operator ${\nabla \times \frac{1}{\varepsilon_r(\mathbf{r})} \nabla \times}$
 zamijeni s $\hat{\mathbf{\Theta}}$ dobiva se uobičajena forma svojstvenog
 problema.
 
@@ -239,7 +242,7 @@ Budući da je operator $\hat{\mathbf{\Theta}}$ hermitski
 
 	$$(\mathbf{F}, \hat{\mathbf{\Theta}}\mathbf{G}) =
 	\iiint \mathbf{F}^* (\mathbf{r}) \cdot \nabla \times \left(
-		\frac{1}{\varepsilon (\mathbf{r})} \nabla \times \mathbf{G}(\mathbf{r})
+		\frac{1}{\varepsilon_r (\mathbf{r})} \nabla \times \mathbf{G}(\mathbf{r})
 	\right) \, \mathrm{d}^3 \mathbf{r}$$
 
 	% dario citat
@@ -249,44 +252,35 @@ Budući da je operator $\hat{\mathbf{\Theta}}$ hermitski
 	%todo: ako će ti se dati ubaci oiint umjesto oint
 
 	$$(\mathbf{F}, \hat{\mathbf{\Theta}}\mathbf{G}) =
-	\iiint \frac{1}{\varepsilon (\mathbf{r})} \nabla \times \mathbf{G}(\mathbf{r})
+	\iiint \frac{1}{\varepsilon_r (\mathbf{r})} \nabla \times \mathbf{G}(\mathbf{r})
 	\cdot \left(
 		\nabla \times \mathbf{F}(\mathbf{r})
 	\right)^* \, \mathrm{d}^3 \mathbf{r}
 	- \oint \left(
-		\mathbf{F}^*(\mathbf{r}) \times \frac{1}{\varepsilon(\mathbf{r})}
+		\mathbf{F}^*(\mathbf{r}) \times \frac{1}{\varepsilon_r(\mathbf{r})}
 		\nabla \times \mathbf{G}(\mathbf{r})
 	\right) \hat{n} \, \mathrm{d}S$$
 
 	Drugi član izraza zanemaruje se ili zbog periodičnosti na području integracije
 	% todo: napiši ovo bolje: field decay to zero at large distances
-	ili zato što polja trnu u 0 pri velikim udaljenostima. Parcijalna integracija
+	ili zato što polja teže u 0 pri velikim udaljenostima. Parcijalna integracija
 	provodi se još jednom uz zanemarivanje istog člana kao i ranije.
 
 	$$(\mathbf{F}, \hat{\mathbf{\Theta}}\mathbf{G}) =
 	\iiint \mathbf{G}(\mathbf{r})
 	\cdot \left[
 		\nabla \times \left(
-			\frac{1}{\varepsilon (\mathbf{r})} \nabla \times
+			\frac{1}{\varepsilon_r (\mathbf{r})} \nabla \times
 			\mathbf{F}(\mathbf{r})
 		\right)
 	\right]^* \, \mathrm{d}^3 \mathbf{r}
 	- \oint \left[
 		\left(
-			\frac{1}{\varepsilon(\mathbf{r})} \times \mathbf{F}(\mathbf{r})
+			\frac{1}{\varepsilon_r(\mathbf{r})} \times \mathbf{F}(\mathbf{r})
 		\right)^*
 		\times \mathbf{G}(\mathbf{r})
 	\right] \hat{n} \, \mathrm{d}S
 	= (\hat{\mathbf{\Theta}} \mathbf{F}, \mathbf{G})$$
-%	$$(\mathbf{F}, \hat{\mathbf{\Theta}}\mathbf{G}) =
-%	\iiint \mathbf{G}(\mathbf{r})
-%	\cdot \left[
-%		\nabla \times \left(
-%			\frac{1}{\varepsilon (\mathbf{r})} \nabla \times
-%			\mathbf{F}(\mathbf{r})
-%		\right)
-%	\right]^* \, \mathrm{d}^3 \mathbf{r}
-%	= (\hat{\mathbf{\Theta}} \mathbf{F}, \mathbf{G})$$
 },
 moguće je analizirati njegov Rayleighov kvocijent
 $R \left(\hat{\mathbf{\Theta}}, \mathbf{H}(\mathbf{r}) \right)$.
@@ -313,14 +307,15 @@ kvocijent.
 	= \frac{
 		\iiint |\nabla \times \mathbf{E}(\mathbf{r})|^2
 		\, \mathrm{d}^3\mathbf{r}}
-	{\iiint \varepsilon(\mathbf{r}) | \mathbf{E}( \mathbf{r} ) |^2
+	{\iiint \varepsilon_r(\mathbf{r}) | \mathbf{E}( \mathbf{r} ) |^2
 	\, \mathrm{d}^3\mathbf{r}} \label{eq:rayleighE}
 \end{align}
 
 Budući da se kvocijent može minimizirati tako da se maksimizira nazivnik, iz
 izraza \ref{eq:rayleighE} može se zaključiti da će električno polje
-``preferirati'' područja veće permeabilnosti. Drugim riječima,
-najsnažnija električna polja mogu se očekivati u području veće permeabilnosti.
+``preferirati'' područja veće permitivnosti. Drugim riječima,
+najsnažnija električna polja mogu se očekivati u područjima veće permitivnosti.
+
 
 \section{Propagacija vala unutar periodičke strukture}
 
@@ -331,7 +326,7 @@ periodičke strukture.
 
 \begin{align} \label{eq:master_bloch}
 	\nabla \times
-	\frac{1}{\varepsilon(\mathbf{r})} \nabla \times
+	\frac{1}{\varepsilon_r(\mathbf{r})} \nabla \times
 	\mathbf{H}_{\bm{\beta}}(\mathbf{r}) \cdot
 	e^{j {\bm{\beta}} \cdot \mathbf{r}}
 	= \left(
@@ -340,7 +335,7 @@ periodičke strukture.
 	\mathbf{H}_{\bm{\beta}}(\mathbf{r}) \cdot
 		e^{j {\bm{\beta}} \cdot \mathbf{r}}	\nonumber \\
 	(\nabla + j{\bm{\beta}}) \times
-	\frac{1}{\varepsilon(\mathbf{r})}
+	\frac{1}{\varepsilon_r(\mathbf{r})}
 	(\nabla + j{\bm{\beta}}) \times
 	\mathbf{H}_{\bm{\beta}}(\mathbf{r})
 	= \left(
@@ -357,14 +352,14 @@ svojstvenog problema rješava programska biblioteka MPB spomenuta ranije. Sva
 svojstva izvedena ranije, vrijede i za gore izvedenu jednadžbu.
 
 
-
 \chapter{Proračun disperzijskog dijagrama fotoničkih kristala}
 
 Imenovanje komponenata polja u kristalu bit će u skladu s imenovanjem u
 literaturi \cite{joannopoulos2011photonic}. Kratica \textbf{TE},
-\textit{transverse-electric} označavat će električnu komponentu unutar xy ravnine.
-Slično, kratica \textbf{TM}, \textit{transverse-magnetic} označavat će magnetsku
-komponentu u xy ravnini.
+\textit{transverse-electric} označavat će mod kod kojeg ne postoji komponenta
+električnog polja u smjeru širenja vala. Slično, kratica \textbf{TM},
+\textit{transverse-magnetic} označavat će mod kod kojeg ne postoji komponenta
+magnetskog polja u smjeru širenja vala.
 
 U poglavljima koja slijede bit će proračunati i prikazani disperzijski dijagrami
 osnovnih dvodimenzionalnih fotoničkih kristala. Za početak će na primjeru
@@ -380,8 +375,10 @@ plavi, odnosno crveni pravokutnici. Os x označavat će iznos valnog vektora
 ${\bm{\beta}}$, a y, normaliziranu frekvenciju izraženu kao
 ${\omega a/ 2 \pi c}$. Što se tiče prikaza modela fotoničkih kristala,
 dielektrično sredstvo uvijek će biti obojano, dok će zrak biti označen bijelom
-bojom. U opisu grafa bit će naznačeno s kojim je polumjerom modeliran stupić.
-Dielektrični kontrast će uvijek iznositi 12.
+bojom. U opisu grafa bit će naznačeno s kojim je dimenzijama modeliran objekt
+koji će tvoriti kristalnu rešetku. Dielektrični kontrast uvijek će iznositi 12,
+a označavat će razliku između permitivnosti dielektrika\footnote{
+$\varepsilon_r$ za GaAs iznosi 12.9.} i zraka.
 
 \newpage
 
@@ -392,49 +389,62 @@ najbolje može pokazati na primjeru jednodimenzionalnog fotoničkog kristala.
 U okvirima ovog primjera najlakše je shvatiti nastajanje frekvencijskih raspora.
 
 Struktura koja se promatra može se zamisliti kao peridički nanizani listovi 2
-različita materijala različitih permeabilnosti. Budući da struktura posjeduje
+različita materijala različitih permitivnosti. Budući da struktura posjeduje
 diskretnu translacijsku simetriju samo u smjeru jedne osi
 \footnote{
 	Ona posjeduje kontinuiranu translacijsku simetriju u preostale dvije osi.
-	Kontinuirana translacijska simetrija u ovom slučaju zapisuje se kao:
+	Kontinuirana translacijska simetrija definira se slično kao i diskretna
+	translacijska simetrija i u ovom slučaju zapisuje se kao:
 	$$f(\mathbf{r}) = f(\mathbf{r} + \mathbf{d})
 	\text{, gdje je }{\mathbf{d} \in \mathbb{R}^2}$$
 }
 na x osi grafa će valni vektor ${\bm{\beta}}$ varirati samo između
-$-0.5\mathbf{i}$ i $+0.5\mathbf{i}$. Disperzijski dijagram za strukturu opisanu
-ranije prikazan je na slici \ref{fig:1d_band_diagram}.
+$-0.5 \, \mathbf{i}$ i $+0.5 \, \mathbf{i}$. Disperzijski dijagram za strukturu
+opisanu ranije prikazan je na slici \ref{fig:1d_band_diagram}.
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width = 1.0\linewidth]{./images/1d_crystal_gap.pdf}
-	\caption{TE band gap u 1 d strukturi}
+	\caption{Fotonički frekvencijski raspor u jednodimenzionalnoj strukturi}
 	\label{fig:1d_band_diagram}
 \end{figure}
 
 Rezultat \ref{eq:rayleighE} kaže da će prvi pojas većinu svoje energije
-pohraniti unutar sredstva veće permeabilnosti. U slučaju modela koji se
-promatra, to je sredstvo čija je relativna permeabilnost 12. Taj pojas
+pohraniti unutar sredstva veće permitivnosti. U slučaju modela koji se
+promatra, to je sredstvo čija je relativna permitivnosti 12. Taj pojas
 u nastavku će se nazivati \emph{dielektrični pojas}. Pojas iznad raspora mora
 osigurati jednaku simetriju kao i struktura, ali pored toga, mora osigurati i
 ortogonalnost u odnosu na dielektrični pojas. Drugim riječima, pojas iznad
 raspora mora imati jednak period jer njega diktira struktura, ali ne smije svoju
 energiju pohraniti unutar istog sredstva. Rješenje koje se nameće je da pojas
-iznad raspora energiju pohrani u sredstvu manje permeabilnosti i k tome zadrži
+iznad raspora energiju pohrani u sredstvu manje permitivnosti i k tome zadrži
 isti period. Pojas iznad dielektričnog, u nastavku će se nazivati \emph{zračni
-pojas} jer će njegova energija biti pohranjena u sredstvu manje permeabilnost,
+pojas} jer će njegova energija biti pohranjena u sredstvu manje permitivnosti,
 a ono je najčešće zrak.
 
 U kristalu su u ovom trenutku 2 vala s istim periodom, energija jednog je
 većinom pohranjena u dielektriku, a energija drugog je većinom pohranjena
 u zraku. Ovi valovi moraju ``vidjeti'' različite prosječne indekse loma.
 Dielektrični pojas propagira s većim indeksom loma budući da većinu svoje energije
-pohranjuje upravo u sredstvu veće permeabilnost, a s druge strane, zračni pojas
+pohranjuje upravo u sredstvu veće permitivnosti, a s druge strane, zračni pojas
 propagira s manjim prosječnim indeksom loma budući da svoju energiju
-većinom pohranjuje u sredstvu manje permeabilnosti. Sve to, navodi na zaključak
+većinom pohranjuje u sredstvu manje permitivnosti. Sve to, navodi na zaključak
 da pojasevi moraju imati različite frekvencije. Frekvencijski raspor u ovom
 slučaju je upravo ta razlika frekvencija koja nastaje zbog različitog prosječnog
 indeksa loma.
 
 \FloatBarrier
+Unutar fotoničkog frekvencijskog raspora nema propagacije vala. Val čija se
+frekvencija nalazi unutar frekvencijskog raspora naziva je evanescentni val i
+njegova amplituda eksponencijalno teži u 0. Evanescentni val ima kompleksni valni
+vektor ${\bm{\beta}} + j \kappa$ gdje je $\kappa$ faktor prigušenja.
+
+\begin{equation} \label{eq:evan}
+	\mathbf{E}(\mathbf{r}) =
+	\mathbf{A}_{\bm{\beta}}(\mathbf{r}) \cdot
+		e^{j ({\bm{\beta}} + j \kappa) \cdot \mathbf{r}} =
+	\mathbf{A}_{\bm{\beta}}(\mathbf{r}) \cdot
+		e^{j {\bm{\beta}} \cdot \mathbf{r}} e^{-\kappa \cdot \mathbf{r}}
+\end{equation}
 
 
 \section{Kvadratna rešetka dielektričnih stupića}
@@ -452,18 +462,18 @@ postavljenih tako da gledano iz smjera z osi izgledaju kao slika
 	\label{fig:square_lattice}
 \end{figure}
 
-Bazni vektori rešetke su vektori ${\mathbf{a}_1 = a \mathbf{i}}$ i
-${\mathbf{a}_2= a \mathbf{j}}$, a Weigner-Seintzova ćelija označena je
+Bazni vektori rešetke su vektori ${\mathbf{a}_1 = a \, \mathbf{i}}$ i
+${\mathbf{a}_2= a \, \mathbf{j}}$, a Weigner-Seintzova ćelija označena je
 desno žutom bojom. Bazni vektori recipročne rešetke su
-${\mathbf{b}_1 = 2 \pi/a \mathbf{i}}$ i
-${\mathbf{b}_2 = 2 \pi/a \mathbf{j}}$, a prva Brillouinova zona prikazana
+${\mathbf{b}_1 = 2 \pi/a \, \mathbf{i}}$ i
+${\mathbf{b}_2 = 2 \pi/a \, \mathbf{j}}$, a prva Brillouinova zona prikazana
 je na disperzijskom dijagramu \ref{fig:square_band_diagram}.
 
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width = 1.0\linewidth]{./images/square.pdf}
 	\caption{Disperzijski dijagram za kvadratnu rešetku koju sačinjavaju
-	dielektrični stupići. Frekvencijski raspor prisutan je samo za TM. Na
+	dielektrični stupići. Frekvencijski raspor prisutan je samo za TM mod. Na
 	dijagramu je označena i prva Brillouinova zona s pripadnim oznakama na x osi.}
 	\label{fig:square_band_diagram}
 \end{figure}
@@ -486,12 +496,12 @@ slika \ref{fig:triangular_lattice}
 \end{figure}
 
 Bazni vektori rešetke su vektori
-${\mathbf{a}_1 = a/2 (\mathbf{i} + \sqrt{3} \mathbf{j})}$ i
-${\mathbf{a}_2 = a/2 (\mathbf{i} - \sqrt{3} \mathbf{j})}$.
+${\mathbf{a}_1 = a/2 ( \, \mathbf{i} + \sqrt{3} \, \mathbf{j})}$ i
+${\mathbf{a}_2 = a/2 ( \, \mathbf{i} - \sqrt{3} \, \mathbf{j})}$.
 a Weigner-Seintzova ćelija označena je desno žutom bojom.
 Bazni vektori recipročne rešetke su
-${\mathbf{b}_1 = 2 \pi/a( \mathbf{i} + 1/\sqrt{3} \mathbf{j})}$ i
-${\mathbf{b}_2 = 2 \pi/a( \mathbf{i} - 1/\sqrt{3} \mathbf{j})}$,
+${\mathbf{b}_1 = 2 \pi/a( \, \mathbf{i} + 1/\sqrt{3} \, \mathbf{j})}$ i
+${\mathbf{b}_2 = 2 \pi/a( \, \mathbf{i} - 1/\sqrt{3} \, \mathbf{j})}$,
 a prva Brillouinova zona prikazana je na disperzijskom dijagramu
 \ref{fig:triangular_band_diagram}.
 
@@ -499,8 +509,8 @@ a prva Brillouinova zona prikazana je na disperzijskom dijagramu
 	\centering
 	\includegraphics[width = 1.0\linewidth]{./images/triangular.pdf}
 	\caption{Disperzijski dijagram za trokutastu rešetku koju sačinjavaju
-	dielektrični stupići. Frekvencijski raspor prisutan je i za TE i za TM. Na
-	dijagramu je označena i prva Brillouinova zona s pripadnim oznakama.}
+	dielektrični stupići. Frekvencijski raspor prisutan je i za TE mod i za TM
+	mod. Na dijagramu je označena i prva Brillouinova zona s pripadnim oznakama.}
 	\label{fig:triangular_band_diagram}
 \end{figure}
 
@@ -508,8 +518,8 @@ a prva Brillouinova zona prikazana je na disperzijskom dijagramu
 
 \section {Trokutasta rešetka za potpuni frekvencijski raspor}
 
-U ovom primjeru fotonički kristal građen je od rupa u dielektričnom materijalu.
-Gledano iz smjera z osi, kristal izgleda kao na slici
+U ovom primjeru fotonički kristal građen je od zračnih rupa u dielektričnom
+materijalu. Gledano iz smjera z osi, kristal izgleda kao na slici
 \ref{fig:triangular_lattice_holes}.
 
 \begin{figure}[ht]
@@ -517,10 +527,8 @@ Gledano iz smjera z osi, kristal izgleda kao na slici
 	\includegraphics[width = 1.0\linewidth]{./images/triangular_lattice_holes.pdf}
 	\caption{Na slici nisu ucrtane Brillouinova zona i primitivni vektori rešetke
 	jer su u odnosu na sliku \ref{fig:triangular_lattice} samo drugačijeg iznosa.
-	Kao i u slikama do sada, u boji je dielektrični materijal čiji $\varepsilon$
-	iznosi 13 dok je bijelo zrak s permeabilnošću 1. Polumjer stupića u ovoj
-	rešetki iznosi ${0.45 a}$, odnosno promjer stupića iznosit će 90 \% duljine
-	jedinične ćelije.}
+	Polumjer stupića u ovoj rešetci iznosi ${0.45 \, a}$, odnosno promjer stupića
+	iznosit će 90 \% duljine jedinične ćelije.}
 	\label{fig:triangular_lattice_holes}
 \end{figure}
 
@@ -531,29 +539,30 @@ potpuni frekvencijski raspor.
 	\centering
 	\includegraphics[width = 1.0\linewidth]{./images/triangular_holes.pdf}
 	\caption{Disperzijski dijagram za fotonički kristal kojeg sačinjavaju rupe
-	u dielektričnom materijalu. Kao i do sada, plavim pravokutnikom je označen
-	frekvencijski raspor za TE, a crvenim za TM. Na ovoj slici se unutar plavog
-	raspora nalazi crveni, odnosno unutar raspora za TE, nalazi se TM raspor. Ta
-	pojava naziva se potpuni frekvencijski raspor (engl. \textit{full band-gap}).
-	Na dijagramu je označena i prva Brillouinova zona s pripadnim oznakama.}
+	u dielektričnom materijalu. Plavim pravokutnikom je označen frekvencijski
+	raspor za TE, a crvenim za TM mod. Na ovoj slici se unutar
+	plavog raspora nalazi crveni, odnosno unutar raspora za TE mod, nalazi se
+	raspor za TM mod. Ta pojava naziva se potpuni frekvencijski raspor (engl.
+	\textit{full band-gap}). Za frekvencije unutar raspora nema modova koji
+	mogu propagirati kroz strukturu. Na dijagramu je označena i prva Brillouinova
+	zona s pripadnim oznakama.}
 	\label{fig:triangular_full_band}
 \end{figure}
 
-Val čija je frekvencija unutar frekvencijskog
-raspora postati će evanescentan. Njegova amplituda trnut će eksponencijalno. U
-ovu strukturu je uz unošenje defekata moguće lokalizirati harmonik. Defekt je
-strogo gledano nepravilnost koja će na ovaj ili onaj način narušiti simetriju
-kristala.
+\FloatBarrier
 
+Val čija je frekvencija unutar frekvencijskog raspora naziva se evanescentan.
+Njegova amplituda trnut će eksponencijalno. U ovu strukturu je uz unošenje
+defekata moguće lokalizirati harmonik. Defekt je strogo gledano nepravilnost
+koja će na ovaj ili onaj način narušiti simetriju kristala.
+
+\chapter{Optimizacija širine potpunog frekvencijskog raspora trokutaste rešetke}
 
 \chapter{Zaključak}
 Zaključak.
 
-\bibliographystyle{fer}
+\bibliographystyle{unsrt}
 \bibliography{literatura}
 \nocite{*}
-
-\chapter{Sažetak}
-Sažetak.
 
 \end{document}

@@ -151,7 +151,7 @@
 
 % Postavljanje stila citiranja
 \if@citeauthoryear \RequirePackage[authoryear, round]{natbib}
-\else \RequirePackage[numbers, square]{natbib}
+\else \RequirePackage[numbers,square,sort]{natbib}
 \fi
 
 % Umjesto poziva \RequirePackage[outsidefoot]{pageno}.
