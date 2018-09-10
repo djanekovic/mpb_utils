@@ -8,4 +8,4 @@
 *.bcf
 *.blg
 *.run.xml
-!seminar/images/*.pdf
+!seminar/images/pdf/*.pdf
