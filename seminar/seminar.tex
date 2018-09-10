@@ -5,6 +5,8 @@
 \usepackage{amsmath}
 \usepackage{placeins}
 \usepackage{bm}
+\usepackage{subfig}
+%\graphicspath{./images/pdf/}
 
 \begin{document}
 
@@ -68,7 +70,7 @@ volumena kojeg zatvaraju osnovni vektori rešetke.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width = 1.0\linewidth]{./images/crystal_lattice.pdf}
+	\includegraphics[width = 1.0\linewidth]{./images/pdf/crystal_lattice.pdf}
 	\caption{Kvadratna kristalna rešetka s ucrtane 3 opcije za odabir baznih
 	vektora $\mathbf{a}_1$ i $\mathbf{a}_2$. Linearna kombinacija vektora
 	$\mathbf{a}_1 = a \, \mathbf{i}$ i $\mathbf{a}_2 = a \, \mathbf{j}$ (opcija
@@ -151,7 +153,7 @@ na slici \ref{fig:structure}.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width = 1.0\linewidth]{./images/structure-model.pdf}
+	\includegraphics[width = 0.8\linewidth]{./images/pdf/structure-model.pdf}
 	\caption{Model strukture u kojoj propagira val. Sredstvo je sastavljeno od
 	neperiodičnih, homogenih poddomena različitih dielektričnih materijala.
 	Poddomene se nalaze u materijalu permitivnosti $\varepsilon_1$.}
@@ -262,9 +264,8 @@ Budući da je operator $\hat{\mathbf{\Theta}}$ hermitski
 	\right) \hat{n} \, \mathrm{d}S$$
 
 	Drugi član izraza zanemaruje se ili zbog periodičnosti na području integracije
-	% todo: napiši ovo bolje: field decay to zero at large distances
-	ili zato što polja teže u 0 pri velikim udaljenostima. Parcijalna integracija
-	provodi se još jednom uz zanemarivanje istog člana kao i ranije.
+	ili zato što polja teže u 0. Parcijalna integracija provodi se još jednom uz
+	zanemarivanje istog člana kao i ranije.
 
 	$$(\mathbf{F}, \hat{\mathbf{\Theta}}\mathbf{G}) =
 	\iiint \mathbf{G}(\mathbf{r})
@@ -289,7 +290,6 @@ Nadalje, može se pokazati da će najmanja svojstvena vrijednost $\omega_0^2/c^2
 odnosno prvo nađeno rješenje svojstvenog problema minimizirati Rayleighov
 kvocijent.
 
-%TODO: Mislim da je ovo čudan rezultat i treba ga provjeriti ...
 \begin{align}
 	R \left( \hat{\mathbf{\Theta}}, \mathbf{H}(\mathbf{r}) \right)
 	&= \frac{
@@ -370,15 +370,15 @@ frekvencijski raspor.
 
 Što se tiče disperzijskih dijagrama u nastavku, vrijedit će određeni skup pravila
 koji će biti primjenjiv na sve dijagrame. TE komponenta uvijek će biti prikazana
-plavom bojom, a TM crvenom. Frekvencijski raspori uvijek će biti prikazivani kao
+crvenom bojom, a TM plavom. Frekvencijski raspori uvijek će biti prikazivani kao
 plavi, odnosno crveni pravokutnici. Os x označavat će iznos valnog vektora
 ${\bm{\beta}}$, a y, normaliziranu frekvenciju izraženu kao
 ${\omega a/ 2 \pi c}$. Što se tiče prikaza modela fotoničkih kristala,
 dielektrično sredstvo uvijek će biti obojano, dok će zrak biti označen bijelom
 bojom. U opisu grafa bit će naznačeno s kojim je dimenzijama modeliran objekt
-koji će tvoriti kristalnu rešetku. Dielektrični kontrast uvijek će iznositi 12,
+koji će tvoriti kristalnu rešetku. Dielektrični kontrast uvijek će iznositi 11,
 a označavat će razliku između permitivnosti dielektrika\footnote{
-$\varepsilon_r$ za GaAs iznosi 12.9.} i zraka.
+$\varepsilon_r$ za Si iznosi 11.68.} i zraka.
 
 \newpage
 
@@ -403,7 +403,7 @@ $-0.5 \, \mathbf{i}$ i $+0.5 \, \mathbf{i}$. Disperzijski dijagram za strukturu
 opisanu ranije prikazan je na slici \ref{fig:1d_band_diagram}.
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width = 1.0\linewidth]{./images/1d_crystal_gap.pdf}
+	\includegraphics[width = 0.8\linewidth]{./images/pdf/1d_crystal_band_gap.pdf}
 	\caption{Fotonički frekvencijski raspor u jednodimenzionalnoj strukturi}
 	\label{fig:1d_band_diagram}
 \end{figure}
@@ -454,10 +454,15 @@ postavljenih tako da gledano iz smjera z osi izgledaju kao slika
 \ref{fig:square_lattice}
 
 \begin{figure}[ht]
-	\centering
-	\includegraphics[width = 1.0\linewidth]{./images/square_lattice.pdf}
-	\caption{Kvadratna rešetka s ucrtanim baznim vektorima i Weigner-Seintzovom
-	ćelijom. Polumjer stupića u ovom modelu kristala iznosi ${0.2 a}$, odnosno
+\centering
+    \subfloat[Kvadratna rešetka u realnom prostoru s ucrtanim baznim vektorima i označenom
+    Weigner-Seintzovom ćelijom]{\includegraphics[width=0.8\linewidth]
+    {./images/pdf/square_lattice.pdf}}%
+    \qquad
+    \subfloat[Kvadratna rešetka u inverznom prostoru s označenom Brillouinovom i prvom
+    Brillouinovom zonom.]{\includegraphics[width=0.8\linewidth]
+    {./images/pdf/square_lattice_reciprocal.pdf}}%
+	\caption{Polumjer stupića u ovom modelu kristala iznosi ${0.2 a}$, odnosno
 	promjer stupića zauzima 40\% duljine jedinične čelije.}
 	\label{fig:square_lattice}
 \end{figure}
@@ -471,7 +476,7 @@ je na disperzijskom dijagramu \ref{fig:square_band_diagram}.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width = 1.0\linewidth]{./images/square.pdf}
+	\includegraphics[width = 0.8\linewidth]{./images/pdf/square_lattice_rods_band_diagram.pdf}
 	\caption{Disperzijski dijagram za kvadratnu rešetku koju sačinjavaju
 	dielektrični stupići. Frekvencijski raspor prisutan je samo za TM mod. Na
 	dijagramu je označena i prva Brillouinova zona s pripadnim oznakama na x osi.}
@@ -487,30 +492,34 @@ postavljenih tako da gledano iz smjera z osi izgledaju kao
 slika \ref{fig:triangular_lattice}
 
 \begin{figure}[ht]
-	\centering
-	\includegraphics[width = 1.0\linewidth]{./images/triangular_lattice.pdf}
-	\caption{Trokutasta rešetka s ucrtanim baznim vektorima i Weigner-Seintzovom
-	ćelijom. Polumjer stupića u ovom modela kristala iznosi ${0.2 a}$, odnosno
-	promjer stupića zauzima 40\% duljine jedinične ćelije.}
+\centering
+    \subfloat[Trokutasta rešetka u realnom prostoru s ucrtanim baznim vektorima i označenom
+    Weigner-Seintzovom ćelijom]{\includegraphics[width=0.8\linewidth]
+    {./images/pdf/triangular_lattice.pdf}}%
+    \qquad
+    \subfloat[Trokutasta rešetka u inverznom prostoru s označenom Brillouinovom i prvom
+    Brillouinovom zonom.]{\includegraphics[width=0.8\linewidth]
+    {./images/pdf/triangular_lattice_reciprocal.pdf}}%
+	\caption{Polumjer stupića u ovom modelu kristala iznosi ${0.2 a}$}
 	\label{fig:triangular_lattice}
 \end{figure}
 
 Bazni vektori rešetke su vektori
 ${\mathbf{a}_1 = a/2 ( \, \mathbf{i} + \sqrt{3} \, \mathbf{j})}$ i
 ${\mathbf{a}_2 = a/2 ( \, \mathbf{i} - \sqrt{3} \, \mathbf{j})}$.
-a Weigner-Seintzova ćelija označena je desno žutom bojom.
+a Weigner-Seintzova ćelija označena je lijevo plavom bojom.
 Bazni vektori recipročne rešetke su
 ${\mathbf{b}_1 = 2 \pi/a( \, \mathbf{i} + 1/\sqrt{3} \, \mathbf{j})}$ i
 ${\mathbf{b}_2 = 2 \pi/a( \, \mathbf{i} - 1/\sqrt{3} \, \mathbf{j})}$,
-a prva Brillouinova zona prikazana je na disperzijskom dijagramu
+a prva Brillouinova zona prikazana je desno.
 \ref{fig:triangular_band_diagram}.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width = 1.0\linewidth]{./images/triangular.pdf}
+	\includegraphics[width = 0.8\linewidth]{./images/pdf/triangular_lattice_rods_band_diagram.pdf}
 	\caption{Disperzijski dijagram za trokutastu rešetku koju sačinjavaju
 	dielektrični stupići. Frekvencijski raspor prisutan je i za TE mod i za TM
-	mod. Na dijagramu je označena i prva Brillouinova zona s pripadnim oznakama.}
+	mod.}
 	\label{fig:triangular_band_diagram}
 \end{figure}
 
@@ -523,43 +532,134 @@ materijalu. Gledano iz smjera z osi, kristal izgleda kao na slici
 \ref{fig:triangular_lattice_holes}.
 
 \begin{figure}[ht]
-	\centering
-	\includegraphics[width = 1.0\linewidth]{./images/triangular_lattice_holes.pdf}
-	\caption{Na slici nisu ucrtane Brillouinova zona i primitivni vektori rešetke
+\centering
+    \subfloat[Disperzijski dijagram za fotonički kristal kojeg sačinjavaju rupe
+	u dielektričnom materijalu.]{\includegraphics[width=0.8\linewidth]
+    {./images/pdf/triangular_lattice_holes_band_diagram.pdf}}%
+    \qquad
+    \subfloat[Na slici nisu ucrtane Brillouinova zona i primitivni vektori rešetke
 	jer su u odnosu na sliku \ref{fig:triangular_lattice} samo drugačijeg iznosa.
-	Polumjer stupića u ovoj rešetci iznosi ${0.45 \, a}$, odnosno promjer stupića
-	iznosit će 90 \% duljine jedinične ćelije.}
+	Polumjer stupića u ovoj rešetci iznosi ${0.45 \, a}$]{\includegraphics[width=0.8\linewidth]
+    {./images/pdf/triangular_lattice_holes.pdf}}%
+	\caption{Na disperzijskom dijagramu pojavio je potpuni frekvncijski raspor. Na mjestima
+	gdje se raspori za TE i za TM modove preklapaju dolazi do pojave potpunom frekvencijkog
+	raspora (engl. \textit{full band-gap}).}
 	\label{fig:triangular_lattice_holes}
-\end{figure}
-
-Na disperzijskom dijagramu \ref{fig:triangular_full_band} u ovom slučaju postoji
-potpuni frekvencijski raspor.
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width = 1.0\linewidth]{./images/triangular_holes.pdf}
-	\caption{Disperzijski dijagram za fotonički kristal kojeg sačinjavaju rupe
-	u dielektričnom materijalu. Plavim pravokutnikom je označen frekvencijski
-	raspor za TE, a crvenim za TM mod. Na ovoj slici se unutar
-	plavog raspora nalazi crveni, odnosno unutar raspora za TE mod, nalazi se
-	raspor za TM mod. Ta pojava naziva se potpuni frekvencijski raspor (engl.
-	\textit{full band-gap}). Za frekvencije unutar raspora nema modova koji
-	mogu propagirati kroz strukturu. Na dijagramu je označena i prva Brillouinova
-	zona s pripadnim oznakama.}
-	\label{fig:triangular_full_band}
 \end{figure}
 
 \FloatBarrier
 
-Val čija je frekvencija unutar frekvencijskog raspora naziva se evanescentan.
+Val čija je frekvencija unutar frekvencijskog raspora naziva se evanescentan val.
 Njegova amplituda trnut će eksponencijalno. U ovu strukturu je uz unošenje
 defekata moguće lokalizirati harmonik. Defekt je strogo gledano nepravilnost
 koja će na ovaj ili onaj način narušiti simetriju kristala.
 
-\chapter{Optimizacija širine potpunog frekvencijskog raspora trokutaste rešetke}
+\chapter{Optimizacija širine frekvencijskog raspora trokutaste rešetke}
+
+U ovom poglavlju bit će opisani rezultati optimizacije konfiguracija različitih
+fotoničkih kristale. Kao i ranije, dielektrični kontrast u svim primjerima iznositi će
+11, plavo će biti označen TM, crveno TE mod, a žuto potpuni frekvencijski raspor,
+odnosno mjesto gdje se raspor za TE i za TM mod preklapaju.
+
+Budući da su on najveće važnosti baš potpuni frekvencijski raspori, optimizacija
+će ići na njihovu ruku.
+
+\section{Trokutasta rešetka s cilindičnim stupićima}
+
+Rezultat prikazan u nastavku u skladu je s očekivanjima i rezultatima u literaturi
+\cite{joannopoulos2011photonic}. Graf dimenzije raspora u ovisnosti o polumjeru
+jasno prikazuje vrhunac netom prije nego što se dva cilindra dotaknu. Nakon doticaja
+dva cilindra, vrijednost je 0 jer dielektrični materijal više nije međusobno povezan.
+
+\begin{figure}[ht]
+\centering
+    \subfloat[Disperzijski dijagram s optimalnim potpunim frekvencijskim rasporom]
+    {\includegraphics[width=0.8\linewidth]{./images/pdf/triangular_lattice_holes_band_diag_max.pdf}}%
+    \qquad
+    \subfloat[Graf ovisnosti veličine frekvencijskog raspora i polumjera stupića.
+    Maksimum se poprima za polumjer $0.478547 \, a$ i iznosi $17.05456$]
+    {\includegraphics[width=0.8\linewidth]{./images/pdf/optimization_cylinder.pdf}}%
+	\caption{Optimizacija potpunog frekvencijskog raspora za trokutastku rešetku s
+	cilindičnim stupićima}
+	\label{fig:triangular_holes_optimization}
+\end{figure}
+
+\section{Trokutasta rešetka s kvadratnim stupićima}
+
+U nastavku je prikazan postupak pokušaja optimizacije potpunog frekvencijskog
+raspora za slučaj fotoničkog kristala sastavljenog od kvadratnih stupića.
+Potpuni frekvencijski raspor vidljiv na slikama \ref{fig:triangular_squares_optimization}.
+
+\begin{figure}[ht]
+\centering
+    \subfloat[Disperzijski dijagram s optimalnim potpunim frekvencijskim rasporom]
+    {\includegraphics[width=0.8\linewidth]{./images/pdf/triangular_lattice_squares_band_diag_max.pdf}}%
+    \qquad
+    \subfloat[Graf ovisnosti omjera veličine frekvencijskog raspora i stranice kvadrata.
+    Maksimum se poprima za vrijednost stranice kvadrata $0.689655 \, a$ i iznosi $0.453280$.]
+    {\includegraphics[width=0.8\linewidth]{./images/pdf/optimization_block.pdf}}%
+	\caption{Optimizacija potpunog frekvencijskog raspora za trokutastku rešetku s
+	kvadratnim stupićima}
+	\label{fig:triangular_squares_optimization}
+\end{figure}
+
+Iz slika je vidljivo da je potpuni frekvencijski raspor ne zamjetan. Omjer širine i
+srednje frekvencije raspora (engl. \textit{gap-midgap ratio}) iznosi manje od 1.
+Dokumentacija programske biblioteke MPB kaže da se svako rješenje manje od 1 može
+zanemariti i pripisati numeričkoj pogrešci. S druge strane, optimalno rješenje ima
+velik zamjetan frekvencijski raspor za TE mod. Optimalna konfiguracija prikazana 
+je na slici \ref{fig:triangular_squares_te_optimization}.
+
+\begin{figure}[ht]
+\centering
+    \subfloat[Disperzijski dijagram s optimalnim frekvencijskim rasporom za TE mod.]
+    {\includegraphics[width=0.8\linewidth]{./images/pdf/triangular_lattice_squares_band_diag_te_max.pdf}}%
+    \qquad
+    \subfloat[Graf ovisnosti omjera veličine frekvencijskog raspora za TE mod i stranice kvadrata.
+    Maksimum se poprima za vrijednost stranice kvadrata $0.7931034 \, a$ i iznosi $42.735761$.]
+    {\includegraphics[width=0.8\linewidth]{./images/pdf/optimization_block_te.pdf}}%
+	\caption{Optimizacija frekvencijskog raspora za TM mod i trokutastku rešetku s
+	kvadratnim stupićima}
+	\label{fig:triangular_squares_te_optimization}
+\end{figure}
+
+\FloatBarrier
+
+\section{Trokutasta rešetka s elipsoidnim stupićima}
+
+Konačno, optimizaciji je podložen fotonički kristal s elipsoidnim stupićima. Optimizacija
+ove konfiguracije obavljana je za razliku od primjera ranije na dvije varijable.
+Jedna varijabla je predstavljala širinu pravokutnika u kojem se nalazi elipsa, a
+druga varijabla je predstavljala dužinu pravokutnika.
+
+\includegraphics[width=0.8\linewidth]{./images/pdf/ellipsoid_optimization.pdf}
+
 
 \chapter{Zaključak}
-Zaključak.
+
+U ovom seminaru ukratko je prikazan svijet fotoničkih kristala. Iskazan je osnovni
+matematički aparat potreban za opis problema u periodičkom okruženju poput
+kristala. Izedena je valna jednadžba čija osnova leži kako u Maxwellovim
+jednadžbama tako i u Blochovom teoremu. Nadalje je svijet fotoničkih kristala
+čitatelju približen kroz slike i stjecanje intuicije za složene pojave unutar
+kristala poput disperzijskih dijagrama. Disperzijski dijagrami su uveli pojam
+ekvivalentnog vala, vala koji ne prodire u kristalnu strukturu. Pojava pojasa
+koji dopušta propagaciju vala samo nekim valovima pokazala se iznimno važna
+za industriju. Mnogi proizvodi poput primjerice valovoda, sada mogu biti
+izvedeni na nezamislivo malim dimenzijama baš zbog tehnologije fotoničkih
+kristala.
+
+Iako je ovo relativno nova grana znanosti, industrija teško može pratiti
+razvoj, pa dostupnost fotoničkih materijala zbog cijene izrade kaska. S druge
+strane, računalna moć nikad nije bila pristupačnija, a uz pomoću programskih
+alata, moguće je simulirati i rješavati gotovo sve probleme relativno jeftino.
+Pored upoznavanja s matematičkim formulizmom koji opisuje fotoničke kristale,
+cilj ovog seminara bio je upoznati i računalne metode simuliranja i modeliranja
+problema. Svaki disperzijski dijagram i svaki graf u ovom seminaru bio je
+programiran u programskom jeziku Python i pokrenut na osobnom računalu\footnote{
+Izvorni kod nalazi se na poveznici \url{https://github.com/djanekovic/mpb_utils/tree/master/seminar/python}
+u direktoriju python}.
+
 
 \bibliographystyle{unsrt}
 \bibliography{literatura}
