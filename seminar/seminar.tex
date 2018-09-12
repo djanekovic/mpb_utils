@@ -483,50 +483,68 @@ je na disperzijskom dijagramu \ref{fig:square_band_diagram}.
 
 \FloatBarrier
 
-\section{Kvadratna rešetka dielektričnih stupića} \label{sec:triangle}
+\section{Kvadratna rešetka zračnih rupa} \label{sec:square_holes}
 
-U ovom primjeru, fotonički kristal građen je od dielektričnih stupića
+U ovom primjeru, fotonički kristal građen je od zračnih rupa
 postavljenih tako da gledano iz smjera z osi izgledaju kao
 slika \ref{fig:triangular_lattice}
 
 \begin{figure}[ht]
 \centering
-    \subfloat[Heksagonalna rešetka u realnom prostoru s ucrtanim baznim vektorima i označenom
-    Weigner-Seintzovom ćelijom]{\includegraphics[width=0.45\linewidth]
-    {./images/pdf/triangular_lattice.pdf}}%
+    \subfloat[Na slici nisu ucrtane Brillouinova zona i primitivni vektori rešetke
+	jer su u odnosu na sliku \ref{fig:square_lattice} samo drugačijeg iznosa.
+	Duljina stranice kvadrata u ovom modelu iznosi $0.88 \, a$ gdje je $a$
+	konstanta rešetke.]
+	{\includegraphics[width=0.45\linewidth]
+    	{./images/pdf/square_lattice_holes.pdf}}%
     \qquad
-    \subfloat[Heksagonalna rešetka u inverznom prostoru s označenom Brillouinovom i prvom
-    Brillouinovom zonom.]{\includegraphics[width=0.45\linewidth]
-    {./images/pdf/triangular_lattice_reciprocal.pdf}}%
-	\caption{Polumjer stupića u ovom modelu kristala iznosi ${0.2 a}$}
+    \subfloat[Disperzijski dijagram za fotonički kristal kojeg sačinjavaju rupe
+	u dielektričnom materijalu.]
+	{\includegraphics[width=0.45\linewidth]
+    	{./images/pdf/square_lattice_holes_band_diagram.pdf}}%
+	\caption{Konfiguracija fotoničkog kristala koja osigurava zabranjeni pojas
+	za TE, ali ne i za TM mod.}
+	\label{fig:square_lattice_holes}
+\end{figure}
+
+\FloatBarrier
+
+\section {Heksagonalna rešetka za fotonički zabranjeni pojas}\label{sec:fbg}
+
+Iz prethodna dva primjera, mogao se donijeti zaključak da su izolirani
+dielektrični grumeni zaslužni za osiguravanje zabranjenog pojasa za TM, a
+međusobno povezana rešetka za TE mod. Budući da je fotonički zabranjeni pojas
+situacija u kojoj se zabranjeni pojasevi za TE i za TM mod preklapaju može se
+pretpostaviti da će konfiguracija koja osigurava fotonički zabranjeni pojas
+zadovoljavati oba kriterija.
+
+U ovom primjeru kristal će opet biti građen od zračnih rupa, ali ovaj put
+kružnog oblika. Također, rešetka više neće biti kvadratna već heksagonalna zbog
+veće simetrije.
+
+\begin{figure}[ht]
+\centering
+    \subfloat[Heksagonalna rešetka u realnom prostoru s ucrtanim baznim
+	vektorima i označenom Weigner-Seintzovom ćelijom]
+	{\includegraphics[width=0.45\linewidth]
+    	{./images/pdf/triangular_lattice.pdf}}%
+    \qquad
+    \subfloat[Heksagonalna rešetka u inverznom prostoru s označenom Brillouinovom
+	 i prvom Brillouinovom zonom.]
+	{\includegraphics[width=0.45\linewidth]
+    	{./images/pdf/triangular_lattice_reciprocal.pdf}}%
+	\caption{Weigner-Seintzova ćelija heksagonalne rešetke s ucrtanim baznim
+	vektorima i Brillouinova zona u inverznom prostoru.}
 	\label{fig:triangular_lattice}
 \end{figure}
 
 Bazni vektori rešetke su vektori
 ${\mathbf{a}_1 = a/2 ( \, \mathbf{i} + \sqrt{3} \, \mathbf{j})}$ i
 ${\mathbf{a}_2 = a/2 ( \, \mathbf{i} - \sqrt{3} \, \mathbf{j})}$.
-a Weigner-Seintzova ćelija označena je lijevo plavom bojom.
 Bazni vektori recipročne rešetke su
 ${\mathbf{b}_1 = 2 \pi/a( \, \mathbf{i} + 1/\sqrt{3} \, \mathbf{j})}$ i
-${\mathbf{b}_2 = 2 \pi/a( \, \mathbf{i} - 1/\sqrt{3} \, \mathbf{j})}$,
-a prva Brillouinova zona prikazana je desno.
-\ref{fig:triangular_band_diagram}.
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width = 0.8\linewidth]{./images/pdf/triangular_lattice_rods_band_diagram.pdf}
-	\caption{Disperzijski dijagram za heksagonalnu rešetku koju sačinjavaju
-	dielektrični stupići. Zabranjeni pojas prisutan je i za TE mod i za TM
-	mod iako preklapanje ne postoji.}
-	\label{fig:triangular_band_diagram}
-\end{figure}
-
-\FloatBarrier
-
-\section {Heksagonalna rešetka za fotonički zabranjeni pojas}
-
-U ovom primjeru fotonički kristal građen je od zračnih rupa u dielektričnom
-materijalu. Gledano iz smjera z osi, kristal izgleda kao na slici
+${\mathbf{b}_2 = 2 \pi/a( \, \mathbf{i} - 1/\sqrt{3} \, \mathbf{j})}$.
+Gledano iz smjera z osi, kristal izgleda kao na slici
 \ref{fig:triangular_lattice_holes}.
 
 \begin{figure}[ht]
@@ -552,24 +570,34 @@ Val čija je frekvencija unutar fotoničkog zabranjenog pojasa naziva se
 evanescentan val.
 Njegova amplituda trnut će eksponencijalno. U ovu strukturu je uz unošenje
 defekata moguće lokalizirati harmonik. Defekt je strogo gledano nepravilnost
-koja će na ovaj ili onaj način narušiti simetriju kristala.
+koja će na ovaj ili onaj način narušiti simetriju kristala. Situacija gdje ova
+pojava dobiva primjenu je valovod. Oko valovoda je periodička struktura koja
+ne dopušta širenje vala u svim smjerovima već samo u smjerovima koje diktira
+defekt.
 
-Iz primjera do sad može se zaključiti da će više simetrična rešetka poput
-heksagonalne pokazati veći zabranjeni pojas. Također, intuitivno bi se dalo
+Iz primjera do sada može se zaključiti da će više simetrična rešetka poput
+heksagonalne uzrokovati veći zabranjeni pojas. Također, intuitivno bi se dalo
 zaključiti da dielektrični stupići izazivaju nastanak zabranjenog pojasa za TE,
-ali ne i za TM mod.
+ali ne i za TM mod. Zabranjeni pojas za TM mod po svemu sudeći uzrokuje
+međusobno povezana rešetka. U sljedećem poglavlju će do sada navedeni
+primjeri fotoničkih kristala biti optimizirani u svrhu maksimiziranja zabranjenog
+pojasa.
 
 \chapter{Optimizacija širine zabranjenog pojasa u okviru heksagonalne rešetke}
 
 U ovom poglavlju bit će opisani rezultati optimizacije konfiguracija različitih
-fotoničkih kristale. Kao i ranije, dielektrični kontrast u svim primjerima iznositi će
-11, plavo će biti označen TM, crveno TE mod, a žuto potpuni zabranjeni pojas,
-odnosno mjesto gdje se pojas za TE i za TM mod preklapaju.
+fotoničkih kristale. Kao i ranije, dielektrični kontrast u svim primjerima
+iznositi će 11, plavo će biti označen TM, crveno TE mod, a žuto potpuni
+zabranjeni pojas, odnosno mjesto gdje se pojas za TE i za TM mod preklapaju.
 
-Budući da su on najveće važnosti baš fotonički zabranjeni pojas, optimizacija
+Budući da je od  najveće važnosti baš fotonički zabranjeni pojas, optimizacija
 će ići na njihovu ruku.
 
-\section{Heksagonalna rešetka s cilindičnim stupićima}\label{section:cyl}
+\section{Heksagonalna rešetka sa zračnim cilindrima}\label{section:cyl}
+
+Prva konfiguracija podložena optimizaciji će biti upravo konfiguracija iz
+poglavlja \ref{sec:fbg}. Jedini faktor koji se u ovom slučaju optimizira je
+polumjer cilindra.
 
 Rezultat prikazan u nastavku u skladu je s očekivanjima i rezultatima u literaturi
 \cite{joannopoulos2011photonic}. Graf dimenzije zabranjenog pojasa  u ovisnosti o
@@ -579,22 +607,27 @@ međusobno povezan.
 
 \begin{figure}[ht]
 \centering
-    \subfloat[Disperzijski dijagram s optimalnim fotoničkim zabranjenim pojasom]
-    {\includegraphics[width=0.8\linewidth]{./images/pdf/triangular_lattice_holes_band_diag_max.pdf}}%
+    \subfloat[Disperzijski dijagram s optimalnim fotoničkim zabranjenim pojasom.]
+    {\includegraphics[width=0.8\linewidth]
+    	{./images/pdf/triangular_lattice_holes_band_diag_max.pdf}}%
     \qquad
-    \subfloat[Graf ovisnosti veličine fotoničkog zabranjenog pojasa i polumjera
-    stupića. Maksimum se poprima za polumjer $0.478547 \, a$ i iznosi $17.05456$]
-    {\includegraphics[width=0.8\linewidth]{./images/pdf/optimization_cylinder.pdf}}%
-	\caption{Optimizacija fotoničkog zabranog pojasa za heksagonalnu rešetku s
-	cilindičnim stupićima}
+    \subfloat[Graf ovisnosti postotka fotoničkog zabranjenog pojasa i polumjera
+    stupića. Maksimum se poprima za polumjer $0.478547 \, a$ i iznosi
+    $17.05456 \%$]
+    {\includegraphics[width=0.8\linewidth]
+    	{./images/pdf/optimization_cylinder.pdf}}%
+	\caption{Optimizacija fotoničkog zabranog pojasa za heksagonalnu rešetku sa
+	zračnim cilindrima.}
 	\label{fig:triangular_holes_optimization}
 \end{figure}
 
-\section{Heksagonalna rešetka s kvadratnim stupićima}
+\section{Heksagonalna rešetka sa zračnim kvadratnim blokovima}
 
 U nastavku je prikazan postupak pokušaja optimizacije fotoničkog zabranjenog
-pojasa za slučaj kristala sastavljenog od kvadratnih stupića. Fotonički
-zabranjeni pojasa vidljiv na slikama \ref{fig:triangular_squares_optimization}.
+pojasa za slučaj kristala sastavljenog od kvadratnih stupića. Kristal je
+sličan kristalu u poglavlju \ref{sec:square_holes} s jednom razlikom, a to je
+oblik kristalne rešetke. Fotonički zabranjeni pojasa vidljiv na slikama
+\ref{fig:triangular_squares_optimization}.
 
 \begin{figure}[ht]
 \centering
@@ -602,20 +635,19 @@ zabranjeni pojasa vidljiv na slikama \ref{fig:triangular_squares_optimization}.
     {\includegraphics[width=0.8\linewidth]{./images/pdf/triangular_lattice_squares_band_diag_max.pdf}}%
     \qquad
     \subfloat[Graf ovisnosti omjera veličine zabranjenog pojasa i stranice
-    kvadrata. Maksimum se poprima za vrijednost stranice kvadrata $0.689655 \, a$
-    i iznosi $0.453280$.]
+    kvadrata. Maksimum se poprima za vrijednost stranice kvadrata $0.878788 \, a$
+    i iznosi $0.692784 \%$.]
     {\includegraphics[width=0.8\linewidth]{./images/pdf/optimization_block.pdf}}%
 	\caption{Optimizacija fotoničkog zabranjenog pojasa za heksagonalnu rešetku s
 	kvadratnim stupićima}
 	\label{fig:triangular_squares_optimization}
 \end{figure}
 
-Iz slika je vidljivo da je fotonički zabranjeni pojas zanemariv. Omjer širine i
-srednje frekvencije pojasa (engl. \textit{gap-midgap ratio}) iznosi manje od 1.
-Dokumentacija programske biblioteke MPB kaže da se svako rješenje manje od 1 može
-zanemariti i pripisati numeričkoj pogrešci. S druge strane, optimalno rješenje ima
-zamjetan zabranjeni pojas za TE mod. Optimalna konfiguracija prikazana 
-je na slici \ref{fig:triangular_squares_te_optimization}.
+Iz slika je vidljivo da je fotonički zabranjeni pojas zanemariv.
+Dokumentacija programske biblioteke MPB kaže da se svaki postotak manje od 1 \%
+može zanemariti i pripisati numeričkoj pogrešci. S druge strane, optimalno
+rješenje ima zamjetan zabranjeni pojas za TE mod. Optimalna konfiguracija
+prikazana je na slici \ref{fig:triangular_squares_te_optimization}.
 
 \begin{figure}[ht]
 \centering
@@ -625,7 +657,7 @@ je na slici \ref{fig:triangular_squares_te_optimization}.
     \qquad
     \subfloat[Graf ovisnosti omjera veličine zabranjenog pojasa za TE mod i
     stranice kvadrata. Maksimum se poprima za vrijednost stranice kvadrata
-    $0.7931034 \, a$ i iznosi $42.735761$.]
+    $0.7931034 \, a$ i iznosi $42.735761 \%$.]
     {\includegraphics[width=0.8\linewidth]
     	{./images/pdf/optimization_block_te.pdf}}%
 	\caption{Optimizacija zabranjenog pojasa za TM mod i heksagonalnu rešetku s
@@ -644,8 +676,24 @@ nalazi elipsa, a druga varijabla je predstavljala dužinu pravokutnika.
 Rezultat koji bi bilo za očekivati je da se vrhunac nalazi na mjestu koje je
 najsličnije konfiguraciji u slučaju \ref{section:cyl}
 
-\includegraphics[width=0.8\linewidth]{./images/pdf/ellipsoid_optimization.pdf}
+\begin{figure}[ht]
+\centering
+    \subfloat[Trodimenzionalni prikaz postotka zabranjenog pojasa i parametara
+    elipse.]
+    {\includegraphics[width=0.8\linewidth]
+    	{./images/pdf/ellipsoid_optimization_3d.pdf}}%
+    \qquad
+    \subfloat[Dvodimenzionalni graf vrijednosti postotka zabranjenog pojasa i
+    parametara elipse.]
+    {\includegraphics[width=0.8\linewidth]
+    	{./images/pdf/ellipsoid_optimization_2d.pdf}}%
+	\caption{Optimizacija zabranjenog pojasa za heksagonalnu rešetku s
+	elipsoidnim stupićima.}
+	\label{fig:ellipsoid_optimization}
+\end{figure}
 
+Maksimum nije jednak maksimumu koji je ranije postignut jer je količina uzoraka
+niža.
 
 \chapter{Zaključak}
 
@@ -655,21 +703,23 @@ kristala i izedena je valna jednadžba čija osnova leži kako u Maxwellovim
 jednadžbama tako i u Blochovom teoremu. U nastavku je svijet fotoničkih kristala
 čitatelju približen kroz slike i stjecanje intuicije za složene pojave unutar
 kristala poput disperzijskih dijagrama. Disperzijski dijagrami su uveli pojam
-ekvivalentnog vala, vala koji ne prodire u kristalnu strukturu. Pojava pojasa
-koji dopušta propagaciju vala samo nekim valovima pokazala se iznimno važna
-za industriju. Mnogi proizvodi poput primjerice valovoda, sada mogu biti
+evanescentnog vala, odnosno vala koji ne prodire u kristalnu strukturu. Pojava
+pojasa koji dopušta propagaciju vala samo nekim valovima pokazala se iznimno
+važna za industriju. Mnogi proizvodi poput primjerice valovoda, sada mogu biti
 izvedeni na nezamislivo malim dimenzijama baš zbog tehnologije fotoničkih
 kristala.
 
 Iako je ovo relativno nova grana znanosti, industrija teško može pratiti
-razvoj, pa dostupnost fotoničkih materijala zbog cijene izrade kaska. S druge
-strane, računalna moć nikad nije bila pristupačnija, a uz pomoću programskih
-alata, moguće je simulirati i rješavati gotovo sve probleme relativno jeftino,
-odnosno bez potrebe za fotoničkim laboratijem. Pored upoznavanja s matematičkim
-formulizmom koji opisuje fotoničke kristale, cilj ovog seminara bio je upoznati i računalne metode simuliranja i modeliranja problema. Svaki disperzijski dijagram
-i svaki graf u ovom seminaru bili su programirani u programskom jeziku Python i
-pokrenut na osobnom računalu\footnote{
-Izvorni kod nalazi se na poveznici \url{https://github.com/djanekovic/mpb_utils/tree/master/seminar/python}}.
+razvoj, pa dostupnost uređaja s fotoničkim kristalima zbog cijene izrade kaska.
+S druge strane, računalna moć nikad nije bila pristupačnija, a uz pomoću
+programskih alata, moguće je simulirati i rješavati gotovo sve probleme
+relativno jeftino, odnosno bez potrebe za fotoničkim laboratijem. Pored
+upoznavanja s matematičkim formalizmom koji opisuje fotoničke kristale, cilj ovog
+seminara bio je upoznati čitatelja i s računalnim metodama simuliranja i
+modeliranja problema. Svaki disperzijski dijagram i svaki graf u ovom seminaru
+bili su programirani u programskom jeziku Python i pokrenut na osobnom
+računalu\footnote{ Izvorni kod nalazi se na poveznici
+\url{https://github.com/djanekovic/mpb_utils/tree/master/seminar/python}}.
 
 
 \bibliographystyle{unsrt}
