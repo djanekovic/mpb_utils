@@ -24,10 +24,10 @@
 U ovom seminaru bit će analizirane periodičke strukture s naglaskom na fotoničke
 kristale primjenom numeričkih metoda za izračun disperzijskog dijagrama.
 Programska biblioteka koja će se koristiti za numeričko modeliranje je
-MPB(MIT Photonic Bands)\cite{Johnson2001:mpb}. Prije svega, bit će iznesena
+MPB (MIT Photonic Bands)\cite{Johnson2001:mpb}. Prije svega, bit će iznesena
 matematička podloga potrebna za efikasno modeliranje propagacije vala u
 periodičkoj strukturi. U poglavljima nakon uvoda bit će opisana pojava fotoničkog
-frekvencijskog raspora (engl. \textit{photonic band-gap}) kao i intuicija iza
+zabranjenog pojasa (engl. \textit{photonic band-gap}) kao i intuicija iza
 njegovog nastanka. Za kraj će na nekoliko primjera biti izvršena optimizacija u
 svrhu maksimizacije širine zabranjenog pojasa.
 
@@ -70,7 +70,7 @@ odnosno volumena kojeg zatvaraju primitivni vektori rešetke.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width = 1.0\linewidth]{./images/pdf/crystal_lattice.pdf}
+	\includegraphics[width = 0.9\linewidth]{./images/pdf/crystal_lattice.pdf}
 	\caption{Kvadratna kristalna rešetka s ucrtane 3 opcije za odabir baznih
 	vektora $\mathbf{a}_1$ i $\mathbf{a}_2$. Linearna kombinacija vektora
 	$\mathbf{a}_1 = a \, \mathbf{i}$ i $\mathbf{a}_2 = a \, \mathbf{j}$ (opcija
@@ -104,7 +104,6 @@ Za vektore inverzne rešetke vrijedi:
 	(m_1\mathbf{b}_1 + m_2\mathbf{b}_2 + m_3\mathbf{b}_3) = 2 \pi \mathbb{N},
 		\text{ gdje je }n_i, m_i \in \mathbb{Z}
 \end{equation}
-
 
 Weigner-Seintzova ćelija recipročne rešetke zove se Brillouinova zona. Analiza
 disperzijskog dijagrama obavlja se u \textit{k prostoru}, prostoru recipročne
@@ -152,7 +151,7 @@ na slici \ref{fig:structure}.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width = 0.8\linewidth]{./images/pdf/structure-model.pdf}
+	\includegraphics[width = 0.9\linewidth]{./images/pdf/structure-model.pdf}
 	\caption{Model strukture u kojoj propagira val. Sredstvo je sastavljeno od
 	neperiodičnih, homogenih poddomena različitih dielektričnih materijala.
 	Poddomene se nalaze u materijalu permitivnosti $\varepsilon_1$.}
@@ -228,7 +227,8 @@ sljedećem obliku:
 
 Jednadžba \ref{eq:master} predstavljat će jednadžbu koja će biti korištena za
 računanje disperzijskog dijagrama u nehomogenom dielektriku.
-Ako se operator ${\nabla \times \frac{1}{\varepsilon_r(\mathbf{r})} \nabla \times}$
+Ako se operator
+${\nabla \times \frac{1}{\varepsilon_r(\mathbf{r})} \nabla \times}$
 zamijeni s $\hat{\mathbf{\Theta}}$ dobiva se uobičajena forma svojstvenog
 problema.
 
@@ -365,7 +365,7 @@ za TM, potom za TE, a onda i za oboje, odnosno potpuni zabranjeni pojas.
 
 Što se tiče disperzijskih dijagrama u nastavku, vrijedit će određeni skup pravila
 koji će biti primjenjiv na sve dijagrame. TE komponenta uvijek će biti prikazana
-crvenom bojom, a TM plavom. Frekvencijski raspori uvijek će biti prikazivani kao
+crvenom bojom, a TM plavom. Zabranjeni pojas uvijek će biti prikazivani kao
 plavi, odnosno crveni pravokutnici. Os x označavat će iznos valnog vektora
 ${\bm{\beta}}$, a y, normaliziranu frekvenciju izraženu kao
 ${\omega a/ 2 \pi c}$. Što se tiče prikaza modela fotoničkih kristala,
@@ -380,11 +380,11 @@ $\varepsilon_r$ za Si iznosi 11.68.} i zraka.
 
 Diskusija o Rayleighovom kvocijentu i rezultat \ref{eq:rayleighE} u praksi se
 najbolje može pokazati na primjeru jednodimenzionalnog fotoničkog kristala.
-U okvirima ovog primjera najlakše je shvatiti nastajanje frekvencijskih raspora.
+U okvirima ovog primjera najlakše je shvatiti nastajanje zabranjenog pojasa.
 
 Struktura koja se promatra može se zamisliti kao peridički nanizani listovi 2
-različita materijala različitih permitivnosti. Budući da struktura posjeduje
-diskretnu translacijsku simetriju samo u smjeru jedne osi
+različita materijala različitih permitivnosti i jednakih debljina. Budući da
+struktura posjeduje diskretnu translacijsku simetriju samo u smjeru jedne osi
 \footnote{
 	Ona posjeduje kontinuiranu translacijsku simetriju u preostale dvije osi.
 	Kontinuirana translacijska simetrija definira se slično kao i diskretna
@@ -397,14 +397,13 @@ $-0.5 \, \mathbf{i}$ i $+0.5 \, \mathbf{i}$. Disperzijski dijagram za strukturu
 opisanu ranije prikazan je na slici \ref{fig:1d_band_diagram}.
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width = 0.8\linewidth]{./images/pdf/1d_crystal_band_gap.pdf}
+	\includegraphics[width = 0.9\linewidth]{./images/pdf/1d_crystal_band_gap.pdf}
 	\caption{Fotonički zabranjeni pojas u jednodimenzionalnoj strukturi.
 	Važno je napomenuti da su točke X i M jednake, te da je valni vektor bilo
 	dovoljno varirati od 0 do 0.5 u bilo kojem smjeru.}
 	\label{fig:1d_band_diagram}
 \end{figure}
 
-Očito je da 
 Rezultat \ref{eq:rayleighE} kaže da će prvi pojas većinu svoje energije
 pohraniti unutar sredstva veće permitivnosti. U slučaju modela koji se
 promatra, to je sredstvo čija je relativna permitivnosti 12. Taj pojas
@@ -422,7 +421,7 @@ U kristalu su u ovom trenutku 2 vala s istim periodom, energija jednog je
 većinom pohranjena u dielektriku, a energija drugog je većinom pohranjena
 u zraku. Ovi valovi moraju ``vidjeti'' različite prosječne indekse loma.
 Dielektrični pojas propagira s većim indeksom loma budući da većinu svoje energije
-pohranjuje upravo u sredstvu veće permitivnosti, a s druge strane, zračni pojas
+pohranjuje upravo u sredstvu veće permitivnosti, a zračni pojas
 propagira s manjim prosječnim indeksom loma budući da svoju energiju
 većinom pohranjuje u sredstvu manje permitivnosti. Sve to, navodi na zaključak
 da pojasevi moraju imati različite frekvencije. Zabranjeni pojas u ovom
@@ -431,7 +430,7 @@ indeksa loma.
 
 \FloatBarrier
 Unutar fotoničkog zabranjenog pojasa nema propagacije vala. Val čija se
-frekvencija nalazi unutar zabranjenog raspora naziva je evanescentni val i
+frekvencija nalazi unutar zabranjenog pojasa naziva je evanescentni val i
 njegova amplituda eksponencijalno teži u 0. Evanescentni val ima kompleksni valni
 vektor ${\bm{\beta}} + j \kappa$ gdje je $\kappa$ faktor prigušenja.
 
@@ -452,13 +451,15 @@ postavljenih tako da gledano iz smjera z osi izgledaju kao slika
 
 \begin{figure}[ht]
 \centering
-    \subfloat[Kvadratna rešetka u realnom prostoru s ucrtanim baznim vektorima i označenom
-    Weigner-Seintzovom ćelijom]{\includegraphics[width=0.8\linewidth]
-    {./images/pdf/square_lattice.pdf}}%
+    \subfloat[Kvadratna rešetka u realnom prostoru s ucrtanim baznim vektorima i
+    označenom
+    Weigner-Seintzovom ćelijom]{\includegraphics[width=0.45\linewidth]
+    	{./images/pdf/square_lattice.pdf}}%
     \qquad
-    \subfloat[Kvadratna rešetka u inverznom prostoru s označenom Brillouinovom i prvom
-    Brillouinovom zonom.]{\includegraphics[width=0.8\linewidth]
-    {./images/pdf/square_lattice_reciprocal.pdf}}%
+    \subfloat[Kvadratna rešetka u inverznom prostoru s označenom Brillouinovom i
+    prvom Brillouinovom zonom.]
+    {\includegraphics[width=0.45\linewidth]
+    	{./images/pdf/square_lattice_reciprocal.pdf}}%
 	\caption{Polumjer stupića u ovom modelu kristala iznosi ${0.2 a}$, odnosno
 	promjer stupića zauzima 40\% duljine jedinične čelije.}
 	\label{fig:square_lattice}
@@ -473,16 +474,16 @@ je na disperzijskom dijagramu \ref{fig:square_band_diagram}.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width = 0.8\linewidth]{./images/pdf/square_lattice_rods_band_diagram.pdf}
+	\includegraphics[width = 0.8\linewidth]
+		{./images/pdf/square_lattice_rods_band_diagram.pdf}
 	\caption{Disperzijski dijagram za kvadratnu rešetku koju sačinjavaju
-	dielektrični stupići. Zabranjeni pojas prisutan je samo za TM mod. Na
-	dijagramu je označena i prva Brillouinova zona s pripadnim oznakama na x osi.}
+	dielektrični stupići. Zabranjeni pojas prisutan je samo za TM mod.}
 	\label{fig:square_band_diagram}
 \end{figure}
 
 \FloatBarrier
 
-\section{Trokutasta rešetka dielektričnih stupića} \label{sec:triangle}
+\section{Kvadratna rešetka dielektričnih stupića} \label{sec:triangle}
 
 U ovom primjeru, fotonički kristal građen je od dielektričnih stupića
 postavljenih tako da gledano iz smjera z osi izgledaju kao
@@ -490,12 +491,12 @@ slika \ref{fig:triangular_lattice}
 
 \begin{figure}[ht]
 \centering
-    \subfloat[Trokutasta rešetka u realnom prostoru s ucrtanim baznim vektorima i označenom
-    Weigner-Seintzovom ćelijom]{\includegraphics[width=0.8\linewidth]
+    \subfloat[Heksagonalna rešetka u realnom prostoru s ucrtanim baznim vektorima i označenom
+    Weigner-Seintzovom ćelijom]{\includegraphics[width=0.45\linewidth]
     {./images/pdf/triangular_lattice.pdf}}%
     \qquad
-    \subfloat[Trokutasta rešetka u inverznom prostoru s označenom Brillouinovom i prvom
-    Brillouinovom zonom.]{\includegraphics[width=0.8\linewidth]
+    \subfloat[Heksagonalna rešetka u inverznom prostoru s označenom Brillouinovom i prvom
+    Brillouinovom zonom.]{\includegraphics[width=0.45\linewidth]
     {./images/pdf/triangular_lattice_reciprocal.pdf}}%
 	\caption{Polumjer stupića u ovom modelu kristala iznosi ${0.2 a}$}
 	\label{fig:triangular_lattice}
@@ -516,13 +517,13 @@ a prva Brillouinova zona prikazana je desno.
 	\includegraphics[width = 0.8\linewidth]{./images/pdf/triangular_lattice_rods_band_diagram.pdf}
 	\caption{Disperzijski dijagram za heksagonalnu rešetku koju sačinjavaju
 	dielektrični stupići. Zabranjeni pojas prisutan je i za TE mod i za TM
-	mod.}
+	mod iako preklapanje ne postoji.}
 	\label{fig:triangular_band_diagram}
 \end{figure}
 
 \FloatBarrier
 
-\section {Trokutasta rešetka za fotonički zabranjeni pojas}
+\section {Heksagonalna rešetka za fotonički zabranjeni pojas}
 
 U ovom primjeru fotonički kristal građen je od zračnih rupa u dielektričnom
 materijalu. Gledano iz smjera z osi, kristal izgleda kao na slici
@@ -530,17 +531,18 @@ materijalu. Gledano iz smjera z osi, kristal izgleda kao na slici
 
 \begin{figure}[ht]
 \centering
-    \subfloat[Disperzijski dijagram za fotonički kristal kojeg sačinjavaju rupe
-	u dielektričnom materijalu.]{\includegraphics[width=0.8\linewidth]
-    {./images/pdf/triangular_lattice_holes_band_diagram.pdf}}%
-    \qquad
     \subfloat[Na slici nisu ucrtane Brillouinova zona i primitivni vektori rešetke
 	jer su u odnosu na sliku \ref{fig:triangular_lattice} samo drugačijeg iznosa.
-	Polumjer stupića u ovoj rešetci iznosi ${0.45 \, a}$]{\includegraphics[width=0.8\linewidth]
-    {./images/pdf/triangular_lattice_holes.pdf}}%
-	\caption{Na disperzijskom dijagramu pojavio je fotonički zabranjeni pojas. Na mjestima
-	gdje se pojasevi za TE i za TM modove preklapaju dolazi do pojave fotoničkog
-	zabranjenog pojasa.}
+	Polumjer stupića u ovoj rešetci iznosi ${0.45 \, a}$]
+	{\includegraphics[width=0.45\linewidth]
+    	{./images/pdf/triangular_lattice_holes.pdf}}%
+    \qquad
+    \subfloat[Disperzijski dijagram za fotonički kristal kojeg sačinjavaju rupe
+	u dielektričnom materijalu.]
+	{\includegraphics[width=0.45\linewidth]
+    	{./images/pdf/triangular_lattice_holes_band_diagram.pdf}}%
+	\caption{Na mjestima gdje se pojasevi za TE i za TM modove preklapaju dolazi
+	do pojave fotoničkog zabranjenog pojasa.}
 	\label{fig:triangular_lattice_holes}
 \end{figure}
 
@@ -552,17 +554,22 @@ Njegova amplituda trnut će eksponencijalno. U ovu strukturu je uz unošenje
 defekata moguće lokalizirati harmonik. Defekt je strogo gledano nepravilnost
 koja će na ovaj ili onaj način narušiti simetriju kristala.
 
+Iz primjera do sad može se zaključiti da će više simetrična rešetka poput
+heksagonalne pokazati veći zabranjeni pojas. Također, intuitivno bi se dalo
+zaključiti da dielektrični stupići izazivaju nastanak zabranjenog pojasa za TE,
+ali ne i za TM mod.
+
 \chapter{Optimizacija širine zabranjenog pojasa u okviru heksagonalne rešetke}
 
 U ovom poglavlju bit će opisani rezultati optimizacije konfiguracija različitih
 fotoničkih kristale. Kao i ranije, dielektrični kontrast u svim primjerima iznositi će
-11, plavo će biti označen TM, crveno TE mod, a žuto potpuni frekvencijski raspor,
-odnosno mjesto gdje se raspor za TE i za TM mod preklapaju.
+11, plavo će biti označen TM, crveno TE mod, a žuto potpuni zabranjeni pojas,
+odnosno mjesto gdje se pojas za TE i za TM mod preklapaju.
 
-Budući da su on najveće važnosti baš potpuni frekvencijski raspori, optimizacija
+Budući da su on najveće važnosti baš fotonički zabranjeni pojas, optimizacija
 će ići na njihovu ruku.
 
-\section{Trokutasta rešetka s cilindičnim stupićima}\label{section:cyl}
+\section{Heksagonalna rešetka s cilindičnim stupićima}\label{section:cyl}
 
 Rezultat prikazan u nastavku u skladu je s očekivanjima i rezultatima u literaturi
 \cite{joannopoulos2011photonic}. Graf dimenzije zabranjenog pojasa  u ovisnosti o
@@ -583,7 +590,7 @@ međusobno povezan.
 	\label{fig:triangular_holes_optimization}
 \end{figure}
 
-\section{Trokutasta rešetka s kvadratnim stupićima}
+\section{Heksagonalna rešetka s kvadratnim stupićima}
 
 U nastavku je prikazan postupak pokušaja optimizacije fotoničkog zabranjenog
 pojasa za slučaj kristala sastavljenog od kvadratnih stupića. Fotonički
@@ -607,7 +614,7 @@ Iz slika je vidljivo da je fotonički zabranjeni pojas zanemariv. Omjer širine 
 srednje frekvencije pojasa (engl. \textit{gap-midgap ratio}) iznosi manje od 1.
 Dokumentacija programske biblioteke MPB kaže da se svako rješenje manje od 1 može
 zanemariti i pripisati numeričkoj pogrešci. S druge strane, optimalno rješenje ima
-zamjetan frekvencijski raspor za TE mod. Optimalna konfiguracija prikazana 
+zamjetan zabranjeni pojas za TE mod. Optimalna konfiguracija prikazana 
 je na slici \ref{fig:triangular_squares_te_optimization}.
 
 \begin{figure}[ht]
@@ -628,7 +635,7 @@ je na slici \ref{fig:triangular_squares_te_optimization}.
 
 \FloatBarrier
 
-\section{Trokutasta rešetka s elipsoidnim stupićima}
+\section{Heksagonalna rešetka s elipsoidnim stupićima}
 
 Konačno, optimizaciji je podložen fotonički kristal s elipsoidnim stupićima.
 Optimizacija ove konfiguracije obavljana je za razliku od primjera ranije na
