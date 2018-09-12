@@ -26,9 +26,10 @@ kristale primjenom numeričkih metoda za izračun disperzijskog dijagrama.
 Programska biblioteka koja će se koristiti za numeričko modeliranje je
 MPB(MIT Photonic Bands)\cite{Johnson2001:mpb}. Prije svega, bit će iznesena
 matematička podloga potrebna za efikasno modeliranje propagacije vala u
-periodičkoj strukturi. U poglavljima nakon uvoda bit će iznesena primjena
-fotoničkih kristala, kao i numeričke metode korištene u svrhu modeliranja
-problema koji opisuju periodičke strukture.
+periodičkoj strukturi. U poglavljima nakon uvoda bit će opisana pojava fotoničkog
+frekvencijskog raspora (engl. \textit{photonic band-gap}) kao i intuicija iza
+njegovog nastanka. Za kraj će na nekoliko primjera biti izvršena optimizacija u
+svrhu maksimizacije širine zabranjenog pojasa.
 
 
 \chapter{Matematičko modeliranje propagacije vala u periodičkoj strukturi}
@@ -49,10 +50,9 @@ Periodička struktura je pravilna rešetkasta struktura u kojoj se elementi
 periodički ponavljaju. Fotonički kristali su periodički strukturirani
 elektromagnetski mediji koji generalno posjeduju svojstvo da svjetlost na
 određenim frekvencijama ne propagira kroz strukturu. To svojstvo nazivat će se
-fotonički frekvencijski raspor (engl. \textit{photonic band-gap}), a u nastavku
-samo frekvencijski raspor. Fotonički kristali periodički su na način da
-zadovoljavaju diskretnu translacijsku simetriju. Diskretnta translacijska
-simetrija definirana je kao
+fotonički zaboranjeni pojas (engl. \textit{photonic band-gap}), a u nastavku
+samo zaboranjeni pojas. Fotonički kristali periodički su na način da
+zadovoljavaju diskretnu translacijsku simetriju, a ona je definirana kao
 ${f(\mathbf{r}) = f(\mathbf{r} \pm \mathbf{a})}$, odnosno
 
 \begin{equation}
@@ -60,13 +60,13 @@ ${f(\mathbf{r}) = f(\mathbf{r} \pm \mathbf{a})}$, odnosno
 	n\mathbf{a}}, n \in \mathbb{Z}
 \end{equation}
 
-Vektor $\mathbf{a}$ naziva se osnovni vektor rešetke, a njegova duljina
+Vektor $\mathbf{a}$ naziva se primitivni vektor rešetke, a njegova duljina
 naziva se konstanta rešetke, u nastavku samo $a$. Ćelija za koju se tvrdi
-da svojim ponavljanjem tvori kristalnu rešetku naziva se jedinična ćelija.
-Jedinična ćelija je najmanja jedinica kristalne rešetke koja svojim
-ponavljanjem može tvoriti potpunu rešetku. Pored toga, ne postoji ćelija manjeg
-volumena od ${|\mathbf{a}_1 \cdot \mathbf{a}_2 \times \mathbf{a}_3|}$, odnosno
-volumena kojeg zatvaraju osnovni vektori rešetke.
+da svojim ponavljanjem tvori kristalnu rešetku naziva se primitivna jedinična
+ćelija. Primitivna jedinična ćelija je najmanja jedinica kristalne rešetke koja
+svojim ponavljanjem može tvoriti potpunu rešetku. Pored toga, ne postoji ćelija
+manjeg volumena od ${|\mathbf{a}_1 \cdot \mathbf{a}_2 \times \mathbf{a}_3|}$,
+odnosno volumena kojeg zatvaraju primitivni vektori rešetke.
 
 \begin{figure}[ht]
 	\centering
@@ -83,9 +83,9 @@ volumena kojeg zatvaraju osnovni vektori rešetke.
 	\label{fig:crystal_lattice}
 \end{figure}
 
-Ovisno o dimenzionalnosti problema moguće je odabrati različite osnovne
+Ovisno o dimenzionalnosti problema moguće je odabrati različite primitivne
 vektore rešetke i sve ostale translacije prikazati kao linearnu kombinaciju
-osnovnih vektora.
+primitivnih vektora.
 
 Weigner-Seintzova ćelija primjer je primitivne ćelije koja sadrži samo jedno
 čvorište i predstavlja skup točaka u prostoru koji je bliži jednom čvorištu
@@ -102,7 +102,7 @@ Za vektore inverzne rešetke vrijedi:
 	(n_1\mathbf{a}_1 + n_2\mathbf{a}_2 + n_3\mathbf{a}_3)
 	\cdot
 	(m_1\mathbf{b}_1 + m_2\mathbf{b}_2 + m_3\mathbf{b}_3) = 2 \pi \mathbb{N},
-		\text{ gdje je }n_i, m_i \in \mathbb{N}
+		\text{ gdje je }n_i, m_i \in \mathbb{Z}
 \end{equation}
 
 
@@ -111,7 +111,6 @@ disperzijskog dijagrama obavlja se u \textit{k prostoru}, prostoru recipročne
 rešetke, odnosno u prvoj Brillouinovoj zoni. Ona označava najmanji
 prostor unutar Brillouinove zone koji u potpunosti karakterizira polje unutar
 periodičke strukture. Svaku točku unutar Brillouinove zone moguće je preslikati
-% todo: istakni?
 u prvu Brillouinovu zonu. Drugim riječima, analiza propagacije vala unutar
 Brillouinove zone, bit će ekvivalentna analizi unutar prve Brillouinove zone uz
 određenu redundantnost u računu. Što je rešetka više simetrična, to će biti
@@ -120,12 +119,12 @@ isplativije analizu obavljati unutar prve Brillouinove zone.
 
 \section{Blochov teorem}
 
-Intuitivnim razmišljanjem jasno je da će val koji je u jednom trenutku prolazio
-kroz dielektrični objekt kasniti. Lako je onda generalizirati ideju na periodičku
-strukturu i iz tog razmišljanja izvući zaključak da će polje unutar periodičke
-strukture poprimiti isti period i simetriju kao i ta struktura. Teorem koji je
-upravo intuitivno izveden naziva se Blochov teorem, i matematički formaliziran
-glasi ovako:
+Razmišljanjem unutar okvira klasičnog elektromagnetizma jasno je da će val koji
+je u jednom trenutku prolazio kroz dielektrični objekt kasniti. Lako je onda
+generalizirati ideju na periodičku strukturu i iz tog razmišljanja izvući
+zaključak da će polje unutar periodičke strukture poprimiti isti period i
+simetriju kao i ta struktura. Teorem koji je upravo intuitivno izveden naziva
+se Blochov teorem i matematički formaliziran glasi ovako:
 
 \begin{equation} \label{eq:bloch}
 	\mathbf{E}(\mathbf{r}) =
@@ -136,9 +135,9 @@ glasi ovako:
 U jednadžbi \ref{eq:bloch}, vektorsko polje $\mathbf{E}$ označava ukupno polje
 u periodičkoj strukturi i ono se sastoji od dvije komponente. Vektorsko polje
 $\mathbf{A}$ označava amplitudu s istim periodom i simetrijom kao i rešetka.
-Ono diktira amplitudu ukupnog polja $\mathbf{E}$.
-Komponenta ${e^{j {\bm{\beta}} \cdot \mathbf{r}}}$ označava ravni val i diktira
-smjer propagacije vala.
+Ono diktira amplitudu ukupnog polja $\mathbf{E}$. Komponenta
+${e^{j {\bm{\beta}} \cdot \mathbf{r}}}$ označava ravni val i diktira smjer
+propagacije vala.
 
 % todo: ubaci meep sliku kako to izgleda i napiši par riječi o tome
 
@@ -197,10 +196,11 @@ pretpostavki jednadžbe \ref{eq:maxwell1} poprimaju sljedeći oblik:
 		\frac{\partial \mathbf{E}(\mathbf{r}, t)}{\partial t}
 \end{align}
 
-Budući da su Maxwellove jednadžbe linearne, moguće je pretpostaviti da će odziv
-titrati istom frekvencijom kao i pobuda. To svojstvo omogućava rastav polja
-na prostornu i vremensku komponentu:
-% TODO: napiši i pročitaj više o ovome
+Budući da su Maxwellove jednadžbe linearne\cite{time-harmonic_maxwell},
+moguće je pretpostaviti da će odziv titrati istom frekvencijom kao i pobuda,
+odnosno moguće je pretpostaviti vremensku ovisnost istu kao i vremensku ovisnost
+pobude. To svojstvo omogućava rastav polja na prostornu i vremensku komponentu:
+
 \begin{equation} \label{eq:harmonic}
 	\mathbf{H}(\mathbf{r}, t) = \mathbf{H}(\mathbf{r}) e^{-i \omega t}
 \end{equation}
@@ -211,7 +211,7 @@ oblik:
 \begin{align} \label{eq:maxwell3}
 	\nabla \cdot (\varepsilon_r(\mathbf{r}) \mathbf{E}(\mathbf{r})) = 0 &&
 	\nabla \times \mathbf{E}(\mathbf{r}) &=
-		i \omega \mu_0 \mu(\mathbf{r})\mathbf{H}(\mathbf{r})  \nonumber \\
+		i \omega \mu_0 \mathbf{H}(\mathbf{r})  \nonumber \\
 	\nabla \cdot \mathbf{H}(\mathbf{r}) = 0 &&
 	\nabla \times \mathbf{H}(\mathbf{r}) &=
 		- i \omega \varepsilon_0 \varepsilon_r(\mathbf{r})\mathbf{E}(\mathbf{r})
@@ -247,11 +247,9 @@ Budući da je operator $\hat{\mathbf{\Theta}}$ hermitski
 		\frac{1}{\varepsilon_r (\mathbf{r})} \nabla \times \mathbf{G}(\mathbf{r})
 	\right) \, \mathrm{d}^3 \mathbf{r}$$
 
-	% dario citat
-	Koristeći formulu za parcijalnu integraciju operacije rotora i Gaussov
+	Koristeći formulu za parcijalnu integraciju operacije rotora
+	\cite{time-harmonic_maxwell} i Gaussov
 	teorem izraz se svodi na
-
-	%todo: ako će ti se dati ubaci oiint umjesto oint
 
 	$$(\mathbf{F}, \hat{\mathbf{\Theta}}\mathbf{G}) =
 	\iiint \frac{1}{\varepsilon_r (\mathbf{r})} \nabla \times \mathbf{G}(\mathbf{r})
@@ -313,8 +311,8 @@ kvocijent.
 
 Budući da se kvocijent može minimizirati tako da se maksimizira nazivnik, iz
 izraza \ref{eq:rayleighE} može se zaključiti da će električno polje
-``preferirati'' područja veće permitivnosti. Drugim riječima,
-najsnažnija električna polja mogu se očekivati u područjima veće permitivnosti.
+``preferirati'' područja veće permitivnosti. Drugim riječima, najsnažnija
+električna polja mogu se očekivati u područjima veće permitivnosti.
 
 
 \section{Propagacija vala unutar periodičke strukture}
@@ -346,10 +344,8 @@ periodičke strukture.
 
 Jednadžba \ref{eq:master_bloch} predstavlja završnu jednadžbu koja služi za
 proračun disperzijskog dijagrama u fotoničkom kristalu. Svojstvena vrijednost
-${\omega ({\bm{\beta}})}$ je kontinuirana funkcija
-Ovaj oblik
-svojstvenog problema rješava programska biblioteka MPB spomenuta ranije. Sva
-svojstva izvedena ranije, vrijede i za gore izvedenu jednadžbu.
+${\omega ({\bm{\beta}})}$ je kontinuirana funkcija. Ovaj oblik svojstvenog
+problema rješava programska biblioteka MPB spomenuta ranije.
 
 
 \chapter{Proračun disperzijskog dijagrama fotoničkih kristala}
@@ -363,10 +359,9 @@ magnetskog polja u smjeru širenja vala.
 
 U poglavljima koja slijede bit će proračunati i prikazani disperzijski dijagrami
 osnovnih dvodimenzionalnih fotoničkih kristala. Za početak će na primjeru
-jednodimenzionalnog kristala biti objašnjeno nastajanje frekvencijskog raspora, a
-zatim će biti opisane konfiguracije koje osiguravaju frekvencijski raspor (engl.
-\textit{band-gap}) za TM, potom za TE, a onda i za oboje, odnosno potpuni
-frekvencijski raspor.
+jednodimenzionalnog kristala biti objašnjeno nastajanje zabranjenog pojasa, a
+zatim će biti opisane konfiguracije koje osiguravaju nastanak zabranjenog pojasa
+za TM, potom za TE, a onda i za oboje, odnosno potpuni zabranjeni pojas.
 
 Što se tiče disperzijskih dijagrama u nastavku, vrijedit će određeni skup pravila
 koji će biti primjenjiv na sve dijagrame. TE komponenta uvijek će biti prikazana
@@ -376,11 +371,10 @@ ${\bm{\beta}}$, a y, normaliziranu frekvenciju izraženu kao
 ${\omega a/ 2 \pi c}$. Što se tiče prikaza modela fotoničkih kristala,
 dielektrično sredstvo uvijek će biti obojano, dok će zrak biti označen bijelom
 bojom. U opisu grafa bit će naznačeno s kojim je dimenzijama modeliran objekt
-koji će tvoriti kristalnu rešetku. Dielektrični kontrast uvijek će iznositi 11,
-a označavat će razliku između permitivnosti dielektrika\footnote{
+koji će tvoriti kristalnu rešetku. Dielektrični kontrast uvijek će iznositi 12,
+a označavat će omjer između permitivnosti dielektrika\footnote{
 $\varepsilon_r$ za Si iznosi 11.68.} i zraka.
 
-\newpage
 
 \section{Jednodimenzionalni fotonički kristal}
 
@@ -404,19 +398,22 @@ opisanu ranije prikazan je na slici \ref{fig:1d_band_diagram}.
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width = 0.8\linewidth]{./images/pdf/1d_crystal_band_gap.pdf}
-	\caption{Fotonički frekvencijski raspor u jednodimenzionalnoj strukturi}
+	\caption{Fotonički zabranjeni pojas u jednodimenzionalnoj strukturi.
+	Važno je napomenuti da su točke X i M jednake, te da je valni vektor bilo
+	dovoljno varirati od 0 do 0.5 u bilo kojem smjeru.}
 	\label{fig:1d_band_diagram}
 \end{figure}
 
+Očito je da 
 Rezultat \ref{eq:rayleighE} kaže da će prvi pojas većinu svoje energije
 pohraniti unutar sredstva veće permitivnosti. U slučaju modela koji se
 promatra, to je sredstvo čija je relativna permitivnosti 12. Taj pojas
-u nastavku će se nazivati \emph{dielektrični pojas}. Pojas iznad raspora mora
+u nastavku će se nazivati \emph{dielektrični pojas}. Pojas iznad mora
 osigurati jednaku simetriju kao i struktura, ali pored toga, mora osigurati i
 ortogonalnost u odnosu na dielektrični pojas. Drugim riječima, pojas iznad
-raspora mora imati jednak period jer njega diktira struktura, ali ne smije svoju
+mora imati jednak period jer njega diktira struktura, ali ne smije svoju
 energiju pohraniti unutar istog sredstva. Rješenje koje se nameće je da pojas
-iznad raspora energiju pohrani u sredstvu manje permitivnosti i k tome zadrži
+iznad energiju pohrani u sredstvu manje permitivnosti i k tome zadrži
 isti period. Pojas iznad dielektričnog, u nastavku će se nazivati \emph{zračni
 pojas} jer će njegova energija biti pohranjena u sredstvu manje permitivnosti,
 a ono je najčešće zrak.
@@ -428,13 +425,13 @@ Dielektrični pojas propagira s većim indeksom loma budući da većinu svoje en
 pohranjuje upravo u sredstvu veće permitivnosti, a s druge strane, zračni pojas
 propagira s manjim prosječnim indeksom loma budući da svoju energiju
 većinom pohranjuje u sredstvu manje permitivnosti. Sve to, navodi na zaključak
-da pojasevi moraju imati različite frekvencije. Frekvencijski raspor u ovom
+da pojasevi moraju imati različite frekvencije. Zabranjeni pojas u ovom
 slučaju je upravo ta razlika frekvencija koja nastaje zbog različitog prosječnog
 indeksa loma.
 
 \FloatBarrier
-Unutar fotoničkog frekvencijskog raspora nema propagacije vala. Val čija se
-frekvencija nalazi unutar frekvencijskog raspora naziva je evanescentni val i
+Unutar fotoničkog zabranjenog pojasa nema propagacije vala. Val čija se
+frekvencija nalazi unutar zabranjenog raspora naziva je evanescentni val i
 njegova amplituda eksponencijalno teži u 0. Evanescentni val ima kompleksni valni
 vektor ${\bm{\beta}} + j \kappa$ gdje je $\kappa$ faktor prigušenja.
 
@@ -478,7 +475,7 @@ je na disperzijskom dijagramu \ref{fig:square_band_diagram}.
 	\centering
 	\includegraphics[width = 0.8\linewidth]{./images/pdf/square_lattice_rods_band_diagram.pdf}
 	\caption{Disperzijski dijagram za kvadratnu rešetku koju sačinjavaju
-	dielektrični stupići. Frekvencijski raspor prisutan je samo za TM mod. Na
+	dielektrični stupići. Zabranjeni pojas prisutan je samo za TM mod. Na
 	dijagramu je označena i prva Brillouinova zona s pripadnim oznakama na x osi.}
 	\label{fig:square_band_diagram}
 \end{figure}
@@ -517,15 +514,15 @@ a prva Brillouinova zona prikazana je desno.
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width = 0.8\linewidth]{./images/pdf/triangular_lattice_rods_band_diagram.pdf}
-	\caption{Disperzijski dijagram za trokutastu rešetku koju sačinjavaju
-	dielektrični stupići. Frekvencijski raspor prisutan je i za TE mod i za TM
+	\caption{Disperzijski dijagram za heksagonalnu rešetku koju sačinjavaju
+	dielektrični stupići. Zabranjeni pojas prisutan je i za TE mod i za TM
 	mod.}
 	\label{fig:triangular_band_diagram}
 \end{figure}
 
 \FloatBarrier
 
-\section {Trokutasta rešetka za potpuni frekvencijski raspor}
+\section {Trokutasta rešetka za fotonički zabranjeni pojas}
 
 U ovom primjeru fotonički kristal građen je od zračnih rupa u dielektričnom
 materijalu. Gledano iz smjera z osi, kristal izgleda kao na slici
@@ -541,20 +538,21 @@ materijalu. Gledano iz smjera z osi, kristal izgleda kao na slici
 	jer su u odnosu na sliku \ref{fig:triangular_lattice} samo drugačijeg iznosa.
 	Polumjer stupića u ovoj rešetci iznosi ${0.45 \, a}$]{\includegraphics[width=0.8\linewidth]
     {./images/pdf/triangular_lattice_holes.pdf}}%
-	\caption{Na disperzijskom dijagramu pojavio je potpuni frekvncijski raspor. Na mjestima
-	gdje se raspori za TE i za TM modove preklapaju dolazi do pojave potpunom frekvencijkog
-	raspora (engl. \textit{full band-gap}).}
+	\caption{Na disperzijskom dijagramu pojavio je fotonički zabranjeni pojas. Na mjestima
+	gdje se pojasevi za TE i za TM modove preklapaju dolazi do pojave fotoničkog
+	zabranjenog pojasa.}
 	\label{fig:triangular_lattice_holes}
 \end{figure}
 
 \FloatBarrier
 
-Val čija je frekvencija unutar frekvencijskog raspora naziva se evanescentan val.
+Val čija je frekvencija unutar fotoničkog zabranjenog pojasa naziva se
+evanescentan val.
 Njegova amplituda trnut će eksponencijalno. U ovu strukturu je uz unošenje
 defekata moguće lokalizirati harmonik. Defekt je strogo gledano nepravilnost
 koja će na ovaj ili onaj način narušiti simetriju kristala.
 
-\chapter{Optimizacija širine frekvencijskog raspora trokutaste rešetke}
+\chapter{Optimizacija širine zabranjenog pojasa u okviru heksagonalne rešetke}
 
 U ovom poglavlju bit će opisani rezultati optimizacije konfiguracija različitih
 fotoničkih kristale. Kao i ranije, dielektrični kontrast u svim primjerima iznositi će
@@ -564,61 +562,66 @@ odnosno mjesto gdje se raspor za TE i za TM mod preklapaju.
 Budući da su on najveće važnosti baš potpuni frekvencijski raspori, optimizacija
 će ići na njihovu ruku.
 
-\section{Trokutasta rešetka s cilindičnim stupićima}
+\section{Trokutasta rešetka s cilindičnim stupićima}\label{section:cyl}
 
 Rezultat prikazan u nastavku u skladu je s očekivanjima i rezultatima u literaturi
-\cite{joannopoulos2011photonic}. Graf dimenzije raspora u ovisnosti o polumjeru
-jasno prikazuje vrhunac netom prije nego što se dva cilindra dotaknu. Nakon doticaja
-dva cilindra, vrijednost je 0 jer dielektrični materijal više nije međusobno povezan.
+\cite{joannopoulos2011photonic}. Graf dimenzije zabranjenog pojasa  u ovisnosti o
+polumjeru jasno prikazuje vrhunac netom prije nego što se dva cilindra dotaknu.
+Nakon doticaja dva cilindra, vrijednost je 0 jer dielektrični materijal više nije
+međusobno povezan.
 
 \begin{figure}[ht]
 \centering
-    \subfloat[Disperzijski dijagram s optimalnim potpunim frekvencijskim rasporom]
+    \subfloat[Disperzijski dijagram s optimalnim fotoničkim zabranjenim pojasom]
     {\includegraphics[width=0.8\linewidth]{./images/pdf/triangular_lattice_holes_band_diag_max.pdf}}%
     \qquad
-    \subfloat[Graf ovisnosti veličine frekvencijskog raspora i polumjera stupića.
-    Maksimum se poprima za polumjer $0.478547 \, a$ i iznosi $17.05456$]
+    \subfloat[Graf ovisnosti veličine fotoničkog zabranjenog pojasa i polumjera
+    stupića. Maksimum se poprima za polumjer $0.478547 \, a$ i iznosi $17.05456$]
     {\includegraphics[width=0.8\linewidth]{./images/pdf/optimization_cylinder.pdf}}%
-	\caption{Optimizacija potpunog frekvencijskog raspora za trokutastku rešetku s
+	\caption{Optimizacija fotoničkog zabranog pojasa za heksagonalnu rešetku s
 	cilindičnim stupićima}
 	\label{fig:triangular_holes_optimization}
 \end{figure}
 
 \section{Trokutasta rešetka s kvadratnim stupićima}
 
-U nastavku je prikazan postupak pokušaja optimizacije potpunog frekvencijskog
-raspora za slučaj fotoničkog kristala sastavljenog od kvadratnih stupića.
-Potpuni frekvencijski raspor vidljiv na slikama \ref{fig:triangular_squares_optimization}.
+U nastavku je prikazan postupak pokušaja optimizacije fotoničkog zabranjenog
+pojasa za slučaj kristala sastavljenog od kvadratnih stupića. Fotonički
+zabranjeni pojasa vidljiv na slikama \ref{fig:triangular_squares_optimization}.
 
 \begin{figure}[ht]
 \centering
-    \subfloat[Disperzijski dijagram s optimalnim potpunim frekvencijskim rasporom]
+    \subfloat[Disperzijski dijagram s optimalnim fotoničkim zabranjenim pojasom.]
     {\includegraphics[width=0.8\linewidth]{./images/pdf/triangular_lattice_squares_band_diag_max.pdf}}%
     \qquad
-    \subfloat[Graf ovisnosti omjera veličine frekvencijskog raspora i stranice kvadrata.
-    Maksimum se poprima za vrijednost stranice kvadrata $0.689655 \, a$ i iznosi $0.453280$.]
+    \subfloat[Graf ovisnosti omjera veličine zabranjenog pojasa i stranice
+    kvadrata. Maksimum se poprima za vrijednost stranice kvadrata $0.689655 \, a$
+    i iznosi $0.453280$.]
     {\includegraphics[width=0.8\linewidth]{./images/pdf/optimization_block.pdf}}%
-	\caption{Optimizacija potpunog frekvencijskog raspora za trokutastku rešetku s
+	\caption{Optimizacija fotoničkog zabranjenog pojasa za heksagonalnu rešetku s
 	kvadratnim stupićima}
 	\label{fig:triangular_squares_optimization}
 \end{figure}
 
-Iz slika je vidljivo da je potpuni frekvencijski raspor ne zamjetan. Omjer širine i
-srednje frekvencije raspora (engl. \textit{gap-midgap ratio}) iznosi manje od 1.
+Iz slika je vidljivo da je fotonički zabranjeni pojas zanemariv. Omjer širine i
+srednje frekvencije pojasa (engl. \textit{gap-midgap ratio}) iznosi manje od 1.
 Dokumentacija programske biblioteke MPB kaže da se svako rješenje manje od 1 može
 zanemariti i pripisati numeričkoj pogrešci. S druge strane, optimalno rješenje ima
-velik zamjetan frekvencijski raspor za TE mod. Optimalna konfiguracija prikazana 
+zamjetan frekvencijski raspor za TE mod. Optimalna konfiguracija prikazana 
 je na slici \ref{fig:triangular_squares_te_optimization}.
 
 \begin{figure}[ht]
 \centering
-    \subfloat[Disperzijski dijagram s optimalnim frekvencijskim rasporom za TE mod.]
-    {\includegraphics[width=0.8\linewidth]{./images/pdf/triangular_lattice_squares_band_diag_te_max.pdf}}%
+    \subfloat[Disperzijski dijagram s optimalnim zabranjenim pojasom za TE mod.]
+    {\includegraphics[width=0.8\linewidth]
+    	{./images/pdf/triangular_lattice_squares_band_diag_te_max.pdf}}%
     \qquad
-    \subfloat[Graf ovisnosti omjera veličine frekvencijskog raspora za TE mod i stranice kvadrata.
-    Maksimum se poprima za vrijednost stranice kvadrata $0.7931034 \, a$ i iznosi $42.735761$.]
-    {\includegraphics[width=0.8\linewidth]{./images/pdf/optimization_block_te.pdf}}%
-	\caption{Optimizacija frekvencijskog raspora za TM mod i trokutastku rešetku s
+    \subfloat[Graf ovisnosti omjera veličine zabranjenog pojasa za TE mod i
+    stranice kvadrata. Maksimum se poprima za vrijednost stranice kvadrata
+    $0.7931034 \, a$ i iznosi $42.735761$.]
+    {\includegraphics[width=0.8\linewidth]
+    	{./images/pdf/optimization_block_te.pdf}}%
+	\caption{Optimizacija zabranjenog pojasa za TM mod i heksagonalnu rešetku s
 	kvadratnim stupićima}
 	\label{fig:triangular_squares_te_optimization}
 \end{figure}
@@ -627,10 +630,12 @@ je na slici \ref{fig:triangular_squares_te_optimization}.
 
 \section{Trokutasta rešetka s elipsoidnim stupićima}
 
-Konačno, optimizaciji je podložen fotonički kristal s elipsoidnim stupićima. Optimizacija
-ove konfiguracije obavljana je za razliku od primjera ranije na dvije varijable.
-Jedna varijabla je predstavljala širinu pravokutnika u kojem se nalazi elipsa, a
-druga varijabla je predstavljala dužinu pravokutnika.
+Konačno, optimizaciji je podložen fotonički kristal s elipsoidnim stupićima.
+Optimizacija ove konfiguracije obavljana je za razliku od primjera ranije na
+dvije varijable. Jedna varijabla je predstavljala širinu pravokutnika u kojem se
+nalazi elipsa, a druga varijabla je predstavljala dužinu pravokutnika.
+Rezultat koji bi bilo za očekivati je da se vrhunac nalazi na mjestu koje je
+najsličnije konfiguraciji u slučaju \ref{section:cyl}
 
 \includegraphics[width=0.8\linewidth]{./images/pdf/ellipsoid_optimization.pdf}
 
@@ -639,8 +644,8 @@ druga varijabla je predstavljala dužinu pravokutnika.
 
 U ovom seminaru ukratko je prikazan svijet fotoničkih kristala. Iskazan je osnovni
 matematički aparat potreban za opis problema u periodičkom okruženju poput
-kristala. Izedena je valna jednadžba čija osnova leži kako u Maxwellovim
-jednadžbama tako i u Blochovom teoremu. Nadalje je svijet fotoničkih kristala
+kristala i izedena je valna jednadžba čija osnova leži kako u Maxwellovim
+jednadžbama tako i u Blochovom teoremu. U nastavku je svijet fotoničkih kristala
 čitatelju približen kroz slike i stjecanje intuicije za složene pojave unutar
 kristala poput disperzijskih dijagrama. Disperzijski dijagrami su uveli pojam
 ekvivalentnog vala, vala koji ne prodire u kristalnu strukturu. Pojava pojasa
@@ -652,13 +657,12 @@ kristala.
 Iako je ovo relativno nova grana znanosti, industrija teško može pratiti
 razvoj, pa dostupnost fotoničkih materijala zbog cijene izrade kaska. S druge
 strane, računalna moć nikad nije bila pristupačnija, a uz pomoću programskih
-alata, moguće je simulirati i rješavati gotovo sve probleme relativno jeftino.
-Pored upoznavanja s matematičkim formulizmom koji opisuje fotoničke kristale,
-cilj ovog seminara bio je upoznati i računalne metode simuliranja i modeliranja
-problema. Svaki disperzijski dijagram i svaki graf u ovom seminaru bio je
-programiran u programskom jeziku Python i pokrenut na osobnom računalu\footnote{
-Izvorni kod nalazi se na poveznici \url{https://github.com/djanekovic/mpb_utils/tree/master/seminar/python}
-u direktoriju python}.
+alata, moguće je simulirati i rješavati gotovo sve probleme relativno jeftino,
+odnosno bez potrebe za fotoničkim laboratijem. Pored upoznavanja s matematičkim
+formulizmom koji opisuje fotoničke kristale, cilj ovog seminara bio je upoznati i računalne metode simuliranja i modeliranja problema. Svaki disperzijski dijagram
+i svaki graf u ovom seminaru bili su programirani u programskom jeziku Python i
+pokrenut na osobnom računalu\footnote{
+Izvorni kod nalazi se na poveznici \url{https://github.com/djanekovic/mpb_utils/tree/master/seminar/python}}.
 
 
 \bibliographystyle{unsrt}
