@@ -491,21 +491,22 @@ slika \ref{fig:triangular_lattice}
 
 \begin{figure}[ht]
 \centering
-    \subfloat[Na slici nisu ucrtane Brillouinova zona i primitivni vektori rešetke
-	jer su u odnosu na sliku \ref{fig:square_lattice} samo drugačijeg iznosa.
-	Duljina stranice kvadrata u ovom modelu iznosi $0.88 \, a$ gdje je $a$
-	konstanta rešetke.]
-	{\includegraphics[width=0.45\linewidth]
+    \subfloat[Model fotoničkog kristala.]
+	{\includegraphics[width=0.2\linewidth]
     	{./images/pdf/square_lattice_holes.pdf}}%
     \qquad
     \subfloat[Disperzijski dijagram za fotonički kristal kojeg sačinjavaju rupe
 	u dielektričnom materijalu.]
-	{\includegraphics[width=0.45\linewidth]
+	{\includegraphics[width=0.7\linewidth]
     	{./images/pdf/square_lattice_holes_band_diagram.pdf}}%
 	\caption{Konfiguracija fotoničkog kristala koja osigurava zabranjeni pojas
 	za TE, ali ne i za TM mod.}
 	\label{fig:square_lattice_holes}
 \end{figure}
+
+Na slici nisu ucrtane Brillouinova zona i primitivni vektori rešetke jer su u
+odnosu na sliku \ref{fig:square_lattice} samo drugačijeg iznosa. Duljina stranice
+kvadrata u ovom modelu iznosi $0.88 \, a$ gdje je $a$ konstanta rešetke.
 
 \FloatBarrier
 
@@ -549,20 +550,22 @@ Gledano iz smjera z osi, kristal izgleda kao na slici
 
 \begin{figure}[ht]
 \centering
-    \subfloat[Na slici nisu ucrtane Brillouinova zona i primitivni vektori rešetke
-	jer su u odnosu na sliku \ref{fig:triangular_lattice} samo drugačijeg iznosa.
-	Polumjer stupića u ovoj rešetci iznosi ${0.45 \, a}$]
-	{\includegraphics[width=0.45\linewidth]
+    \subfloat[Model fotoničkog kristala.]
+	{\includegraphics[width=0.2\linewidth]
     	{./images/pdf/triangular_lattice_holes.pdf}}%
     \qquad
     \subfloat[Disperzijski dijagram za fotonički kristal kojeg sačinjavaju rupe
 	u dielektričnom materijalu.]
-	{\includegraphics[width=0.45\linewidth]
+	{\includegraphics[width=0.7\linewidth]
     	{./images/pdf/triangular_lattice_holes_band_diagram.pdf}}%
 	\caption{Na mjestima gdje se pojasevi za TE i za TM modove preklapaju dolazi
 	do pojave fotoničkog zabranjenog pojasa.}
 	\label{fig:triangular_lattice_holes}
 \end{figure}
+
+Na slici nisu ucrtane Brillouinova zona i primitivni vektori rešetke jer su u
+odnosu na sliku \ref{fig:triangular_lattice} samo drugačijeg iznosa. Polumjer
+stupića u ovoj rešetci iznosi ${0.45 \, a}$
 
 \FloatBarrier
 
@@ -608,62 +611,86 @@ međusobno povezan.
 \begin{figure}[ht]
 \centering
     \subfloat[Disperzijski dijagram s optimalnim fotoničkim zabranjenim pojasom.]
-    {\includegraphics[width=0.8\linewidth]
+    {\includegraphics[width=0.75\linewidth]
     	{./images/pdf/triangular_lattice_holes_band_diag_max.pdf}}%
     \qquad
     \subfloat[Graf ovisnosti postotka fotoničkog zabranjenog pojasa i polumjera
     stupića. Maksimum se poprima za polumjer $0.478547 \, a$ i iznosi
     $17.05456 \%$]
-    {\includegraphics[width=0.8\linewidth]
+    {\includegraphics[width=0.5\linewidth]
     	{./images/pdf/optimization_cylinder.pdf}}%
 	\caption{Optimizacija fotoničkog zabranog pojasa za heksagonalnu rešetku sa
 	zračnim cilindrima.}
 	\label{fig:triangular_holes_optimization}
 \end{figure}
 
+\FloatBarrier
+
 \section{Heksagonalna rešetka sa zračnim kvadratnim blokovima}
 
 U nastavku je prikazan postupak pokušaja optimizacije fotoničkog zabranjenog
 pojasa za slučaj kristala sastavljenog od kvadratnih stupića. Kristal je
 sličan kristalu u poglavlju \ref{sec:square_holes} s jednom razlikom, a to je
-oblik kristalne rešetke. Fotonički zabranjeni pojasa vidljiv na slikama
-\ref{fig:triangular_squares_optimization}.
+oblik kristalne rešetke. Konfiguracija optimizirana za fotonički zabranjeni
+pojas prikazan je na slici \ref{fig:triangular_squares_optimization}.
 
 \begin{figure}[ht]
-\centering
-    \subfloat[Disperzijski dijagram s optimalnim fotoničkim zabranjenim pojasom.]
-    {\includegraphics[width=0.8\linewidth]{./images/pdf/triangular_lattice_squares_band_diag_max.pdf}}%
-    \qquad
-    \subfloat[Graf ovisnosti omjera veličine zabranjenog pojasa i stranice
-    kvadrata. Maksimum se poprima za vrijednost stranice kvadrata $0.878788 \, a$
-    i iznosi $0.692784 \%$.]
-    {\includegraphics[width=0.8\linewidth]{./images/pdf/optimization_block.pdf}}%
-	\caption{Optimizacija fotoničkog zabranjenog pojasa za heksagonalnu rešetku s
-	kvadratnim stupićima}
+	\centering
+	\includegraphics[width=0.9\linewidth]
+		{./images/pdf/triangular_lattice_squares_band_diag_max.pdf}
+	\caption{Disperzijski dijagram s optimalnom konfiguracijom za fotonički
+	zabranjeni pojas. Postotak zabranjenog pojasa iznosi $0.692784 \%$.}
 	\label{fig:triangular_squares_optimization}
 \end{figure}
 
-Iz slika je vidljivo da je fotonički zabranjeni pojas zanemariv.
+
+%\begin{figure}[ht]
+%\centering
+%    \subfloat[Disperzijski dijagram s optimalnim fotoničkim zabranjenim pojasom.]
+%    {\includegraphics[width=0.5\linewidth]{./images/pdf/triangular_lattice_squares_band_diag_max.pdf}}%
+%    \qquad
+%    \subfloat[Graf ovisnosti omjera veličine zabranjenog pojasa i stranice
+%    kvadrata. Maksimum se poprima za vrijednost stranice kvadrata $0.878788 \, a$
+%    i iznosi $0.692784 \%$.]
+%    {\includegraphics[width=0.5\linewidth]{./images/pdf/optimization_block.pdf}}%
+%    \qquad
+%	\caption{Optimizacija fotoničkog zabranjenog pojasa za heksagonalnu rešetku s
+%	kvadratnim stupićima}
+%	\label{fig:triangular_squares_optimization}
+%\end{figure}
+
+\FloatBarrier
+
+Vidljivo da je fotonički zabranjeni pojas zanemariv.
 Dokumentacija programske biblioteke MPB kaže da se svaki postotak manje od 1 \%
 može zanemariti i pripisati numeričkoj pogrešci. S druge strane, optimalno
-rješenje ima zamjetan zabranjeni pojas za TE mod. Optimalna konfiguracija
-prikazana je na slici \ref{fig:triangular_squares_te_optimization}.
+rješenje ima zamjetan zabranjeni pojas za TE mod. Graf ovisnosti postotka
+zabranjenog pojasa i duljine osnovne strane kvadrata prikazan je na slici
+\ref{fig:triangular_squares_te_optimization}.
 
 \begin{figure}[ht]
-\centering
-    \subfloat[Disperzijski dijagram s optimalnim zabranjenim pojasom za TE mod.]
-    {\includegraphics[width=0.8\linewidth]
-    	{./images/pdf/triangular_lattice_squares_band_diag_te_max.pdf}}%
-    \qquad
-    \subfloat[Graf ovisnosti omjera veličine zabranjenog pojasa za TE mod i
-    stranice kvadrata. Maksimum se poprima za vrijednost stranice kvadrata
-    $0.7931034 \, a$ i iznosi $42.735761 \%$.]
-    {\includegraphics[width=0.8\linewidth]
+    {\includegraphics[width=1.0\linewidth]
     	{./images/pdf/optimization_block_te.pdf}}%
-	\caption{Optimizacija zabranjenog pojasa za TM mod i heksagonalnu rešetku s
-	kvadratnim stupićima}
+	\caption{Optimizacija zabranjenog pojasa za TM mod i heksagonalnu rešetku sa
+	zračnim kvadratnim blokovima.}
 	\label{fig:triangular_squares_te_optimization}
 \end{figure}
+
+%\begin{figure}[ht]
+%\centering
+%    \subfloat[Disperzijski dijagram s optimalnim zabranjenim pojasom za TE mod.]
+%    {\includegraphics[width=0.5\linewidth]
+%    	{./images/pdf/triangular_lattice_squares_band_diag_te_max.pdf}}%
+%    \qquad
+%    \subfloat[Graf ovisnosti omjera veličine zabranjenog pojasa za TE mod i
+%    stranice kvadrata. Maksimum se poprima za vrijednost stranice kvadrata
+%    $0.7931034 \, a$ i iznosi $42.735761 \%$.]
+%    {\includegraphics[width=0.5\linewidth]
+%    	{./images/pdf/optimization_block_te.pdf}}%
+%	\caption{Optimizacija zabranjenog pojasa za TM mod i heksagonalnu rešetku s
+%	kvadratnim stupićima}
+%	\label{fig:triangular_squares_te_optimization}
+%\end{figure}
 
 \FloatBarrier
 
@@ -680,17 +707,19 @@ najsličnije konfiguraciji u slučaju \ref{section:cyl}
 \centering
     \subfloat[Trodimenzionalni prikaz postotka zabranjenog pojasa i parametara
     elipse.]
-    {\includegraphics[width=0.8\linewidth]
+    {\includegraphics[width=0.9\linewidth]
     	{./images/pdf/ellipsoid_optimization_3d.pdf}}%
     \qquad
     \subfloat[Dvodimenzionalni graf vrijednosti postotka zabranjenog pojasa i
     parametara elipse.]
-    {\includegraphics[width=0.8\linewidth]
+    {\includegraphics[width=0.9\linewidth]
     	{./images/pdf/ellipsoid_optimization_2d.pdf}}%
 	\caption{Optimizacija zabranjenog pojasa za heksagonalnu rešetku s
 	elipsoidnim stupićima.}
 	\label{fig:ellipsoid_optimization}
 \end{figure}
+
+\FloatBarrier
 
 Maksimum nije jednak maksimumu koji je ranije postignut jer je količina uzoraka
 niža.
