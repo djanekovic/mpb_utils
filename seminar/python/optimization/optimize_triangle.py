@@ -1,66 +1,76 @@
-#!/usr/bin/python3
-
-import math
 import meep as mp
 from meep import mpb
-import numpy as np
+import math
 import matplotlib.pyplot as plt
+import numpy as np
+from scipy.optimize import minimize
+from scipy.optimize import minimize_scalar
 
-def optimize_triangle(r):
-    vertices = [mp.Vector3(0, 1*r),
-                mp.Vector3(r*math.sqrt(3)/2, -r/2),
-                mp.Vector3(-r*math.sqrt(3)/2, -r/2)]
-    ms.geometry = [mp.Prism(vertices = vertices,
-                            height = mp.inf,
-                            center = mp.Vector3(),
-                            material = mp.Medium(epsilon=1))]
+def optimize_bandgap(r):
+    ms.geometry = [
+            mp.Prism(vertices = [mp.Vector3(-r/2, -r/2), mp.Vector3(r/2, -r/2), mp.Vector3(y=r*0.5)],
+                     material = mp.Medium(epsilon=1),
+                     height = mp.inf)]
     ms.run()
     if len(ms.gap_list):
         return max(ms.gap_list)[0]
     return 0
 
-num_bands = 15
+
+num_bands = 8
 resolution = 32
+mesh_size = 7
 
-default_material = mp.Medium(epsilon = 13)
+geometry_lattice = mp.Lattice(size = mp.Vector3(1, 1))
 
-geometry_lattice = mp.Lattice(size = mp.Vector3(1, 1),
-                              basis1 = mp.Vector3(0.5, math.sqrt(3)/2),
-                              basis2 = mp.Vector3(0.5, -math.sqrt(3)/2))
+k_points = [mp.Vector3(),
+            mp.Vector3(x=0.5),
+            mp.Vector3(1/2, 1/2),
+            mp.Vector3()]
+k_points = mp.interpolate(20, k_points)
 
-k_points = [mp.Vector3(),               # Gamma
-            mp.Vector3(0.5),            # M
-            mp.Vector3(1/3, 1/3),       # K
-            mp.Vector3()]               # Gamma
+default_material = mp.Medium(epsilon=12)
 
-k_points = mp.interpolate(30, k_points)
+ms = mpb.ModeSolver(
+        geometry_lattice = geometry_lattice,
+        k_points = k_points,
+        default_material = default_material,
+        num_bands = num_bands,
+        mesh_size = mesh_size,
+        resolution = resolution)
 
-ms = mpb.ModeSolver(geometry_lattice=geometry_lattice,
-                    k_points=k_points,
-                    resolution=resolution,
-                    num_bands=num_bands,
-                    default_material = default_material)
+draw = 1
+if (draw):
+    band_gaps_custom = []
 
+    plt.style.use('seaborn-white')
+    plt.rc('text', usetex=True)
+    plt.rc('font', family='serif')
 
-band_gaps_triangle = []
+    fig, ax = plt.subplots()
 
-plt.style.use('seaborn-white')
-plt.rc('text', usetex=True)
-plt.rc('font', family='serif')
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
 
-fig, ax = plt.subplots()
+    for x in np.linspace(0.8, 1.6, 50):
+        band_gaps_custom.append((x, optimize_bandgap(x)))
 
-ax.spines['right'].set_visible(False)
-ax.spines['top'].set_visible(False)
+    print (band_gaps_custom)
+    plt.plot(*zip(*band_gaps_custom))
+    plt.xlabel('Dimenzije osnovne stranice trokuta [a]', size=16)
+    plt.ylabel(r'Postotak fotoni\v{c}kog zabranjenog pojasa [\%]', size=16)
+    plt.grid(False)
+    plt.savefig("triangle_optimization.pdf", bbox_inches = 'tight')
 
-for r in np.linspace(0.01, math.sqrt(3)/3, 20):
-    band_gaps_triangle.append((r, optimize_triangle(r)))
+    print (max(band_gaps_custom, key=lambda x: x[1]))
+else:
+    result = minimize_scalar(optimize_bandgap,  bounds=(0, 1), tol=0.1)
+    print("radius at maximum: {}".format(result.x))
+    print("gap size at maximum: {}".format(result.fun * -1))
 
-print (band_gaps_triangle)
-plt.plot(*zip(*band_gaps_triangle))
-ax.set_xlim(0, 1)
-ax.set_ylim(0, 2)
-plt.xlabel('Duljina stranice [a]')
-plt.ylabel(r'$\Delta \omega / \omega_m$')
-plt.grid(False)
-plt.show()
+#md = mpb.MPBData(rectify=True, periods=3, resolution=32)
+#eps = ms.get_epsilon()
+#converted_eps = md.convert(eps)
+#plt.imshow(converted_eps.T, interpolation='spline36', cmap='binary')
+#plt.axis('off')
+#plt.show()

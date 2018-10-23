@@ -9,7 +9,9 @@ from mpl_toolkits.mplot3d import Axes3D # This import has side effects required 
 
 def optimize_ellipsoid(a, b):
     ms.geometry = [mp.Ellipsoid(size=mp.Vector3(a, b, mp.inf),
-                            material = mp.Medium(epsilon=1))]
+                                e1 = mp.Vector3(1, 0, 0),
+                                e2 = mp.Vector3(0, 1, 0),
+                                material = mp.Medium(epsilon=1))]
     ms.run()
     if len(ms.gap_list):
         return max(ms.gap_list)[0]
@@ -37,6 +39,15 @@ ms = mpb.ModeSolver(geometry_lattice=geometry_lattice,
                     num_bands=num_bands,
                     default_material = default_material)
 
+optimize_ellipsoid(1, 1)
+
+md = mpb.MPBData(rectify=True, periods=3, resolution=32)
+eps = ms.get_epsilon()
+converted_eps = md.convert(eps)
+plt.imshow(converted_eps.T, interpolation='spline36', cmap='binary')
+plt.axis('off')
+plt.show()
+
 band_gaps_ellipsoid = []
 plt.style.use('seaborn-white')
 plt.rc('text', usetex=True)
@@ -49,7 +60,7 @@ ax.spines['right'].set_visible(False)
 ax.spines['top'].set_visible(False)
 
 
-x = y = np.linspace(0, 2, 50)
+x = y = np.linspace(0.3, 2, 30)
 X, Y = np.meshgrid(x, y)
 zs = np.array([optimize_ellipsoid(x,y) for x,y in zip(np.ravel(X), np.ravel(Y))])
 Z = zs.reshape(X.shape)

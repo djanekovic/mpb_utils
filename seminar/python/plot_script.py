@@ -61,5 +61,4 @@ def plot(tm_freqs, tm_gaps, te_freqs, te_gaps, limit=1, name="plot.pdf", save=Fa
     if not save:
         plt.show()
     else:
-        #plt.figure(figsize=(10,12))
-        plt.savefig(name)
+        plt.savefig(name, bbox_inches='tight')

@@ -12,10 +12,12 @@ resolution = 32
 r=0.2
 epsilon = 12
 geometry = [mp.Cylinder(r, material=mp.Medium(epsilon=epsilon))]
+# bazni vektori
 geometry_lattice = mp.Lattice(size = mp.Vector3(1, 1),
                               basis1 = mp.Vector3(0.5, math.sqrt(3)/2),
                               basis2 = mp.Vector3(0.5, -math.sqrt(3)/2))
 
+# parametri Brillouinove zone
 k_points = [mp.Vector3(),               # Gamma
             mp.Vector3(0.5),            # M
             mp.Vector3(1/3, 1/3),       # K
@@ -36,4 +38,4 @@ ms.run_te()
 tefreqs = ms.all_freqs
 tegaps = ms.gap_list
 
-plot(tmfreqs, tmgaps, tefreqs, tegaps, name="triangular_rods.pdf", save=True)
+plot(tmfreqs, tmgaps, tefreqs, tegaps, name="triangular_rods.pdf", save=False)

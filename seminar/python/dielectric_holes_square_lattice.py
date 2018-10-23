@@ -20,7 +20,7 @@ k_points = [mp.Vector3(),               # Gamma
             mp.Vector3(1 / 2, 1 / 2),   # K
             mp.Vector3(),               # Gamma
            ]
-k_points = mp.interpolate(100, k_points)
+k_points = mp.interpolate(10, k_points)
 
 ms = mpb.ModeSolver(geometry=geometry,
                     default_material = default_material,
@@ -36,4 +36,4 @@ ms.run_te()
 tefreq = ms.all_freqs
 tegaps = ms.gap_list
 
-plot_script.plot(tmfreq, tmgaps, tefreq, tegaps, name = "../images/pdf/square_lattice_holes_band_diagram.pdf", save=True)
+plot_script.plot(tmfreq, tmgaps, tefreq, tegaps, name = "../images/pdf/square_lattice_holes_band_diagram.pdf", save=False)

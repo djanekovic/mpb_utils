@@ -1,8 +1,11 @@
-pdf: seminar.tex literatura.bib
+seminar: seminar.tex literatura.bib
 	pdflatex seminar.tex
 	bibtex seminar.aux
 	pdflatex seminar.tex
 	pdflatex seminar.tex
+
+prezentacija: prezentacija.tex
+	pdflatex prezentacija.tex && pdflatex prezentacija.tex
 
 clean:
 	rm seminar.aux

@@ -1,4 +1,5 @@
 *.aux
+*.snm
 *.log
 *.out
 *.pdf
@@ -7,5 +8,6 @@
 *.bbl
 *.bcf
 *.blg
+*.nav
 *.run.xml
 !seminar/images/pdf/*.pdf
